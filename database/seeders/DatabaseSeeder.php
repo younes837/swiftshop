@@ -14,6 +14,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('roles')->insert([
+            'libelle' => 'Admin',
+            'description' => 'Admin',
+        ]);
+
+        DB::table('roles')->insert([
+            'libelle' => 'User',
+            'description' => 'User',
+        ]);
+
+
         DB::table('categorie')->insert([
             'name' => 'Appliances',
         ]);
@@ -41,6 +52,9 @@ class DatabaseSeeder extends Seeder
         DB::table('categorie')->insert([
             'name' => 'Computers & Tablets',
         ]);
+        \App\Models\Brand::factory(10)->create();
+        \App\Models\Ville::factory(30)->create();
+        \App\Models\Propriete::factory(3)->create();
         \App\Models\Produit::factory(40)->create();
     }
 }

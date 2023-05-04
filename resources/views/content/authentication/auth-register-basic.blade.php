@@ -6,6 +6,7 @@
   {{-- Page Css files --}}
   <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
   <link rel="stylesheet" href="{{ asset(mix('css/base/pages/authentication.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
 @endsection
 
 @section('content')
@@ -72,8 +73,7 @@
           <h2 class="brand-text text-primary ms-1">Vuexy</h2>
         </a>
 
-        <h4 class="card-title mb-1">Adventure starts here 🚀</h4>
-        <p class="card-text mb-2">Make your app management easy and fun!</p>
+      
 
         <form class="auth-register-form mt-2" action="/postsignup" method="POST" enctype="multipart/form-data">
           @csrf
@@ -136,6 +136,45 @@
                               <span class="text-danger">{{ $errors->first('password') }}</span>
                               @endif
           </div>
+          <div class="mb-1">
+            <label class="form-label" for="select2-basic">Basic</label>
+            <select class="select2 form-select form-control" name="ville" id="select2-basic">
+              @foreach ($villes as $ville)
+              <option value="{{$ville->id}}">{{$ville->name}}</option>
+                  
+              @endforeach
+            </select>
+          </div>
+          <div class="mb-1">
+            <label for="register-email" class="form-label">Adresse</label>
+            <input
+              type="text"
+              class="form-control"
+              id="register-email"
+              name="adress"
+              placeholder="Adresse"
+              
+              tabindex="2"
+            />
+            @if ($errors->has('adress'))
+                                <span class="text-danger">{{ $errors->first('adress') }}</span>
+                                @endif
+          </div>
+          <div class="mb-1">
+            <label for="register-email" class="form-label">Phone</label>
+            <input
+              type="number"
+              class="form-control"
+              id="register-email"
+              name="phone"
+              placeholder="Phone"
+              
+              tabindex="2"
+            />
+            @if ($errors->has('phone'))
+                                <span class="text-danger">{{ $errors->first('phone') }}</span>
+                                @endif
+          </div>
           {{-- <div class="mb-1">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" id="register-privacy-policy" tabindex="4" />
@@ -154,24 +193,7 @@
           </a>
         </p>
 
-        <div class="divider my-2">
-          <div class="divider-text">or</div>
-        </div>
-
-        <div class="auth-footer-btn d-flex justify-content-center">
-          <a href="#" class="btn btn-facebook">
-            <i data-feather="facebook"></i>
-          </a>
-          <a href="#" class="btn btn-twitter white">
-            <i data-feather="twitter"></i>
-          </a>
-          <a href="#" class="btn btn-google">
-            <i data-feather="mail"></i>
-          </a>
-          <a href="#" class="btn btn-github">
-            <i data-feather="github"></i>
-          </a>
-        </div>
+        
       </div>
     </div>
     <!-- /Register basic -->
@@ -181,8 +203,10 @@
 
 @section('vendor-script')
 <script src="{{asset('vendors/js/forms/validation/jquery.validate.min.js')}}"></script>
+<script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
 @endsection
 
 @section('page-script')
 <script src="{{asset('js/scripts/pages/auth-register.js')}}"></script>
+<script src="{{ asset(mix('js/scripts/forms/form-select2.js')) }}"></script>
 @endsection

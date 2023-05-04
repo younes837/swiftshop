@@ -109,66 +109,26 @@
 
       <!-- Rating starts -->
       <div id="ratings">
-        <h6 class="filter-title">Ratings</h6>
-        <div class="ratings-list">
-          <a href="#">
-            <ul class="unstyled-list list-inline">
-              <li class="ratings-list-item"><i data-feather="star" class="filled-star"></i></li>
-              <li class="ratings-list-item"><i data-feather="star" class="filled-star"></i></li>
-              <li class="ratings-list-item"><i data-feather="star" class="filled-star"></i></li>
-              <li class="ratings-list-item"><i data-feather="star" class="filled-star"></i></li>
-              <li class="ratings-list-item"><i data-feather="star" class="unfilled-star"></i></li>
-              <li>& up</li>
-            </ul>
-          </a>
-          <div class="stars-received">160</div>
+        <h6 class="filter-title">Brands</h6>
+        <div class="list-unstyled categories-list">
+          <li><input type="radio" id="all" value="all" name="brand" class="form-check-input" checked />
+            <label class="form-check-label" for="all">All</label>
+          </li>  @foreach($brand as $item)
+          <li>
+            <div class="form-check">
+              <input type="radio" id="{{$item->id}}" value="{{$item->id}}" name="brand" class="form-check-input"  />
+              <img src="{{asset($item->image)}}" class="" height="20" width="20" alt="">
+              <label class="form-check-label">{{$item->name}}</label>
+            </div>
+          </li>
+          @endforeach
         </div>
-        <div class="ratings-list">
-          <a href="#">
-            <ul class="unstyled-list list-inline">
-              <li class="ratings-list-item"><i data-feather="star" class="filled-star"></i></li>
-              <li class="ratings-list-item"><i data-feather="star" class="filled-star"></i></li>
-              <li class="ratings-list-item"><i data-feather="star" class="filled-star"></i></li>
-              <li class="ratings-list-item"><i data-feather="star" class="unfilled-star"></i></li>
-              <li class="ratings-list-item"><i data-feather="star" class="unfilled-star"></i></li>
-              <li>& up</li>
-            </ul>
-          </a>
-          <div class="stars-received">176</div>
-        </div>
-        <div class="ratings-list">
-          <a href="#">
-            <ul class="unstyled-list list-inline">
-              <li class="ratings-list-item"><i data-feather="star" class="filled-star"></i></li>
-              <li class="ratings-list-item"><i data-feather="star" class="filled-star"></i></li>
-              <li class="ratings-list-item"><i data-feather="star" class="unfilled-star"></i></li>
-              <li class="ratings-list-item"><i data-feather="star" class="unfilled-star"></i></li>
-              <li class="ratings-list-item"><i data-feather="star" class="unfilled-star"></i></li>
-              <li>& up</li>
-            </ul>
-          </a>
-          <div class="stars-received">291</div>
-        </div>
-        <div class="ratings-list">
-          <a href="#">
-            <ul class="unstyled-list list-inline">
-              <li class="ratings-list-item"><i data-feather="star" class="filled-star"></i></li>
-              <li class="ratings-list-item"><i data-feather="star" class="unfilled-star"></i></li>
-              <li class="ratings-list-item"><i data-feather="star" class="unfilled-star"></i></li>
-              <li class="ratings-list-item"><i data-feather="star" class="unfilled-star"></i></li>
-              <li class="ratings-list-item"><i data-feather="star" class="unfilled-star"></i></li>
-              <li>& up</li>
-            </ul>
-          </a>
-          <div class="stars-received">190</div>
-        </div>
+        
       </div>
       <!-- Rating ends -->
 
       <!-- Clear Filters Starts -->
-      <div id="clear-filters">
-        <button type="button" class="btn w-100 btn-primary">Clear All Filters</button>
-      </div>
+      
       <!-- Clear Filters Ends -->
     </div>
   </div>
@@ -323,6 +283,7 @@
 <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
     <input type="hidden" name="hidden_categorie" id="hidden_categorie" value="all" />
     <input type="hidden" name="hidden_sort_type" id="hidden_sort_type" value="asc" />
+    <input type="hidden" name="hidden_brand" id="hidden_brand" value="all" />
   
 <script type="text/javascript">
 
@@ -338,7 +299,8 @@ $(document).on('click', '.pagination a', function(event){
  console.log(price);
  var sort=$("#hidden_sort_type").val()
  var categorie=$("#hidden_categorie").val()
- fetch_data(page,query,price,sort,categorie);
+ var brand=$("#hidden_brand").val()
+ fetch_data(page,query,price,sort,categorie,brand);
 });
 $('input:radio[name="price-range"]').change(function(){
   var price = $('input[name="price-range"]:checked').val();
@@ -352,7 +314,8 @@ $('input:radio[name="price-range"]').change(function(){
  console.log(price);
  var sort=$("#hidden_sort_type").val()
  var categorie=$("#hidden_categorie").val()
- fetch_data(page,query,price,sort,categorie);
+ var brand=$("#hidden_brand").val()
+ fetch_data(page,query,price,sort,categorie,brand);
 
  
 })
@@ -368,7 +331,8 @@ $(document).on('keyup', '#search', function(){
   var sort=$("#hidden_sort_type").val()
   var categorie=$("#hidden_categorie").val()
   console.log(categorie);
- fetch_data(page,query,price,sort,categorie);
+  var brand=$("#hidden_brand").val()
+ fetch_data(page,query,price,sort,categorie,brand);
       });
 $(document).on('click', '#lowest', function(){
   var price = $('input[name="price-range"]:checked').val();
@@ -378,7 +342,8 @@ $(document).on('click', '#lowest', function(){
   var sort="asc"
   $("#hidden_sort_type").val(sort)
   var categorie=$("#hidden_categorie").val()
- fetch_data(page,query,price,sort,categorie);
+  var brand=$("#hidden_brand").val()
+ fetch_data(page,query,price,sort,categorie,brand);
 
 });
 $(document).on('click', '#highest', function(){
@@ -389,8 +354,8 @@ $(document).on('click', '#highest', function(){
   var sort="desc"
   $("#hidden_sort_type").val(sort)
   var categorie=$("#hidden_categorie").val()
- fetch_data(page,query,price,sort,categorie);
-
+  var brand=$("#hidden_brand").val()
+ fetch_data(page,query,price,sort,categorie,brand);
 });
 $(document).on('click', '#featured', function(){
   var price = $('input[name="price-range"]:checked').val();
@@ -400,7 +365,8 @@ $(document).on('click', '#featured', function(){
   var sort=""
   $("#hidden_sort_type").val(sort)
   var categorie=$("#hidden_categorie").val()
- fetch_data(page,query,price,sort,categorie);
+  var brand=$("#hidden_brand").val()
+ fetch_data(page,query,price,sort,categorie,brand);
 
 });
 $('input:radio[name="categorie"]').change(function(){
@@ -414,8 +380,25 @@ $('input:radio[name="categorie"]').change(function(){
   var sort=$("#hidden_sort_type").val()
   $("#hidden_sort_type").val(sort)
   $("#hidden_categorie").val(categorie)
+  var brand=$("#hidden_brand").val()
+ fetch_data(page,query,price,sort,categorie,brand);
 
- fetch_data(page,query,price,sort,categorie);
+
+});
+$('input:radio[name="brand"]').change(function(){
+  var price = $('input[name="price-range"]:checked').val();
+  var categorie = $('input[name="categorie"]:checked').val();
+  var brand = $('input[name="brand"]:checked').val();
+  $("#hidden_brand").val(brand)
+  console.log(brand);
+  var query=$('#search').val();
+  var page=$('#hidden_page').val();
+  var price = $('input[name="price-range"]:checked').val();
+  var sort=$("#hidden_sort_type").val()
+  $("#hidden_sort_type").val(sort)
+  $("#hidden_categorie").val(categorie)
+
+ fetch_data(page,query,price,sort,categorie,brand);
 
 
 });
@@ -423,10 +406,10 @@ $('input:radio[name="categorie"]').change(function(){
 
 
 
-function fetch_data(page,query,price,sort,categorie)
+function fetch_data(page,query,price,sort,categorie,brand)
 {
  $.ajax({
-  url:"/app/ecommerce/shop/search?page="+page+'&query='+query+'&price='+price+'&sort='+sort+'&categorie='+categorie,
+  url:"/app/ecommerce/shop/search?page="+page+'&query='+query+'&price='+price+'&sort='+sort+'&categorie='+categorie+'&brand='+brand,
   success:function(data)
   {
     // console.log(data);

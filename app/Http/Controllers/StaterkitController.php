@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produit;
+use App\Models\Brand;
 use App\Models\Categorie;
 use App\Models\UserProduit;
 use DB;
@@ -39,6 +40,8 @@ class StaterkitController extends Controller
             $query = $request->get('query');
             $price = $request->get('price');
             $sort = $request->get('sort');
+            $brand = $request->get('brand');
+            $brandChamp='brand_id';
             if ($sort == 'asc') {
                 $sortedby = 'price';
             } elseif ($sort == 'desc') {
@@ -54,15 +57,19 @@ class StaterkitController extends Controller
             } else {
                 $cat = 'categorie_id';
             }
-
+            if ($brand=="all") {
+                $brand=null;
+                $brandChamp=null;
+            }
             if ($query != '') {
                 if ($price == 'all') {
                     $produits = DB::table('produit')
                         ->where($cat, $categorie)
-                        ->where(function ($q) use ($query) {
+                        ->where(function ($q) use ($query,$brand,$brandChamp) {
                             $q
                                 ->where('libelle', 'like', '%' . $query . '%')
-                                ->orWhere('brand', 'like', '%' . $query . '%');
+                                ->where($brandChamp,$brand)
+                                ;
                         })
                         ->orderBy($sortedby, $sort)
                         ->paginate(9);
@@ -74,10 +81,11 @@ class StaterkitController extends Controller
                                 ->where('price', '<=', 100)
                                 ->where($cat, $categorie);
                         })
-                        ->where(function ($q) use ($query) {
+                        ->where(function ($q) use ($query,$brand,$brandChamp) {
                             $q
                                 ->where('libelle', 'like', '%' . $query . '%')
-                                ->orWhere('brand', 'like', '%' . $query . '%');
+                                ->Where($brandChamp,$brand)
+                                ;
                         })
                         ->orderBy($sortedby, $sort)
                         ->paginate(9);
@@ -89,10 +97,11 @@ class StaterkitController extends Controller
                                 ->where('price', '<=', 1000)
                                 ->where('price', '>=', 100);
                         })
-                        ->where(function ($q) use ($query) {
+                        ->where(function ($q) use ($query,$brand,$brandChamp) {
                             $q
                                 ->where('libelle', 'like', '%' . $query . '%')
-                                ->orWhere('brand', 'like', '%' . $query . '%');
+                                ->Where($brandChamp,$brand)
+                                ;
                         })
                         ->orderBy($sortedby, $sort)
                         ->paginate(9);
@@ -104,10 +113,11 @@ class StaterkitController extends Controller
                                 ->where('price', '<=', 5000)
                                 ->where('price', '>=', 1000);
                         })
-                        ->where(function ($q) use ($query) {
+                        ->where(function ($q) use ($query,$brand,$brandChamp) {
                             $q
                                 ->where('libelle', 'like', '%' . $query . '%')
-                                ->orWhere('brand', 'like', '%' . $query . '%');
+                                ->Where($brandChamp,$brand)
+                                ;
                         })
 
                         ->orderBy($sortedby, $sort)
@@ -120,10 +130,11 @@ class StaterkitController extends Controller
                                 ->where($cat, $categorie);
                         })
 
-                        ->where(function ($q) use ($query) {
+                        ->where(function ($q) use ($query,$brand,$brandChamp) {
                             $q
                                 ->where('libelle', 'like', '%' . $query . '%')
-                                ->orWhere('brand', 'like', '%' . $query . '%');
+                                ->Where($brandChamp,$brand)
+                                ;
                         })
                         ->orderBy($sortedby, $sort)
                         ->paginate(9);
@@ -135,18 +146,21 @@ class StaterkitController extends Controller
                 if ($price == 'all') {
                     $produits = DB::table('produit')
                         ->where($cat, $categorie)
+                        ->where($brandChamp, $brand)
                         ->orderBy($sortedby, $sort)
                         ->paginate(9);
                 } elseif ($price == '100') {
                     $produits = DB::table('produit')
                         ->where('price', '<=', 100)
                         ->where($cat, $categorie)
+                        ->where($brandChamp, $brand)
                         ->orderBy($sortedby, $sort)
                         ->paginate(9);
                 } elseif ($price == '100-1000') {
                     $produits = DB::table('produit')
                         ->where('price', '<=', 1000)
                         ->where('price', '>=', 100)
+                        ->where($brandChamp, $brand)
                         ->where($cat, $categorie)
                         ->orderBy($sortedby, $sort)
                         ->paginate(9);
@@ -154,6 +168,7 @@ class StaterkitController extends Controller
                     $produits = DB::table('produit')
                         ->where('price', '<=', 5000)
                         ->where('price', '>=', 1000)
+                        ->where($brandChamp, $brand)
                         ->where($cat, $categorie)
                         ->orderBy($sortedby, $sort)
                         ->paginate(9);
@@ -161,6 +176,7 @@ class StaterkitController extends Controller
                     $produits = DB::table('produit')
                         ->where('price', '>=', 5000)
                         ->where($cat, $categorie)
+                        ->where($brandChamp, $brand)
                         ->orderBy($sortedby, $sort)
                         ->paginate(9);
                 }
@@ -196,6 +212,7 @@ class StaterkitController extends Controller
         // ];
         $produits = Produit::paginate(9);
         $categories = Categorie::all();
+        $brand = Brand::all();
         $p = Produit::all();
         $length = count($p);
         if (Auth::check()) {
@@ -205,7 +222,7 @@ class StaterkitController extends Controller
             return view('/content/ecommerce/app-ecommerce-shop', [
                 'pageConfigs' => $pageConfigs,
                 'wishlist' => $wishlist,
-                // 'breadcrumbs' => $breadcrumbs,
+                'brand' => $brand,
                 'produits' => $produits,
                 'categories' => $categories,
                 'length' => $length,
@@ -214,7 +231,7 @@ class StaterkitController extends Controller
             return view('/content/ecommerce/app-ecommerce-shop', [
                 'pageConfigs' => $pageConfigs,
 
-                // 'breadcrumbs' => $breadcrumbs,
+                'brand' => $brand,
                 'produits' => $produits,
                 'categories' => $categories,
                 'length' => $length,
@@ -276,7 +293,7 @@ class StaterkitController extends Controller
                     'produit.libelle',
                     'produit.photo',
                     'produit.description',
-                    'produit.brand',
+               
                     'produit.stock',
                     'produit.rating',
                     'produit.price'
@@ -302,7 +319,7 @@ class StaterkitController extends Controller
                 'produit.libelle',
                 'produit.photo',
                 'produit.description',
-                'produit.brand',
+               
                 'produit.stock',
                 'produit.rating',
                 'produit.price'
@@ -326,6 +343,7 @@ class StaterkitController extends Controller
             'mainLayoutType' => 'horizontal',
         ];
         $produit = Produit::find($id);
+        $brand = Brand::find($produit->brand_id);
         $breadcrumbs = [
             ['link' => '/', 'name' => 'Home'],
             ['link' => 'javascript:void(0)', 'name' => 'eCommerce'],
@@ -333,15 +351,28 @@ class StaterkitController extends Controller
             ['name' => 'Details'],
         ];
         $user = Auth::user();
-        $wishlist = $user->produits;
+        if (Auth::check()) {
+            # code...
+            $wishlist = $user->produits;
+            return view('/content/ecommerce/app-ecommerce-details', [
+                'pageConfigs' => $pageConfigs,
+                // 'breadcrumbs' => $breadcrumbs,
+                'wishlist' => $wishlist,
+                'produit' => $produit,
+                'brand' => $brand,
+            ]);
+        }else {
+            return view('/content/ecommerce/app-ecommerce-details', [
+                'pageConfigs' => $pageConfigs,
+                // 'breadcrumbs' => $breadcrumbs,
+                'brand' => $brand,
+                'produit' => $produit,
+            ]);
+        }
 
-        return view('/content/ecommerce/app-ecommerce-details', [
-            'pageConfigs' => $pageConfigs,
-            // 'breadcrumbs' => $breadcrumbs,
-            'wishlist' => $wishlist,
-            'produit' => $produit,
-        ]);
     }
+
+
 
     // Ecommerce Wish List
     public function ecommerce_wishlist()
@@ -363,7 +394,7 @@ class StaterkitController extends Controller
                 'produit.libelle',
                 'produit.photo',
                 'produit.description',
-                'produit.brand',
+                
                 'produit.stock',
                 'produit.rating',
                 'produit.price'

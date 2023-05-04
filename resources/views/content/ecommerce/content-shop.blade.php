@@ -33,7 +33,7 @@
        </div>
        <h6 class="item-name">
          <a class="text-body" href="{{url('app/ecommerce/details/'.$produit->id)}}">{{$produit->libelle}}</a>
-         <span class="card-text item-company">By <a href="#" class="company-name">{{$produit->brand}}</a></span>
+         {{-- <span class="card-text item-company">By <a href="#" class="company-name">{{$produit->brand}}</a></span> --}}
        </h6>
        <p class="card-text item-description">
          {{$produit->description}}

@@ -14,7 +14,7 @@
         </div>
         <div class="col-12 col-md-7">
           <h4>{{$produit->libelle}}</h4>
-          <span class="card-text item-company">By <a href="#" class="company-name">{{$produit->brand}}</a></span>
+          <span class="card-text item-company">By <a href="#" class="company-name">{{$brand->name}}</a></span>
           <div class="ecommerce-details-price d-flex flex-wrap mt-1">
             <h4 class="item-price me-1">${{$produit->price}}</h4>
             <ul class="unstyled-list list-inline ps-1 border-start">

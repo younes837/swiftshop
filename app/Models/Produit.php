@@ -12,11 +12,11 @@ class Produit extends Model
     protected $fillable = [
         'libelle',
         'description',
-        'brand',
+    
         'stock',
         'rating',
         'categorie_id',
-        'favorie',
+        'favorie','brand_id','propriete_id'
     ];
     public function users()
     {

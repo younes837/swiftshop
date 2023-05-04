@@ -4,39 +4,37 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('user_produit', function (Blueprint $table) {
+        Schema::create('produit_commande', function (Blueprint $table) {
             $table->id();
+       
 
             $table->unsignedBigInteger('produit_id');
             $table
                 ->foreign('produit_id')
                 ->on('produit')
                 ->references('id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('commande_id');
             $table
-                ->foreign('user_id')
-                ->on('users')
+                ->foreign('commande_id')
+                ->on('commande')
                 ->references('id');
-
+            $table->integer('quantite');
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('pivot_table_user_produit');
+        Schema::dropIfExists('pivot_table_produit_commande');
     }
 };

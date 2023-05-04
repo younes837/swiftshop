@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Hash;
 use Session;
 use App\Models\User;
+use App\Models\Ville;
 use Illuminate\Support\Facades\Auth;
 use IlluminateSupportFacadesURL;
 class AuthenticationController extends Controller
@@ -39,16 +40,16 @@ class AuthenticationController extends Controller
     }
     public function register()
     {
-        if (Auth::check()) {
-            return redirect('login');
-        } else {
-            return view('content/authentication/auth-register-basic');
-        }
+        $villes=Ville::all();
+            return view('content/authentication/auth-register-basic',compact('villes'));
+        
     }
     public function postsignup(Request $request)
     {
         $request->validate([
             'name' => 'required',
+            'phone' => 'required',
+            'adress' => 'required',
             'avatar' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
@@ -61,8 +62,12 @@ class AuthenticationController extends Controller
         $data = [
             'name' => $request->name,
             'email' => $request->email,
+            'phone' => $request->phone,
+            'adress' => $request->adress,
             'password' => $request->password,
             'avatar' => $name,
+            'role_id' => 2,
+            'ville_id' => $request->ville,
         ];
         $check = $this->create($data);
 
@@ -75,6 +80,10 @@ class AuthenticationController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'avatar' => $data['avatar'],
+            'phone' => $data['phone'],
+            'adress' => $data['adress'],
+            'ville_id' => $data['ville_id'],
+            'role_id' => $data['role_id'],
             'password' => Hash::make($data['password']),
         ]);
     }
