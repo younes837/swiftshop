@@ -403,9 +403,6 @@ $('input:radio[name="brand"]').change(function(){
 
 });
 
-
-
-
 function fetch_data(page,query,price,sort,categorie,brand)
 {
  $.ajax({

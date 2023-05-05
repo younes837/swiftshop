@@ -20,6 +20,11 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
+            'avatar'=> 'IMG-20230419-WA0017.jpg',
+            'phone'=> $this->faker->randomNumber(),
+            'adress'=> $this->faker->address(),
+            'role_id'=> $this->faker->numberBetween(1,2),
+            'ville_id'=> $this->faker->numberBetween(1,30),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),

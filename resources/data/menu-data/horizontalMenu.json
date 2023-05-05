@@ -19,10 +19,13 @@
       "slug": "app-ecommerce-wishlist",
       "url": "app/ecommerce/wishlist"
 
+    },
+    {
+      "name": "Users",
+      "icon": "users",
+      "slug": "",
+      "url": "Users"
 
-      
-      
-     
     },{
       "name": "Page Layouts",
       "icon": "layout",

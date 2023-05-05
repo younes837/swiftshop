@@ -6,6 +6,7 @@ use App\Http\Controllers\CardsController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\UtilisateursController;
 
 /*
 |--------------------------------------------------------------------------
@@ -114,3 +115,6 @@ Route::post('postsignup', [
 Route::get('signout', [AuthenticationController::class, 'signOut'])->name(
     'signout'
 );
+Route::resource('Users', UtilisateursController ::class);
+// Route::get('/Users/delete/{id}', 'UtilisateursController@destroy')
+//      ->name('Users.destroy');
