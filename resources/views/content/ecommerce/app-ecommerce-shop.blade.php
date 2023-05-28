@@ -146,7 +146,7 @@
           <button class="navbar-toggler shop-sidebar-toggler" type="button" data-bs-toggle="collapse">
             <span class="navbar-toggler-icon d-block d-lg-none"><i data-feather="menu"></i></span>
           </button>
-          <div class="search-results">{{$length}} results found</div>
+          <div class="search-results">{{session('length')}} results found</div>
         </div>
         <div class="view-options d-flex">
           <div class="btn-group dropdown-sort">
@@ -290,6 +290,26 @@
 
   $(document).ready(function(){
 
+    var overlay = $('.body-content-overlay')
+    var sidebarShop = $('.sidebar-shop')
+    var sidebarToggler = $('.shop-sidebar-toggler')
+    if (sidebarToggler.length) {
+    sidebarToggler.on('click', function () {
+      console.log("hhhhhhhhhhhhhhhh");
+      sidebarShop.toggleClass('show');
+      overlay.toggleClass('show');
+      $('body').addClass('modal-open');
+    });
+  }
+  if (overlay.length) {
+    overlay.on('click', function (e) {
+      sidebarShop.removeClass('show');
+      overlay.removeClass('show');
+      $('body').removeClass('modal-open');
+    });
+  }
+
+
 $(document).on('click', '.pagination a', function(event){
  event.preventDefault(); 
  var page = $(this).attr('href').split('page=')[1];
@@ -334,6 +354,8 @@ $(document).on('keyup', '#search', function(){
   var brand=$("#hidden_brand").val()
  fetch_data(page,query,price,sort,categorie,brand);
       });
+
+      
 $(document).on('click', '#lowest', function(){
   var price = $('input[name="price-range"]:checked').val();
   var query=$('#search').val();

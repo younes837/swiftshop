@@ -1,6 +1,6 @@
 
 
-@if (Auth::check())
+
     
 @foreach ($produits as $produit)
 <div class="card ecommerce-card">
@@ -39,17 +39,14 @@
 <i data-feather="x"></i>
 <span>Remove</span>
 </button>
-<button type="button" class="btn btn-primary btn-cart move-cart">
+<a href="{{ route('add_to_cart', $produit->id) }}"   class="btn btn-primary btn-cart move-cart">
 <i data-feather="shopping-cart"></i>
 <span class="add-to-cart">Move to cart</span>
-</button>
+</a>
 </div>
 </div>
 @endforeach
-@else
 
-vodka hh
-@endif
 <script type="text/javascript">
     function fetch_which(id)
     {

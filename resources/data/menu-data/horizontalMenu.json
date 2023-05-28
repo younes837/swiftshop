@@ -18,43 +18,16 @@
       "icon": "heart",
       "slug": "app-ecommerce-wishlist",
       "url": "app/ecommerce/wishlist"
-
+      
     },
     {
-      "name": "Users",
-      "icon": "users",
-      "slug": "",
-      "url": "Users"
-
-    },{
-      "name": "Page Layouts",
-      "icon": "layout",
-      "dropdown": "1",
-      "slug": "",
-      "submenu": [
-        {
-          "url": "layouts/full",
-          "name": "Layout Full",
-          "slug": "layout-full"
-        },
-        {
-          "url": "layouts/without-menu",
-          "name": "Without Menu",
-          "slug": "without-menu"
-        },
-        {
-          "url": "layouts/empty",
-          "name": "Layout Empty",
-          "slug": "layout-empty"
-        },
-        {
-          "url": "layouts/blank",
-          "name": "Layout Blank",
-          "slug": "layout-blank"
-        }
-      ]
+      "name": "Checkout",
+      "icon": "check-square",
+      "slug": "app-ecommerce-checkout",
+      "url": "app/ecommerce/checkout"
+     
     }
-    
+   
    
   ]
   

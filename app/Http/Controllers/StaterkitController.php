@@ -14,18 +14,20 @@ class StaterkitController extends Controller
     // home
     public function home()
     {
-        $breadcrumbs = [
-            ['link' => 'home', 'name' => 'Home'],
-            ['name' => 'Index'],
-        ];
+        // $breadcrumbs = [
+        //     ['link' => 'home', 'name' => 'Home'],
+        //     ['name' => 'Index'],
+        // ];
         $pageConfigs = [
-            'contentLayout' => 'content-detached-left-sidebar',
+   
             'showMenu' => true,
             'pageClass' => 'ecommerce-application',
             'mainLayoutType' => 'horizontal',
         ];
+        $produits=Produit::all()->take(5);
         return view('/content/home', [
-            'breadcrumbs' => $breadcrumbs,
+            // 'breadcrumbs' => $breadcrumbs,
+            "produits"=>$produits,
             'pageConfigs' => $pageConfigs,
         ]);
     }
@@ -140,6 +142,7 @@ class StaterkitController extends Controller
                         ->paginate(9);
                 }
                 $total_row = $produits->total();
+                session()->put('length', 0);
             } else {
                 $produits = DB::table('produit')->paginate(9);
 
@@ -181,6 +184,7 @@ class StaterkitController extends Controller
                         ->paginate(9);
                 }
                 $total_row = $produits->total();
+                session()->put('length', 0);
             }
             if (Auth::check()) {
                 # code...
@@ -215,6 +219,8 @@ class StaterkitController extends Controller
         $brand = Brand::all();
         $p = Produit::all();
         $length = count($p);
+        session()->put('length', $length);
+        // session()->flush();
         if (Auth::check()) {
             # code...
             $user = Auth::user();
@@ -420,17 +426,16 @@ class StaterkitController extends Controller
     {
         $pageConfigs = [
             'pageClass' => 'ecommerce-application',
+            'mainLayoutType' => 'horizontal',
         ];
+        $user=Auth::user();
 
-        $breadcrumbs = [
-            ['link' => '/', 'name' => 'Home'],
-            ['link' => 'javascript:void(0)', 'name' => 'eCommerce'],
-            ['name' => 'Checkout'],
-        ];
+  
 
         return view('/content/ecommerce/app-ecommerce-checkout', [
             'pageConfigs' => $pageConfigs,
-            'breadcrumbs' => $breadcrumbs,
+            "user"=>$user
+
         ]);
     }
 
@@ -495,5 +500,60 @@ class StaterkitController extends Controller
     {
         $pageConfigs = ['blankPage' => true];
         return view('/content/layout-blank', ['pageConfigs' => $pageConfigs]);
+    }
+
+
+    public function addToCart($id)
+    {
+        $product = Produit::findOrFail($id);
+        if ($product) {
+            $brand=Brand::find($product->brand_id);
+        }
+ 
+        $cart = session()->get('cart', []);
+
+        
+        if(isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+        }  else {
+            
+            $cart[$id] = [
+                "product_name" => $product->libelle,
+                "id" => $product->id,
+                "photo" => $product->photo,
+                "rating" => $product->rating,
+                "brand" => $brand->name,
+                "price" => $product->price,
+                "quantity" => 1
+            ];
+        }
+
+ 
+        session()->put('cart', $cart);
+        return redirect()->back()->with('success', 'Product add to cart successfully!');
+    }
+    
+    public function update(Request $request)
+    {
+        if($request->id){
+            $cart = session()->get('cart');
+            $cart[$request->id]["quantity"] = $request->quantity;
+            session()->put('cart', $cart);
+        
+            return view('content/ecommerce/content-checkout');
+        }
+    }
+ 
+    public function remove(Request $request)
+    {
+        if($request->id) {
+            $cart = session()->get('cart');
+            if(isset($cart[$request->id])) {
+                unset($cart[$request->id]);
+                session()->put('cart', $cart);
+            }
+            session()->flash('success', 'Product successfully removed!');
+            return view('content/ecommerce/content-checkout');
+        }
     }
 }

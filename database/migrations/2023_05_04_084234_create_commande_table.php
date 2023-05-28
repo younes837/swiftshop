@@ -21,7 +21,14 @@ return new class extends Migration
                 ->foreign('etat_id')
                 ->on('etat')
                 ->references('id');
-          
+            $table->unsignedBigInteger('user_id');
+            $table
+                ->foreign('user_id')
+                ->on('users')
+                ->references('id');
+            $table->string('ville');
+            $table->string('adress');
+            $table->timestamps();
         });
     }
 

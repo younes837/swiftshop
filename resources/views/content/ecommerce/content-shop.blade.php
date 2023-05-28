@@ -1,4 +1,4 @@
-<div class="search-results">{{$produits->total()}} results found</div>
+{{-- <div class="search-results">{{$produits->total()}} results found</div> --}}
 
 @if(isset($produits))
     @foreach($produits as $produit)
@@ -108,7 +108,7 @@
         <span>Wishlist</span>
     </a>
       @endif
-       <a href="#" class="btn btn-primary btn-cart">
+       <a href="{{ route('add_to_cart', $produit->id) }}"  class="btn btn-primary btn-cart">
          <i data-feather="shopping-cart"></i>
         
          <span class="add-to-cart">Add to cart</span>
@@ -119,7 +119,7 @@
  
    @endforeach
 
-   <section id="ecommerce-pagination ">
+   <section id="ecommerce-pagination  " class="">
     <div class="row">
       <div class="col-sm-12">
         <nav id="pagination" aria-label="Page navigation example">

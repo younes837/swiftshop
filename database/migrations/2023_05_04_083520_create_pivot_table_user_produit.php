@@ -18,12 +18,12 @@ return new class extends Migration
             $table
                 ->foreign('produit_id')
                 ->on('produit')
-                ->references('id');
+                ->references('id')->onDelete('cascade');
             $table->unsignedBigInteger('user_id');
             $table
                 ->foreign('user_id')
                 ->on('users')
-                ->references('id');
+                ->references('id')->onDelete('cascade');
             $table->timestamps();
         });
     }
