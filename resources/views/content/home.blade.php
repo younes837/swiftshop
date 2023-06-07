@@ -1,5 +1,5 @@
 
-@extends('layouts/detachedLayoutMaster')
+@extends('layouts/contentLayoutMaster')
 @section('title', 'Home')
 
 @section('content')
@@ -10,21 +10,35 @@
 @endsection
 @section('page-style')
 <style type="text/css">
-  img.wp-smiley,
-  img.emoji {
-    display: inline !important;
-    border: none !important;
-    box-shadow: none !important;
-    height: 1em !important;
-    width: 1em !important;
-    margin: 0 0.07em !important;
-    vertical-align: -0.1em !important;
-    background: none !important;
-    padding: 0 !important;
-  }
-  </style>
-  <!-- Page css files -->
-  <link rel='stylesheet' id='animate-css' href='https://gizmos.qodeinteractive.com/wp-content/plugins/qi-blocks/assets/css/plugins/animate/animate.min.css?ver=6.2.2' type='text/css' media='all' />
+img.wp-smiley,
+img.emoji {
+display: inline !important;
+border: none !important;
+box-shadow: none !important;
+height: 1em !important;
+width: 1em !important;
+margin: 0 0.07em !important;
+vertical-align: -0.1em !important;
+background: none !important;
+padding: 0 !important;
+}
+.infinite-img{
+  padding-top: 0.5rem;
+  min-height: 15.85rem;
+  display: flex;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 200px;
+}
+</style>
+<style>
+
+</style>
+<!-- Page css files -->
+<link rel='stylesheet' id='animate-css' href='https://gizmos.qodeinteractive.com/wp-content/plugins/qi-blocks/assets/css/plugins/animate/animate.min.css?ver=6.2.2' type='text/css' media='all' />
 <link rel='stylesheet' id='sbi_styles-css' href='https://gizmos.qodeinteractive.com/wp-content/plugins/instagram-feed/css/sbi-styles.min.css?ver=6.1' type='text/css' media='all' />
 <link rel='stylesheet' id='elegant-icons-css' href='https://gizmos.qodeinteractive.com/wp-content/plugins/gizmos-core/inc/icons/elegant-icons/assets/css/elegant-icons.min.css?ver=6.2.2' type='text/css' media='all' />
 <link rel='stylesheet' id='font-awesome-css' href='https://gizmos.qodeinteractive.com/wp-content/plugins/gizmos-core/inc/icons/font-awesome/assets/css/all.min.css?ver=6.2.2' type='text/css' media='all' />
@@ -47,14 +61,16 @@ body  .qodef-widget-block-06577e08 .qi-block-tag-cloud .qodef-e-item{font-family
 .woocommerce form .form-row .required { visibility: visible; }
 </style>
 <link rel='stylesheet' id='swiper-css' href='https://gizmos.qodeinteractive.com/wp-content/plugins/qi-blocks/inc/slider/assets/plugins/swiper.min.css?ver=6.2.2' type='text/css' media='all' />
-<link rel='stylesheet' id='gizmos-main-css' href='https://gizmos.qodeinteractive.com/wp-content/themes/gizmos/assets/css/main.min.css?ver=6.2.2' type='text/css' media='all' />
+
 <link rel='stylesheet' id='gizmos-core-style-css' href='https://gizmos.qodeinteractive.com/wp-content/plugins/gizmos-core/assets/css/gizmos-core.min.css?ver=6.2.2' type='text/css' media='all' />
 <link rel='stylesheet' id='yith_wccl_frontend-css' href='https://gizmos.qodeinteractive.com/wp-content/plugins/yith-woocommerce-color-label-variations-premium/assets/css/yith-wccl.css?ver=1.29.0' type='text/css' media='all' />
 <style id='yith_wccl_frontend-inline-css' type='text/css'>
 .select_option .yith_wccl_tooltip > span{background: #222222;color: #ffffff;}
-            .select_option .yith_wccl_tooltip.bottom span:after{border-bottom-color: #222222;}
-            .select_option .yith_wccl_tooltip.top span:after{border-top-color: #222222;}
+.select_option .yith_wccl_tooltip.bottom span:after{border-bottom-color: #222222;}
+.select_option .yith_wccl_tooltip.top span:after{border-top-color: #222222;}
 </style>
+<link rel="stylesheet" href="{{ asset(mix('css/base/pages/app-ecommerce.css')) }}">
+
 <link rel='stylesheet' id='jquery-colorbox-css' href='https://gizmos.qodeinteractive.com/wp-content/plugins/yith-woocommerce-compare/assets/css/colorbox.css?ver=1.4.21' type='text/css' media='all' />
 <link rel='stylesheet' id='yith-woocompare-widget-css' href='https://gizmos.qodeinteractive.com/wp-content/plugins/yith-woocommerce-compare/assets/css/widget.css?ver=2.20.1' type='text/css' media='all' />
 <link rel='stylesheet' id='yith-gfonts-open-sans-css' href='https://gizmos.qodeinteractive.com/wp-content/plugins/yith-woocommerce-product-sales-countdown-premium/assets/fonts/open-sans/style.css?ver=1.22.0' type='text/css' media='all' />
@@ -70,7 +86,7 @@ body  .qodef-widget-block-06577e08 .qi-block-tag-cloud .qodef-e-item{font-family
 <link rel='stylesheet' id='gizmos-grid-css' href='https://gizmos.qodeinteractive.com/wp-content/themes/gizmos/assets/css/grid.min.css?ver=6.2.2' type='text/css' media='all' />
 <link rel='stylesheet' id='gizmos-style-css' href='https://gizmos.qodeinteractive.com/wp-content/themes/gizmos/style.css?ver=6.2.2' type='text/css' media='all' />
 <style id='gizmos-style-inline-css' type='text/css'>
-#qodef-content-bottom { background-color: #1A1A1A;}body { background-color: #f3f6fb;}#qodef-page-inner { padding: 0px 0px 0px 0px;}@media only screen and (max-width: 1024px) { #qodef-page-inner { padding: 0px 0px 0px 0px;}}#qodef-top-area { background-color: #ffffff;}#qodef-top-area-inner { border-bottom-color: #ffffff00;border-bottom-width: 0px;}#qodef-page-header .qodef-header-logo-link { height: 21px;}#qodef-page-mobile-header .qodef-mobile-header-logo-link { height: 21px;}.qodef-header-navigation ul li .qodef-drop-down-second { top: 325%;}.qodef-header-navigation> ul > li:hover { background-color: #ffffff00!important;}.qodef-header-navigation> ul > li.current-menu-item { background-color: #ffffff00!important;}.qodef-header-navigation> ul > li.current-menu-ancestor { background-color: #ffffff00!important;}.widget .qodef-side-menu-opener:hover { color: #2453d4;}.qodef-page-title { height: 78px;}.qodef-header--standard-extended #qodef-page-header { height: 152px;}
+#qodef-content-bottom { background-color: #1A1A1A;}body { background-color: #f3f6fb;}#qodef-page-inner { padding: 0px 0px 0px 0px;}@media only screen and (max-width: 1024px) { #qodef-page-inner { padding: 0px 0px 0px 0px;}}#qodef-top-area { background-color: #ffffff;}#qodef-top-area-inner { border-bottom-color: #ffffff00;border-bottom-width: 0px;}
 </style>
 <link rel='stylesheet' id='gizmos-core-elementor-css' href='https://gizmos.qodeinteractive.com/wp-content/plugins/gizmos-core/inc/plugins/elementor/assets/css/elementor.min.css?ver=6.2.2' type='text/css' media='all' />
 <link rel='stylesheet' id='elementor-icons-css' href='https://gizmos.qodeinteractive.com/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css?ver=5.16.0' type='text/css' media='all' />
@@ -79,7 +95,7 @@ body  .qodef-widget-block-06577e08 .qi-block-tag-cloud .qodef-e-item{font-family
 <link rel='stylesheet' id='elementor-post-5601-css' href='https://gizmos.qodeinteractive.com/wp-content/uploads/elementor/css/post-5601.css?ver=1669375605' type='text/css' media='all' />
 <link rel='stylesheet' id='qode-zendesk-chat-css' href='https://gizmos.qodeinteractive.com/wp-content/plugins/qode-zendesk-chat//assets/main.css?ver=6.2.2' type='text/css' media='all' />
 <link rel='stylesheet' id='qi-blocks-google-fonts-css' href='https://fonts.googleapis.com/css?family=Roboto%3A400%2C500&#038;subset&#038;display=swap&#038;ver=1.0.0' type='text/css' media='all' />
-{{-- <link rel='stylesheet' id='google-fonts-1-css' href='https://fonts.googleapis.com/css?family=Roboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto+Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;display=auto&#038;ver=6.2.2' type='text/css' media='all' /> --}}
+
 <link rel="https://api.w.org/" href="https://gizmos.qodeinteractive.com/wp-json/" /><link rel="alternate" type="application/json" href="https://gizmos.qodeinteractive.com/wp-json/wp/v2/pages/5601" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://gizmos.qodeinteractive.com/xmlrpc.php?rsd" />
 <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://gizmos.qodeinteractive.com/wp-includes/wlwmanifest.xml" />
 <meta name="generator" content="WordPress 6.2.2" />
@@ -91,18 +107,161 @@ body  .qodef-widget-block-06577e08 .qi-block-tag-cloud .qodef-e-item{font-family
 
 <style type="text/css" id="wp-custom-css">
   .qodef-rev-border-radius rs-slide {
-border-radius: 10px;
-}		</style>
+  border-radius: 10px;
+}		
+</style>
+<link rel="stylesheet" href="{{ asset(mix('css/base/plugins/extensions/ext-component-toastr.css')) }}">
+<link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/toastr.min.css')) }}">
 @endsection
 
-@section('vendor-script')
-<!-- Vendor js files -->
 
-@endsection
 @section('page-script')
+
+
+<script src="{{ asset(mix('vendors/js/extensions/toastr.min.js')) }}"></script>
+
+
+<script type="text/javascript">
+  function fetch_which(id,wish)
+  {
+   $.ajax({
+    url:'/app/ecommerce/shop/whishlist?id='+id+"&details=new"+'&on='+wish,
+    success:function(data)
+    {
+      // console.log(data);
+      $('#new-products').html(data);
+      feather.replace();
+      console.log("jqsdjhqsgjh");
+     
+    }
+   });
+  }
+  $('.new-product-wishlist').on('click', function () {
+        var $this = $(this);
+        // $this.find('svg').toggleClass('text-danger');
+        var page=$('#hidden_page').val();
+        if (!$this.find('svg').hasClass('text-danger')) {
+          toastr['success']('', 'Added to wishlist ❤️', {
+            closeButton: false,
+            tapToDismiss: true,
+            rtl: true,
+            showMethod: 'slideDown',
+    hideMethod: 'slideUp',
+    timeOut: 2000,
+    
+          })}
+          var $inner = $this.find('#id');
+         console.log($this.find('svg').hasClass('text-danger'));
+          var value = $inner.val();
+         if ($this.find('svg').hasClass('text-danger')) {
+          var on='true'
+         }else{
+          var on='false'
+         }
+          fetch_which(value,on)
+      })
+     
+      
+  
+  
+  
+  </script>
+<script type="text/javascript">
+  $(document).ready(function(){
+console.log("sdhfsdjhgj");
+function fetch_which2(id,wish)
+{
+  $.ajax({
+    url:'/app/ecommerce/shop/whishlist?id='+id+"&details=top"+'&on='+wish,
+    success:function(data)
+    {
+      // console.log(data);
+      $('#top-products').html(data);
+      feather.replace();
+      console.log("jqsdjhqsgjh");
+      
+    }
+   });
+  };
+  $('.top-product-wishlist').on('click', function () {
+    var $this = $(this);
+    // $this.find('svg').toggleClass('text-danger');
+    var page=$('#hidden_page').val();
+    if (!$this.find('svg').hasClass('text-danger')) {
+      toastr['success']('', 'Added to wishlist ❤️', {
+            closeButton: false,
+            tapToDismiss: true,
+            rtl: true,
+            showMethod: 'slideDown',
+            hideMethod: 'slideUp',
+            timeOut: 2000,
+            
+          })}
+          var $inner = $this.find('#id');
+          console.log($this.find('svg').hasClass('text-danger'));
+          var value = $inner.val();
+          if ($this.find('svg').hasClass('text-danger')) {
+            var on='true'
+          }else{
+            var on='false'
+          }
+          fetch_which2(value,on)
+        })
+        
+      })
+        </script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+console.log("sdhfsdjhgj");
+function fetch_which2(id,wish)
+{
+  $.ajax({
+    url:'/app/ecommerce/shop/whishlist?id='+id+"&details=best"+'&on='+wish,
+    success:function(data)
+    {
+      // console.log(data);
+      $('#best-sellers').html(data);
+      feather.replace();
+      console.log("jqsdjhqsgjh");
+      
+    }
+   });
+  };
+  $('.best-sellers-wishlist').on('click', function () {
+    var $this = $(this);
+    // $this.find('svg').toggleClass('text-danger');
+    var page=$('#hidden_page').val();
+    if (!$this.find('svg').hasClass('text-danger')) {
+      toastr['success']('', 'Added to wishlist ❤️', {
+            closeButton: false,
+            tapToDismiss: true,
+            rtl: true,
+            showMethod: 'slideDown',
+            hideMethod: 'slideUp',
+            timeOut: 2000,
+            
+          })}
+          var $inner = $this.find('#id');
+          console.log($this.find('svg').hasClass('text-danger'));
+          var value = $inner.val();
+          if ($this.find('svg').hasClass('text-danger')) {
+            var on='true'
+          }else{
+            var on='false'
+          }
+          fetch_which2(value,on)
+        })
+        
+      })
+        </script>
+
+
+
+
 <script data-cfasync="false" data-pagespeed-no-defer>
-	var dataLayer_content = {"pagePostType":"page","pagePostType2":"single-page","pagePostAuthor":"admin"};
-	dataLayer.push( dataLayer_content );
+var dataLayer_content = {"pagePostType":"page","pagePostType2":"single-page","pagePostAuthor":"admin"};
+dataLayer.push( dataLayer_content );
 </script>
 <script data-cfasync="false">
 (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -112,22 +271,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-KTQ2BTD');
 </script>
 
- <noscript><style>.woocommerce-product-gallery{ opacity: 1 !important; }</style></noscript>
- <script type="text/template" id="tmpl-variation-template">
-	
+<noscript><style>.woocommerce-product-gallery{ opacity: 1 !important; }</style></noscript>
+<script type="text/template" id="tmpl-variation-template">
+
 </script>
 <script type="text/template" id="tmpl-unavailable-variation-template">
-	<p>Sorry, this product is unavailable. Please choose a different combination.</p>
+<p>Sorry, this product is unavailable. Please choose a different combination.</p>
 </script>
 <script type='text/javascript' src='https://gizmos.qodeinteractive.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.4' id='jquery-core-js'></script>
 <script type='text/javascript' src='https://gizmos.qodeinteractive.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.0' id='jquery-migrate-js'></script>
 <script>
-  window.RS_MODULES = window.RS_MODULES || {};
-  window.RS_MODULES.modules = window.RS_MODULES.modules || {};
-  window.RS_MODULES.waiting = window.RS_MODULES.waiting || [];
-  window.RS_MODULES.defered = true;
-  window.RS_MODULES.moduleWaiting = window.RS_MODULES.moduleWaiting || {};
-  window.RS_MODULES.type = 'compiled';
+window.RS_MODULES = window.RS_MODULES || {};
+window.RS_MODULES.modules = window.RS_MODULES.modules || {};
+window.RS_MODULES.waiting = window.RS_MODULES.waiting || [];
+window.RS_MODULES.defered = true;
+window.RS_MODULES.moduleWaiting = window.RS_MODULES.moduleWaiting || {};
+window.RS_MODULES.type = 'compiled';
 </script>
 <div class="rbt-toolbar" data-theme="Gizmos" data-featured="" data-button-position="89%" data-button-horizontal="right" data-button-alt="no"></div>
 <script type="text/javascript">
@@ -136,9 +295,9 @@ var sbiajaxurl = "https://gizmos.qodeinteractive.com/wp-admin/admin-ajax.php";
 <link href="https://fonts.googleapis.com/css?family=Roboto:500%2C400&display=swap" rel="stylesheet" property="stylesheet" media="all" type="text/css">
 <script type="text/javascript">
 (function () {
-  var c = document.body.className;
-  c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
-  document.body.className = c;
+var c = document.body.className;
+c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+document.body.className = c;
 })();
 </script>
 <script>
@@ -251,28 +410,29 @@ var yith_wccl_general = {"ajaxurl":"\/?wc-ajax=%%endpoint%%","actionAddCart":"yi
 var yith_woocompare = {"ajaxurl":"\/?wc-ajax=%%endpoint%%","actionadd":"yith-woocompare-add-product","actionremove":"yith-woocompare-remove-product","actionview":"yith-woocompare-view-table","actionreload":"yith-woocompare-reload-product","added_label":"Added","table_title":"Product Comparison","auto_open":"no","loader":"https:\/\/gizmos.qodeinteractive.com\/wp-content\/plugins\/yith-woocommerce-compare\/assets\/images\/loader.gif","button_text":"","cookie_name":"yith_woocompare_list","close_label":"Close"};
 /* ]]> */
 </script>
+<script src="{{ asset(mix('js/scripts/pages/app-ecommerce.js')) }}"></script>
 <script type='text/javascript' src='https://gizmos.qodeinteractive.com/wp-content/plugins/yith-woocommerce-compare/assets/js/woocompare.min.js?ver=2.20.1' id='yith-woocompare-main-js'></script>
 <script type='text/javascript' src='https://gizmos.qodeinteractive.com/wp-content/plugins/yith-woocommerce-compare/assets/js/jquery.colorbox-min.js?ver=1.4.21' id='jquery-colorbox-js'></script>
 <script type='text/javascript' src='https://gizmos.qodeinteractive.com/wp-content/plugins/qi-blocks/inc/slider/assets/plugins/swiper.min.js?ver=6.2.2' id='swiper-js'></script>
 <script type='text/javascript' src='https://gizmos.qodeinteractive.com/wp-content/plugins/woocommerce/assets/js/select2/select2.full.min.js?ver=4.0.3-wc.7.1.0' id='select2-js'></script>
 <script type="text/javascript" src="https://static.zdassets.com/ekr/snippet.js?key=af3078fd-a5ae-40da-bee0-e589b98c8603&#038;ver=6.2.2" id="ze-snippet"></script><script type="text/javascript">
-        zE(function(){
-          $zopim(function(){
-            var isChatEnabled = sessionStorage.getItem("qodeChatEnabled"),
-              appearingTime = 15000;
-            
-            if(isChatEnabled !== "no" && window.innerWidth > 1024) {
-              setTimeout(function(){
-                $zopim.livechat.window.show();
-                
-                 $zopim.livechat.window.onHide(function(){
-                    sessionStorage.setItem("qodeChatEnabled", "no");
-                 });
-              }, appearingTime);
-            }
-          });
-        });
-        </script><script type='text/javascript' src='https://gizmos.qodeinteractive.com/wp-content/plugins/gizmos-core/assets/plugins/perfect-scrollbar/perfect-scrollbar.jquery.min.js?ver=6.2.2' id='jquery-perfect-scrollbar-js'></script>
+zE(function(){
+$zopim(function(){
+var isChatEnabled = sessionStorage.getItem("qodeChatEnabled"),
+appearingTime = 15000;
+
+if(isChatEnabled !== "no" && window.innerWidth > 1024) {
+setTimeout(function(){
+$zopim.livechat.window.show();
+
+  $zopim.livechat.window.onHide(function(){
+    sessionStorage.setItem("qodeChatEnabled", "no");
+  });
+}, appearingTime);
+}
+});
+});
+</script><script type='text/javascript' src='https://gizmos.qodeinteractive.com/wp-content/plugins/gizmos-core/assets/plugins/perfect-scrollbar/perfect-scrollbar.jquery.min.js?ver=6.2.2' id='jquery-perfect-scrollbar-js'></script>
 <script type='text/javascript' src='https://gizmos.qodeinteractive.com/wp-content/plugins/gizmos-core/assets/plugins/bloodhound/bloodhound.min.js?ver=6.2.2' id='bloodhound-js'></script>
 <script type='text/javascript' src='https://gizmos.qodeinteractive.com/wp-content/plugins/gizmos-core/assets/plugins/typeahead/typeahead.bundle.min.js?ver=6.2.2' id='typeahead-js'></script>
 <script type='text/javascript' src='https://gizmos.qodeinteractive.com/wp-content/plugins/gizmos-core/assets/plugins/perfect-scrollbar/perfect-scrollbar.jquery.min.js?ver=6.2.2' id='perfect-scrollbar-js'></script>
@@ -310,135 +470,135 @@ var	revapi17,revapi19;
 if(window.RS_MODULES === undefined) window.RS_MODULES = {};
 if(RS_MODULES.modules === undefined) RS_MODULES.modules = {};
 RS_MODULES.modules["revslider171"] = {once: RS_MODULES.modules["revslider171"]!==undefined ? RS_MODULES.modules["revslider171"].once : undefined, init:function() {
-  window.revapi17 = window.revapi17===undefined || window.revapi17===null || window.revapi17.length===0  ? document.getElementById("rev_slider_17_1") : window.revapi17;
-  if(window.revapi17 === null || window.revapi17 === undefined || window.revapi17.length==0) { window.revapi17initTry = window.revapi17initTry ===undefined ? 0 : window.revapi17initTry+1; if (window.revapi17initTry<20) requestAnimationFrame(function() {RS_MODULES.modules["revslider171"].init()}); return;}
-  window.revapi17 = jQuery(window.revapi17);
-  if(window.revapi17.revolution==undefined){ revslider_showDoubleJqueryError("rev_slider_17_1"); return;}
-  revapi17.revolutionInit({
-      revapi:"revapi17",
-      DPR:"dpr",
-      sliderLayout:"fullwidth",
-      duration:"2500ms",
-      visibilityLevels:"1920,1700,1025,680",
-      gridwidth:"1400,1100,600,300",
-      gridheight:"550,450,550,550",
-      lazyType:"smart",
-      perspective:600,
-      perspectiveType:"global",
-      editorheight:"550,450,550,550",
-      responsiveLevels:"1920,1700,1025,680",
-      progressBar:{disableProgressBar:true},
-      navigation: {
-        wheelCallDelay:1000,
-        onHoverStop:false,
-        touch: {
-          touchenabled:true
-        },
-        arrows: {
-          enable:true,
-          tmp:"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"26\" height=\"34\" viewBox=\"0 0 26 34\"><g> <rect width=\"2\" height=\"19\" data-name=\"1 A\" rx=\"1\" transform=\"rotate(-135 4.5 9)\"/><rect width=\"2\" height=\"19\" data-name=\"2 A\" rx=\"1\" transform=\"rotate(-45 20.5 8.5)\"/></g><g><rect width=\"2\" height=\"19\" data-name=\"1 B\" rx=\"1\" transform=\"rotate(-135 9.5 6.8)\"/> <rect width=\"2\" height=\"19\" data-name=\"2 B\" rx=\"1\" transform=\"rotate(-45 25.5 -3.6)\"/></g></svg>",
-          style:"gizmos",
-          hide_onmobile:true,
-          hide_under:"1300px",
-          animDelay:"500ms",
-          left: {
-            h_offset:60
-          },
-          right: {
-            h_offset:60
-          }
-        },
-        bullets: {
-          enable:true,
-          tmp:"",
-          style:"gizmos",
-          hide_onmobile:true,
-          hide_under:"1025px",
-          animDelay:"500ms",
-          h_align:"left",
-          v_offset:30,
-          space:22,
-          container:"layergrid"
-        }
-      },
-      viewPort: {
-        global:true,
-        globalDist:"-200px",
-        enable:false,
-        visible_area:"3%"
-      },
-      fallbacks: {
-        allowHTML5AutoPlayOnAndroid:true
-      },
-  });
-  
+window.revapi17 = window.revapi17===undefined || window.revapi17===null || window.revapi17.length===0  ? document.getElementById("rev_slider_17_1") : window.revapi17;
+if(window.revapi17 === null || window.revapi17 === undefined || window.revapi17.length==0) { window.revapi17initTry = window.revapi17initTry ===undefined ? 0 : window.revapi17initTry+1; if (window.revapi17initTry<20) requestAnimationFrame(function() {RS_MODULES.modules["revslider171"].init()}); return;}
+window.revapi17 = jQuery(window.revapi17);
+if(window.revapi17.revolution==undefined){ revslider_showDoubleJqueryError("rev_slider_17_1"); return;}
+revapi17.revolutionInit({
+revapi:"revapi17",
+DPR:"dpr",
+sliderLayout:"fullwidth",
+duration:"2500ms",
+visibilityLevels:"1920,1700,1025,680",
+gridwidth:"1400,1100,600,300",
+gridheight:"550,450,550,550",
+lazyType:"smart",
+perspective:600,
+perspectiveType:"global",
+editorheight:"550,450,550,550",
+responsiveLevels:"1920,1700,1025,680",
+progressBar:{disableProgressBar:true},
+navigation: {
+wheelCallDelay:1000,
+onHoverStop:false,
+touch: {
+touchenabled:true
+},
+arrows: {
+enable:true,
+tmp:"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"26\" height=\"34\" viewBox=\"0 0 26 34\"><g> <rect width=\"2\" height=\"19\" data-name=\"1 A\" rx=\"1\" transform=\"rotate(-135 4.5 9)\"/><rect width=\"2\" height=\"19\" data-name=\"2 A\" rx=\"1\" transform=\"rotate(-45 20.5 8.5)\"/></g><g><rect width=\"2\" height=\"19\" data-name=\"1 B\" rx=\"1\" transform=\"rotate(-135 9.5 6.8)\"/> <rect width=\"2\" height=\"19\" data-name=\"2 B\" rx=\"1\" transform=\"rotate(-45 25.5 -3.6)\"/></g></svg>",
+style:"gizmos",
+hide_onmobile:true,
+hide_under:"1300px",
+animDelay:"500ms",
+left: {
+h_offset:60
+},
+right: {
+h_offset:60
+}
+},
+bullets: {
+enable:true,
+tmp:"",
+style:"gizmos",
+hide_onmobile:true,
+hide_under:"1025px",
+animDelay:"500ms",
+h_align:"left",
+v_offset:30,
+space:22,
+container:"layergrid"
+}
+},
+viewPort: {
+global:true,
+globalDist:"-200px",
+enable:false,
+visible_area:"3%"
+},
+fallbacks: {
+allowHTML5AutoPlayOnAndroid:true
+},
+});
+
 }} // End of RevInitScript
 
 if(window.RS_MODULES === undefined) window.RS_MODULES = {};
 if(RS_MODULES.modules === undefined) RS_MODULES.modules = {};
 RS_MODULES.modules["revslider192"] = {once: RS_MODULES.modules["revslider192"]!==undefined ? RS_MODULES.modules["revslider192"].once : undefined, init:function() {
-  window.revapi19 = window.revapi19===undefined || window.revapi19===null || window.revapi19.length===0  ? document.getElementById("rev_slider_19_2") : window.revapi19;
-  if(window.revapi19 === null || window.revapi19 === undefined || window.revapi19.length==0) { window.revapi19initTry = window.revapi19initTry ===undefined ? 0 : window.revapi19initTry+1; if (window.revapi19initTry<20) requestAnimationFrame(function() {RS_MODULES.modules["revslider192"].init()}); return;}
-  window.revapi19 = jQuery(window.revapi19);
-  if(window.revapi19.revolution==undefined){ revslider_showDoubleJqueryError("rev_slider_19_2"); return;}
-  revapi19.revolutionInit({
-      revapi:"revapi19",
-      DPR:"dpr",
-      sliderLayout:"fullwidth",
-      duration:"2500ms",
-      visibilityLevels:"1920,1700,1025,680",
-      gridwidth:"1400,1100,600,300",
-      gridheight:"500,450,450,500",
-      lazyType:"smart",
-      perspective:600,
-      perspectiveType:"global",
-      editorheight:"500,450,450,500",
-      responsiveLevels:"1920,1700,1025,680",
-      progressBar:{disableProgressBar:true},
-      navigation: {
-        wheelCallDelay:1000,
-        onHoverStop:false,
-        touch: {
-          touchenabled:true
-        },
-        arrows: {
-          enable:true,
-          tmp:"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"26\" height=\"34\" viewBox=\"0 0 26 34\"><g fill=\"#fff\"> <rect width=\"2\" height=\"19\" data-name=\"1 A\" rx=\"1\" transform=\"rotate(-135 4.5 9)\"/><rect width=\"2\" height=\"19\" data-name=\"2 A\" rx=\"1\" transform=\"rotate(-45 20.5 8.5)\"/></g><g fill=\"#fff\"><rect width=\"2\" height=\"19\" data-name=\"1 B\" rx=\"1\" transform=\"rotate(-135 9.5 6.8)\"/> <rect width=\"2\" height=\"19\" data-name=\"2 B\" rx=\"1\" transform=\"rotate(-45 25.5 -3.6)\"/></g></svg>",
-          style:"gizmos_light",
-          hide_onmobile:true,
-          hide_under:"1300px",
-          animDelay:"500ms",
-          left: {
-            h_offset:60
-          },
-          right: {
-            h_offset:60
-          }
-        },
-        bullets: {
-          enable:true,
-          tmp:"",
-          style:"gizmos_light",
-          hide_onmobile:true,
-          hide_under:"1025px",
-          animDelay:"500ms",
-          h_align:"left",
-          v_offset:30,
-          space:22,
-          container:"layergrid"
-        }
-      },
-      viewPort: {
-        global:true,
-        globalDist:"-200px",
-        enable:true,
-        visible_area:"2%"
-      },
-      fallbacks: {
-        allowHTML5AutoPlayOnAndroid:true
-      },
-  });
-  
+window.revapi19 = window.revapi19===undefined || window.revapi19===null || window.revapi19.length===0  ? document.getElementById("rev_slider_19_2") : window.revapi19;
+if(window.revapi19 === null || window.revapi19 === undefined || window.revapi19.length==0) { window.revapi19initTry = window.revapi19initTry ===undefined ? 0 : window.revapi19initTry+1; if (window.revapi19initTry<20) requestAnimationFrame(function() {RS_MODULES.modules["revslider192"].init()}); return;}
+window.revapi19 = jQuery(window.revapi19);
+if(window.revapi19.revolution==undefined){ revslider_showDoubleJqueryError("rev_slider_19_2"); return;}
+revapi19.revolutionInit({
+revapi:"revapi19",
+DPR:"dpr",
+sliderLayout:"fullwidth",
+duration:"2500ms",
+visibilityLevels:"1920,1700,1025,680",
+gridwidth:"1400,1100,600,300",
+gridheight:"500,450,450,500",
+lazyType:"smart",
+perspective:600,
+perspectiveType:"global",
+editorheight:"500,450,450,500",
+responsiveLevels:"1920,1700,1025,680",
+progressBar:{disableProgressBar:true},
+navigation: {
+wheelCallDelay:1000,
+onHoverStop:false,
+touch: {
+touchenabled:true
+},
+arrows: {
+enable:true,
+tmp:"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"26\" height=\"34\" viewBox=\"0 0 26 34\"><g fill=\"#fff\"> <rect width=\"2\" height=\"19\" data-name=\"1 A\" rx=\"1\" transform=\"rotate(-135 4.5 9)\"/><rect width=\"2\" height=\"19\" data-name=\"2 A\" rx=\"1\" transform=\"rotate(-45 20.5 8.5)\"/></g><g fill=\"#fff\"><rect width=\"2\" height=\"19\" data-name=\"1 B\" rx=\"1\" transform=\"rotate(-135 9.5 6.8)\"/> <rect width=\"2\" height=\"19\" data-name=\"2 B\" rx=\"1\" transform=\"rotate(-45 25.5 -3.6)\"/></g></svg>",
+style:"gizmos_light",
+hide_onmobile:true,
+hide_under:"1300px",
+animDelay:"500ms",
+left: {
+h_offset:60
+},
+right: {
+h_offset:60
+}
+},
+bullets: {
+enable:true,
+tmp:"",
+style:"gizmos_light",
+hide_onmobile:true,
+hide_under:"1025px",
+animDelay:"500ms",
+h_align:"left",
+v_offset:30,
+space:22,
+container:"layergrid"
+}
+},
+viewPort: {
+global:true,
+globalDist:"-200px",
+enable:true,
+visible_area:"2%"
+},
+fallbacks: {
+allowHTML5AutoPlayOnAndroid:true
+},
+});
+
 }} // End of RevInitScript
 
 if (window.RS_MODULES.checkMinimal!==undefined) { window.RS_MODULES.checkMinimal();};
@@ -447,771 +607,330 @@ if (window.RS_MODULES.checkMinimal!==undefined) { window.RS_MODULES.checkMinimal
 
 
 
-
+@section('content')
 
 
 <div id="qodef-page-outer">
-  <div id="qodef-page-inner" class="qodef-content-full-width">
-  <main id="qodef-page-content" class="qodef-grid qodef-layout--template " role="main">
-  <div class="qodef-grid-inner clear">
-  <div class="qodef-grid-item qodef-page-content-section qodef-col--12">
-  <div data-elementor-type="wp-page" data-elementor-id="5601" class="elementor elementor-5601">
-  <section class="elementor-section elementor-top-section elementor-element elementor-element-d6d2f84 elementor-section-full_width elementor-section-height-default elementor-section-height-default qodef-elementor-content-no" data-id="d6d2f84" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-  <div class="elementor-container elementor-column-gap-no">
-  <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-a813344" data-id="a813344" data-element_type="column">
-  <div class="elementor-widget-wrap elementor-element-populated">
-  <div class="elementor-element elementor-element-5e8ad62 elementor-widget elementor-widget-slider_revolution" data-id="5e8ad62" data-element_type="widget" data-widget_type="slider_revolution.default">
-  <div class="elementor-widget-container">
-  <div class="wp-block-themepunch-revslider">
-  <p class="rs-p-wp-fix"></p>
-  <rs-module-wrap id="rev_slider_17_1_wrapper" data-source="gallery" style="visibility:hidden;background:#ffffff;padding:0;margin:0px auto;margin-top:0;margin-bottom:0;">
-  <rs-module id="rev_slider_17_1" style="" data-version="6.6.5">
-  <rs-slides style="overflow: hidden; position: absolute;">
-  <rs-slide style="position: absolute;" data-key="rs-37" data-title="Slide" data-thumb="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-2-rev-img-1.jpg" data-anim="adpr:false;" data-in="o:0;" data-out="a:false;">
-  <img decoding="async" src="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="w" title="home-2-rev-img-1" width="1920" height="600" class="rev-slidebg tp-rs-img rs-lazyload" data-lazyload="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/transparent.png" data-bg="p:left center;" data-no-retina>
-  <rs-group id="slider-17-slide-37-layer-3" data-type="group" data-xy="x:c;xo:-489px,-339px,0,0;y:m,m,m,t;yo:10px,11px,-95px,60px;" data-text="w:normal;" data-dim="w:420px,420px,86%,86%;h:250px,250px,230px,350px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="o:1;" data-frame_999="o:0;st:w;sA:2500;" style="z-index:13;"><rs-layer id="slider-17-slide-37-layer-1" data-type="text" data-color="#000000" data-xy="" data-pos="a" data-text="w:normal;s:46,46,42,42;l:52,52,48,48;fw:500;" data-dim="w:420px,420px,400px,100%;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:50;" data-frame_1="st:100;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:12;font-family:'Roboto';">Which Smartphone is Right For You?
-  </rs-layer><rs-layer id="slider-17-slide-37-layer-2" data-type="text" data-color="#676770" data-xy="yo:118px,118px,106px,158px;" data-pos="a" data-text="w:normal;s:16;l:19;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:50;" data-frame_1="st:100;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:11;font-family:'Roboto';">Mei doctus principes interes
-  </rs-layer><rs-layer id="slider-17-slide-37-layer-4" data-type="text" data-color="#676770" data-xy="yo:165px,165px,153px,205px;" data-pos="a" data-text="w:normal;s:11;ls:1px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:50;" data-frame_1="st:150;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:10;font-family:'Roboto';text-transform:uppercase;">starting at
-  </rs-layer><rs-layer id="slider-17-slide-37-layer-5" data-type="text" data-color="#000000" data-xy="yo:186px,186px,174px,226px;" data-pos="a" data-text="w:normal;s:41;l:49;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:50;" data-frame_1="st:150;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:9;font-family:'Roboto';">$1.000
-  </rs-layer></rs-group><rs-layer id="slider-17-slide-37-layer-6" data-type="image" data-xy="x:c;xo:0,0,-20px,-87px;y:b;yo:-1px,-1px,-5px,-5px;" data-text="w:normal;" data-dim="w:1400px,1100px,900px,520px;h:550px,432px,354px,204px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:50;" data-frame_1="st:50;sp:1000;" data-frame_999="o:0;e:power4.inOut;st:w;sp:1000;" style="z-index:8;"><img decoding="async" src="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="w" class="tp-rs-img rs-lazyload" width="1400" height="550" data-lazyload="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-8-rev-img-1.jpg" data-no-retina>
-  </rs-layer> </rs-slide>
-  <rs-slide style="position: absolute;" data-key="rs-38" data-title="Slide" data-thumb="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-2-rev-img-1.jpg" data-anim="adpr:false;" data-in="o:0;" data-out="a:false;">
-  <img decoding="async" src="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="w" title="home-2-rev-img-1" width="1920" height="600" class="rev-slidebg tp-rs-img rs-lazyload" data-lazyload="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/transparent.png" data-bg="p:left center;" data-no-retina>
-  <rs-group id="slider-17-slide-38-layer-3" data-type="group" data-xy="x:c;xo:-489px,-339px,0,0;y:m,m,m,t;yo:10px,11px,-95px,60px;" data-text="w:normal;" data-dim="w:420px,420px,86%,86%;h:250px,250px,230px,350px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="o:1;" data-frame_999="o:0;st:w;sA:2500;" style="z-index:13;"><rs-layer id="slider-17-slide-38-layer-1" data-type="text" data-color="#000000" data-xy="" data-pos="a" data-text="w:normal;s:46,46,42,42;l:52,52,48,48;fw:500;" data-dim="w:420px,420px,400px,100%;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:50;" data-frame_1="st:100;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:12;font-family:'Roboto';">Find The Perfect Pair of Headphones
-  </rs-layer><rs-layer id="slider-17-slide-38-layer-2" data-type="text" data-color="#676770" data-xy="yo:118px,118px,106px,158px;" data-pos="a" data-text="w:normal;s:16;l:19;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:50;" data-frame_1="st:100;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:11;font-family:'Roboto';">Mei doctus principes interes
-  </rs-layer><rs-layer id="slider-17-slide-38-layer-4" data-type="text" data-color="#676770" data-xy="yo:165px,165px,153px,205px;" data-pos="a" data-text="w:normal;s:11;ls:1px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:50;" data-frame_1="st:150;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:10;font-family:'Roboto';text-transform:uppercase;">starting at
-  </rs-layer><rs-layer id="slider-17-slide-38-layer-5" data-type="text" data-color="#000000" data-xy="yo:186px,186px,174px,226px;" data-pos="a" data-text="w:normal;s:41;l:49;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:50;" data-frame_1="st:150;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:9;font-family:'Roboto';">$890
-  </rs-layer></rs-group><rs-layer id="slider-17-slide-38-layer-6" data-type="image" data-xy="x:c;xo:0,50px,50px,110px;y:b;yo:0,0,0,-50px;" data-text="w:normal;" data-dim="w:1400px,1145px,1400px,1400px;h:550px,450px,550px,550px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="x:-50;" data-frame_1="st:50;sp:1000;" data-frame_999="o:0;e:power4.inOut;st:w;sp:1000;" style="z-index:8;"><img decoding="async" src="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="w" class="tp-rs-img rs-lazyload" width="1400" height="550" data-lazyload="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-8-slider-photo-2.jpg" data-no-retina>
-  </rs-layer> </rs-slide>
-  <rs-slide style="position: absolute;" data-key="rs-69" data-title="Slide" data-thumb="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-2-rev-img-1.jpg" data-anim="adpr:false;" data-in="o:0;" data-out="a:false;">
-  <img decoding="async" src="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="w" title="home-2-rev-img-1" width="1920" height="600" class="rev-slidebg tp-rs-img rs-lazyload" data-lazyload="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/transparent.png" data-bg="p:left center;" data-no-retina>
-  <rs-group id="slider-17-slide-69-layer-3" data-type="group" data-xy="x:c;xo:-489px,-339px,0,0;y:m,m,m,t;yo:10px,11px,-95px,70px;" data-text="w:normal;" data-dim="w:420px,420px,86%,86%;h:250px,250px,230px,350px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="o:1;" data-frame_999="o:0;st:w;sA:2500;" style="z-index:13;"><rs-layer id="slider-17-slide-69-layer-1" data-type="text" data-color="#000000" data-xy="" data-pos="a" data-text="w:normal;s:46,46,42,42;l:52,52,48,48;fw:500;" data-dim="w:420px,420px,400px,100%;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:50;" data-frame_1="st:100;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:12;font-family:'Roboto';">Next Generation of Tablets is Here
-  </rs-layer><rs-layer id="slider-17-slide-69-layer-2" data-type="text" data-color="#676770" data-xy="yo:118px,118px,106px,158px;" data-pos="a" data-text="w:normal;s:16;l:19;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:50;" data-frame_1="st:100;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:11;font-family:'Roboto';">Mei doctus principes interes
-  </rs-layer><rs-layer id="slider-17-slide-69-layer-4" data-type="text" data-color="#676770" data-xy="yo:165px,165px,153px,205px;" data-pos="a" data-text="w:normal;s:11;ls:1px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:50;" data-frame_1="st:150;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:10;font-family:'Roboto';text-transform:uppercase;">starting at
-  </rs-layer><rs-layer id="slider-17-slide-69-layer-5" data-type="text" data-color="#000000" data-xy="yo:186px,186px,174px,226px;" data-pos="a" data-text="w:normal;s:41;l:49;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:50;" data-frame_1="st:150;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:9;font-family:'Roboto';">$1.950
-  </rs-layer></rs-group><rs-layer id="slider-17-slide-69-layer-6" data-type="image" data-xy="x:c;xo:0,50px,140px,200px;y:b;" data-text="w:normal;" data-dim="w:1400px,1145px,1400px,1400px;h:550px,450px,550px,550px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="x:50;" data-frame_1="x:0px,0,0,0;y:-1px,0,0,0;st:50;sp:1000;" data-frame_999="o:0;e:power4.inOut;st:w;sp:1000;" style="z-index:8;"><img decoding="async" src="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="w" class="tp-rs-img rs-lazyload" width="1400" height="550" data-lazyload="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-8-slider-photo-3.jpg" data-no-retina>
-  </rs-layer> </rs-slide>
-  </rs-slides>
-  </rs-module>
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-            setREVStartSize({c: 'rev_slider_17_1',rl:[1920,1700,1025,680],el:[550,450,550,550],gw:[1400,1100,600,300],gh:[550,450,550,550],type:'standard',justify:'',layout:'fullwidth',mh:"0"});if (window.RS_MODULES!==undefined && window.RS_MODULES.modules!==undefined && window.RS_MODULES.modules["revslider171"]!==undefined) {window.RS_MODULES.modules["revslider171"].once = false;window.revapi17 = undefined;if (window.RS_MODULES.checkMinimal!==undefined) window.RS_MODULES.checkMinimal()}
-          </script>
-  </rs-module-wrap>
-  
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </section>
-  <section class="elementor-section elementor-top-section elementor-element elementor-element-eba4d63 elementor-section-full_width qodef-elementor-content-grid elementor-section-height-default elementor-section-height-default" data-id="eba4d63" data-element_type="section">
-  <div class="elementor-container elementor-column-gap-no">
-  <div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-7b8f69a" data-id="7b8f69a" data-element_type="column">
-  <div class="elementor-widget-wrap elementor-element-populated">
-  <div class="elementor-element elementor-element-d9c42c9 elementor-widget elementor-widget-gizmos_core_banner" data-id="d9c42c9" data-element_type="widget" data-widget_type="gizmos_core_banner.default">
-  <div class="elementor-widget-container">
-  <div class="qodef-shortcode qodef-m  qodef-banner qodef-layout--link-button ">
-  <div class="qodef-m-image" style="--qodef-image-height--768: 230px">
-  <img width="904" height="360" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-1.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-1.jpg 904w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-1-300x119.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-1-768x306.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-1-600x239.jpg 600w" sizes="(max-width: 904px) 100vw, 904px" /></div>
-  <div class="qodef-m-content">
-  <div class="qodef-m-content-inner" style="--qodef-content-padding--1440: 28px 28px 25px 28px;--qodef-content-padding--1024: 35px 35px 32px 35px;--qodef-content-padding--768: 35px 30px 32px 30px;--qodef-content-padding--680: 25px 20px 22px 20px">
-  <div>
-  <h4 class="qodef-m-title" style="--qodef-title-font-size--680: 20px">
-  Sports Watches	</h4>
-  </div>
-  <div>
-  <div class="qodef-m-button">
-  <a class="qodef-shortcode qodef-m  qodef-button qodef-layout--textual  qodef-html--link" href="https://gizmos.qodeinteractive.com/product-category/sports-watches/analog-watches/" target="_self"> <span class="qodef-m-text">shop now</span> <span class="qodef-m-icon"><svg class="qodef-svg--button-arrow" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><g><path d="M11 5H1a1 1 0 0 0 0 2h10a1 1 0 0 0 0-2Z" /><path d="M7 11V1a1 1 0 1 0-2 0v10a1 1 0 0 0 2 0Z" /></g></svg></span></a> </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  <div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-cbf290d" data-id="cbf290d" data-element_type="column">
-  <div class="elementor-widget-wrap elementor-element-populated">
-  <div class="elementor-element elementor-element-766762c elementor-widget elementor-widget-gizmos_core_banner" data-id="766762c" data-element_type="widget" data-widget_type="gizmos_core_banner.default">
-  <div class="elementor-widget-container">
-  <div class="qodef-shortcode qodef-m  qodef-banner qodef-layout--link-button ">
-  <div class="qodef-m-image" style="--qodef-image-height--768: 230px">
-  <img width="904" height="360" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-2.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-2.jpg 904w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-2-300x119.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-2-768x306.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-2-600x239.jpg 600w" sizes="(max-width: 904px) 100vw, 904px" /></div>
-  <div class="qodef-m-content">
-  <div class="qodef-m-content-inner" style="--qodef-content-padding--1440: 28px 28px 25px 28px;--qodef-content-padding--1024: 35px 35px 32px 35px;--qodef-content-padding--768: 35px 30px 32px 30px;--qodef-content-padding--680: 25px 20px 22px 20px">
-  <div>
-  <h4 class="qodef-m-title" style="--qodef-title-font-size--680: 20px;color: #FFFFFF">
-  Gadgets &amp;<br /> Accessories	</h4>
-  </div>
-  <div>
-  <div class="qodef-m-button">
-  <a class="qodef-shortcode qodef-m  qodef-button qodef-layout--textual  qodef-html--link" href="https://gizmos.qodeinteractive.com/product-category/gadgets/" target="_self" style="color: #FFFFFF"> <span class="qodef-m-text">shop now</span> <span class="qodef-m-icon"><svg class="qodef-svg--button-arrow" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><g><path d="M11 5H1a1 1 0 0 0 0 2h10a1 1 0 0 0 0-2Z" /><path d="M7 11V1a1 1 0 1 0-2 0v10a1 1 0 0 0 2 0Z" /></g></svg></span></a> </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  <div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-cce720e" data-id="cce720e" data-element_type="column">
-  <div class="elementor-widget-wrap elementor-element-populated">
-  <div class="elementor-element elementor-element-f1e5f69 elementor-widget elementor-widget-gizmos_core_banner" data-id="f1e5f69" data-element_type="widget" data-widget_type="gizmos_core_banner.default">
-  <div class="elementor-widget-container">
-  <div class="qodef-shortcode qodef-m  qodef-banner qodef-layout--link-button ">
-  <div class="qodef-m-image" style="--qodef-image-height--768: 230px">
-  <img width="904" height="360" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-3.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-3.jpg 904w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-3-300x119.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-3-768x306.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-3-600x239.jpg 600w" sizes="(max-width: 904px) 100vw, 904px" /></div>
-  <div class="qodef-m-content">
-  <div class="qodef-m-content-inner" style="--qodef-content-padding--1440: 28px 28px 25px 28px;--qodef-content-padding--1024: 35px 35px 32px 35px;--qodef-content-padding--768: 35px 30px 32px 30px;--qodef-content-padding--680: 25px 20px 22px 20px">
-  <div>
-  <h4 class="qodef-m-title" style="--qodef-title-font-size--680: 20px">
-  Gaming Consoles<br /> &amp; Gamepads	</h4>
-  </div>
-  <div>
-  <div class="qodef-m-button">
-  <a class="qodef-shortcode qodef-m  qodef-button qodef-layout--textual  qodef-html--link" href="https://gizmos.qodeinteractive.com/product-category/premium-tech/premium-audio/" target="_self"> <span class="qodef-m-text">shop now</span> <span class="qodef-m-icon"><svg class="qodef-svg--button-arrow" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><g><path d="M11 5H1a1 1 0 0 0 0 2h10a1 1 0 0 0 0-2Z" /><path d="M7 11V1a1 1 0 1 0-2 0v10a1 1 0 0 0 2 0Z" /></g></svg></span></a> </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </section>
-  <section class="elementor-section elementor-top-section elementor-element elementor-element-cb78e1c elementor-section-full_width qodef-elementor-content-grid elementor-section-height-default elementor-section-height-default" data-id="cb78e1c" data-element_type="section">
-  <div class="elementor-container elementor-column-gap-no">
-  <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-a4c1b11" data-id="a4c1b11" data-element_type="column">
-  <div class="elementor-widget-wrap elementor-element-populated">
-  <div class="elementor-element elementor-element-9ecc249 elementor-widget elementor-widget-gizmos_core_product_list" data-id="9ecc249" data-element_type="widget" data-widget_type="gizmos_core_product_list.default">
-  <div class="elementor-widget-container">
-  <div class="qodef-shortcode qodef-m  qodef-woo-shortcode qodef-woo-product-list qodef-item-layout--info-below   qodef-category-filter-type--simple    qodef-grid qodef-layout--columns  qodef-gutter--small qodef-col-num--5 qodef-item-layout--info-below qodef--no-bottom-space qodef-pagination--off qodef-responsive--custom qodef-col-num--1440--5 qodef-col-num--1366--5 qodef-col-num--1024--3 qodef-col-num--768--3 qodef-col-num--680--1 qodef-col-num--480--1" data-options="{&quot;plugin&quot;:&quot;gizmos_core&quot;,&quot;module&quot;:&quot;plugins\/woocommerce\/shortcodes&quot;,&quot;shortcode&quot;:&quot;product-list&quot;,&quot;post_type&quot;:&quot;product&quot;,&quot;next_page&quot;:&quot;2&quot;,&quot;max_pages_num&quot;:1,&quot;product_list_title&quot;:&quot;Featured Products&quot;,&quot;behavior&quot;:&quot;columns&quot;,&quot;images_proportion&quot;:&quot;full&quot;,&quot;columns&quot;:&quot;5&quot;,&quot;columns_responsive&quot;:&quot;custom&quot;,&quot;columns_1440&quot;:&quot;5&quot;,&quot;columns_1366&quot;:&quot;5&quot;,&quot;columns_1024&quot;:&quot;3&quot;,&quot;columns_768&quot;:&quot;3&quot;,&quot;columns_680&quot;:&quot;1&quot;,&quot;columns_480&quot;:&quot;1&quot;,&quot;space&quot;:&quot;small&quot;,&quot;posts_per_page&quot;:&quot;5&quot;,&quot;orderby&quot;:&quot;date&quot;,&quot;order&quot;:&quot;ASC&quot;,&quot;additional_params&quot;:&quot;tax&quot;,&quot;tax&quot;:&quot;product_cat&quot;,&quot;tax_slug&quot;:&quot;3d-printers&quot;,&quot;layout&quot;:&quot;info-below&quot;,&quot;title_tag&quot;:&quot;h5&quot;,&quot;enable_category&quot;:&quot;yes&quot;,&quot;enable_banner&quot;:&quot;no&quot;,&quot;enable_compare_product&quot;:&quot;yes&quot;,&quot;enable_wishlist&quot;:&quot;yes&quot;,&quot;enable_filter&quot;:&quot;no&quot;,&quot;pagination_type&quot;:&quot;no-pagination&quot;,&quot;category_filter_type&quot;:&quot;simple&quot;,&quot;enable_ordering_filter&quot;:&quot;no&quot;,&quot;enable_results_count&quot;:&quot;no&quot;,&quot;object_class_name&quot;:&quot;GizmosCore_Product_List_Shortcode&quot;,&quot;additional_query_args&quot;:{&quot;tax_query&quot;:[{&quot;taxonomy&quot;:&quot;product_cat&quot;,&quot;field&quot;:&quot;slug&quot;,&quot;terms&quot;:&quot;3d-printers&quot;}]},&quot;taxonomy_filter&quot;:&quot;product_cat&quot;,&quot;unique&quot;:&quot;1&quot;,&quot;space_value&quot;:10}">
-  <div class="qodef-m-top">
-  <h3 class="qodef-m-product-list-title">Featured Products</h3>
-  </div>
-  <ul class="qodef-grid-inner clear">
-  <li class="qodef-e qodef-grid-item qodef-item--full product type-product post-5757 status-publish first instock product_cat-3d-printers product_tag-usb product_tag-wireless has-post-thumbnail shipping-taxable purchasable product-type-simple">
-  <div class="qodef-e-inner">
-  <a href="https://gizmos.qodeinteractive.com/product/fixed-wing-hybrid-surveillance-drone-vw/" class="woocommerce-LoopProduct-link woocommerce-loop-product__link"></a> <div class="qodef-woo-product-content-top">
-  <div class="qodef-woo-product-category">
-  <div class="qodef-woo-product-categories qodef-e-info"><a href="https://gizmos.qodeinteractive.com/product-category/computers-tablets/3d-printers/" rel="tag">3D Printers</a></div>
-  <div class="qodef-info-separator-end"></div>
-  </div>
-  <div class="qodef-woo-product-compare-wishlist-wrapper">
-  <div class="yith-wcwl-add-to-wishlist add-to-wishlist-5757  wishlist-fragment on-first-load" data-fragment-ref="5757" data-fragment-options="{&quot;base_url&quot;:&quot;&quot;,&quot;in_default_wishlist&quot;:false,&quot;is_single&quot;:false,&quot;show_exists&quot;:false,&quot;product_id&quot;:5757,&quot;parent_product_id&quot;:5757,&quot;product_type&quot;:&quot;simple&quot;,&quot;show_view&quot;:false,&quot;browse_wishlist_text&quot;:&quot;Browse wishlist&quot;,&quot;already_in_wishslist_text&quot;:&quot;The product is already in your wishlist!&quot;,&quot;product_added_text&quot;:&quot;Product added!&quot;,&quot;heading_icon&quot;:&quot;fa-heart-o&quot;,&quot;available_multi_wishlist&quot;:false,&quot;disable_wishlist&quot;:false,&quot;show_count&quot;:false,&quot;ajax_loading&quot;:false,&quot;loop_position&quot;:&quot;after_add_to_cart&quot;,&quot;item&quot;:&quot;add_to_wishlist&quot;}">
-  
-  <div class="yith-wcwl-add-button">
-  <a href="?add_to_wishlist=5757&#038;_wpnonce=6e2b03d0d3" class="add_to_wishlist single_add_to_wishlist" data-product-id="5757" data-product-type="simple" data-original-product-id="5757" data-title="" rel="nofollow">
-  <i class="yith-wcwl-icon fa fa-heart-o"></i> <span></span>
-  </a>
-  </div>
-  
-  </div>
-  <a href="https://gizmos.qodeinteractive.com?action=yith-woocompare-add-product&id=5757" class="compare" data-product_id="5757" rel="nofollow"></a> </div>
-  </div>
-  <div class="qodef-woo-product-content-middle">
-  <div class="qodef-woo-product-image-wrapper">
-  <div class="qodef-woo-product-image">
-  <img loading="lazy" width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8.jpg" class="attachment-full size-full wp-post-image" alt="w" decoding="async" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="qodef-woo-product-image-slider qodef-m-custom-swiper-container">
-  <div class="swiper-wrapper">
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-4.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-4.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-4-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-4-100x100.jpg 100w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-4-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-4-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-4-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-4-650x650.jpg 650w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-1.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-1.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-1-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-1-100x100.jpg 100w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-1-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-1-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-1-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-1-650x650.jpg 650w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-2.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-2.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-2-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-2-100x100.jpg 100w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-2-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-2-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-2-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-2-650x650.jpg 650w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-3.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-3.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-3-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-3-100x100.jpg 100w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-3-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-3-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-3-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-8-3-650x650.jpg 650w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  </div>
-  <div class="swiper-button-prev"><svg class="qodef-svg--slider-arrow-left" xmlns="http://www.w3.org/2000/svg" width="10.607" height="18.385" viewBox="0 0 10.607 18.385"><path d="M8.70851355 17.90094068.48344748 9.6758746c-.26657926-.26657926-.16758431-.79973777.22344574-1.19076782s.92418856-.490025 1.19076782-.22344574l8.22506608 8.22506608c.26657925.26657925.1661701.80115198-.22344575 1.19076782s-.92418856.490025-1.19076782.22344574Z" /><path d="M10.12294068 1.89748645 1.8978746 10.12255252c-.26657926.26657926-.79973777.16758431-1.19076782-.22344574s-.490025-.92418856-.22344574-1.19076782L8.70872712.48327288c.26657925-.26657925.80115198-.1661701 1.19076782.22344575s.490025.92418856.22344574 1.19076782Z" /></svg></div>
-  <div class="swiper-button-next"><svg class="qodef-svg--slider-arrow-right" xmlns="http://www.w3.org/2000/svg" width="10.607" height="18.385" viewBox="0 0 10.607 18.385"><path d="m1.89827288 17.90172712 8.22506608-8.22506608c.26657926-.26657926.1675843-.79973777-.22344574-1.19076782s-.92418856-.490025-1.19076782-.22344574L.48405932 16.48751355c-.26728636.26728637-.1661701.80115199.22344574 1.19076782s.92348146.49073211 1.19076782.22344575Z" /><path d="m.48327288 1.89827288 8.22506608 8.22506608c.26657926.26657926.79973777.1675843 1.19076782-.22344574s.490025-.92418856.22344574-1.19076782L1.89748645.48405932C1.63020008.21677296 1.09633446.31788922.70671863.70750506s-.49073211.92348146-.22344575 1.19076782Z" /></svg></div>
-  </div>
-  </div>
-  </div>
-  <div class="qodef-woo-product-content-bottom">
-  <div class="qodef-woo-product-info-wrapper">
-  <h5 itemprop="name" class="qodef-woo-product-title entry-title">
-  <a itemprop="url" class="qodef-woo-product-title-link" href="https://gizmos.qodeinteractive.com/product/fixed-wing-hybrid-surveillance-drone-vw/">
-  Fixed-Wing Hybrid Surveillance Drone VW	</a>
-  </h5>
-  <div class="qodef-woo-product-price price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>1,450</span></div>
-  </div>
-  </div>
-   <a href="?add-to-cart=5757" data-quantity="1" class="button wp-element-button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="5757" data-product_sku="209" aria-label="Add &ldquo;Fixed-Wing Hybrid Surveillance Drone VW&rdquo; to your cart" rel="nofollow">Add to cart</a> </div>
-  </li>
-  <li class="qodef-e qodef-grid-item qodef-item--full product type-product post-5762 status-publish instock product_cat-3d-printers has-post-thumbnail shipping-taxable purchasable product-type-simple">
-  <div class="qodef-e-inner">
-  <a href="https://gizmos.qodeinteractive.com/product/over-ear-headphones-fx-9901-orange/" class="woocommerce-LoopProduct-link woocommerce-loop-product__link"></a> <div class="qodef-woo-product-content-top">
-  <div class="qodef-woo-product-category">
-  <div class="qodef-woo-product-categories qodef-e-info"><a href="https://gizmos.qodeinteractive.com/product-category/computers-tablets/3d-printers/" rel="tag">3D Printers</a></div>
-  <div class="qodef-info-separator-end"></div>
-  </div>
-  <div class="qodef-woo-product-compare-wishlist-wrapper">
-  <div class="yith-wcwl-add-to-wishlist add-to-wishlist-5762  wishlist-fragment on-first-load" data-fragment-ref="5762" data-fragment-options="{&quot;base_url&quot;:&quot;&quot;,&quot;in_default_wishlist&quot;:false,&quot;is_single&quot;:false,&quot;show_exists&quot;:false,&quot;product_id&quot;:5762,&quot;parent_product_id&quot;:5762,&quot;product_type&quot;:&quot;simple&quot;,&quot;show_view&quot;:false,&quot;browse_wishlist_text&quot;:&quot;Browse wishlist&quot;,&quot;already_in_wishslist_text&quot;:&quot;The product is already in your wishlist!&quot;,&quot;product_added_text&quot;:&quot;Product added!&quot;,&quot;heading_icon&quot;:&quot;fa-heart-o&quot;,&quot;available_multi_wishlist&quot;:false,&quot;disable_wishlist&quot;:false,&quot;show_count&quot;:false,&quot;ajax_loading&quot;:false,&quot;loop_position&quot;:&quot;after_add_to_cart&quot;,&quot;item&quot;:&quot;add_to_wishlist&quot;}">
-  
-  <div class="yith-wcwl-add-button">
-  <a href="?add_to_wishlist=5762&#038;_wpnonce=6e2b03d0d3" class="add_to_wishlist single_add_to_wishlist" data-product-id="5762" data-product-type="simple" data-original-product-id="5762" data-title="" rel="nofollow">
-  <i class="yith-wcwl-icon fa fa-heart-o"></i> <span></span>
-  </a>
-  </div>
-  
-  </div>
-  <a href="https://gizmos.qodeinteractive.com?action=yith-woocompare-add-product&id=5762" class="compare" data-product_id="5762" rel="nofollow"></a> </div>
-  </div>
-  <div class="qodef-woo-product-content-middle">
-  <div class="qodef-woo-product-image-wrapper">
-  <div class="qodef-woo-product-image">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-76-1.jpg" class="attachment-full size-full wp-post-image" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-76-1.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-76-1-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-76-1-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-76-1-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-76-1-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-76-1-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-76-1-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="qodef-woo-product-image-slider qodef-m-custom-swiper-container">
-  <div class="swiper-wrapper">
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-76-1.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-76-1.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-76-1-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-76-1-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-76-1-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-76-1-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-76-1-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-76-1-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-1.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-1.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-1-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-1-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-1-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-1-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-1-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-1-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-2.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-2.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-2-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-2-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-2-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-2-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-2-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-2-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-3.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-3.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-3-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-3-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-3-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-3-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-3-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-3-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-4.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-4.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-4-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-4-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-4-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-4-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-4-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-29-4-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  </div>
-  <div class="swiper-button-prev"><svg class="qodef-svg--slider-arrow-left" xmlns="http://www.w3.org/2000/svg" width="10.607" height="18.385" viewBox="0 0 10.607 18.385"><path d="M8.70851355 17.90094068.48344748 9.6758746c-.26657926-.26657926-.16758431-.79973777.22344574-1.19076782s.92418856-.490025 1.19076782-.22344574l8.22506608 8.22506608c.26657925.26657925.1661701.80115198-.22344575 1.19076782s-.92418856.490025-1.19076782.22344574Z" /><path d="M10.12294068 1.89748645 1.8978746 10.12255252c-.26657926.26657926-.79973777.16758431-1.19076782-.22344574s-.490025-.92418856-.22344574-1.19076782L8.70872712.48327288c.26657925-.26657925.80115198-.1661701 1.19076782.22344575s.490025.92418856.22344574 1.19076782Z" /></svg></div>
-  <div class="swiper-button-next"><svg class="qodef-svg--slider-arrow-right" xmlns="http://www.w3.org/2000/svg" width="10.607" height="18.385" viewBox="0 0 10.607 18.385"><path d="m1.89827288 17.90172712 8.22506608-8.22506608c.26657926-.26657926.1675843-.79973777-.22344574-1.19076782s-.92418856-.490025-1.19076782-.22344574L.48405932 16.48751355c-.26728636.26728637-.1661701.80115199.22344574 1.19076782s.92348146.49073211 1.19076782.22344575Z" /><path d="m.48327288 1.89827288 8.22506608 8.22506608c.26657926.26657926.79973777.1675843 1.19076782-.22344574s.490025-.92418856.22344574-1.19076782L1.89748645.48405932C1.63020008.21677296 1.09633446.31788922.70671863.70750506s-.49073211.92348146-.22344575 1.19076782Z" /></svg></div>
-  </div>
-  </div>
-  </div>
-  <div class="qodef-woo-product-content-bottom">
-  <div class="qodef-woo-product-info-wrapper">
-  <h5 itemprop="name" class="qodef-woo-product-title entry-title">
-  <a itemprop="url" class="qodef-woo-product-title-link" href="https://gizmos.qodeinteractive.com/product/over-ear-headphones-fx-9901-orange/">
-  Over-Ear Headphones FX-9901 Orange	</a>
-  </h5>
-  <div class="qodef-woo-product-price price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>890</span></div>
-  </div>
-  </div>
-  <a href="?add-to-cart=5762" data-quantity="1" class="button wp-element-button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="5762" data-product_sku="210" aria-label="Add &ldquo;Over-Ear Headphones FX-9901 Orange&rdquo; to your cart" rel="nofollow">Add to cart</a> </div>
-  </li>
-  <li class="qodef-e qodef-grid-item qodef-item--full product type-product post-5773 status-publish instock product_cat-3d-printers has-post-thumbnail shipping-taxable purchasable product-type-simple">
-  <div class="qodef-e-inner">
-  <a href="https://gizmos.qodeinteractive.com/product/smartphone-ls-589662-midnight-black/" class="woocommerce-LoopProduct-link woocommerce-loop-product__link"></a> <div class="qodef-woo-product-content-top">
-  <div class="qodef-woo-product-category">
-  <div class="qodef-woo-product-categories qodef-e-info"><a href="https://gizmos.qodeinteractive.com/product-category/computers-tablets/3d-printers/" rel="tag">3D Printers</a></div>
-  <div class="qodef-info-separator-end"></div>
-  </div>
-  <div class="qodef-woo-product-compare-wishlist-wrapper">
-  <div class="yith-wcwl-add-to-wishlist add-to-wishlist-5773  wishlist-fragment on-first-load" data-fragment-ref="5773" data-fragment-options="{&quot;base_url&quot;:&quot;&quot;,&quot;in_default_wishlist&quot;:false,&quot;is_single&quot;:false,&quot;show_exists&quot;:false,&quot;product_id&quot;:5773,&quot;parent_product_id&quot;:5773,&quot;product_type&quot;:&quot;simple&quot;,&quot;show_view&quot;:false,&quot;browse_wishlist_text&quot;:&quot;Browse wishlist&quot;,&quot;already_in_wishslist_text&quot;:&quot;The product is already in your wishlist!&quot;,&quot;product_added_text&quot;:&quot;Product added!&quot;,&quot;heading_icon&quot;:&quot;fa-heart-o&quot;,&quot;available_multi_wishlist&quot;:false,&quot;disable_wishlist&quot;:false,&quot;show_count&quot;:false,&quot;ajax_loading&quot;:false,&quot;loop_position&quot;:&quot;after_add_to_cart&quot;,&quot;item&quot;:&quot;add_to_wishlist&quot;}">
-  
-  <div class="yith-wcwl-add-button">
-  <a href="?add_to_wishlist=5773&#038;_wpnonce=6e2b03d0d3" class="add_to_wishlist single_add_to_wishlist" data-product-id="5773" data-product-type="simple" data-original-product-id="5773" data-title="" rel="nofollow">
-  <i class="yith-wcwl-icon fa fa-heart-o"></i> <span></span>
-  </a>
-  </div>
-  
-  </div>
-  <a href="https://gizmos.qodeinteractive.com?action=yith-woocompare-add-product&id=5773" class="compare" data-product_id="5773" rel="nofollow"></a> </div>
-  </div>
-  <div class="qodef-woo-product-content-middle">
-  <div class="qodef-woo-product-image-wrapper">
-  <div class="qodef-woo-product-image">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-37.jpg" class="attachment-full size-full wp-post-image" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-37.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-37-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-37-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-37-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-37-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-37-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-37-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="qodef-woo-product-image-slider qodef-m-custom-swiper-container">
-  <div class="swiper-wrapper">
-   <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-37.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-37.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-37-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-37-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-37-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-37-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-37-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-37-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-4.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-4.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-4-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-4-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-4-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-4-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-4-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-4-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-1.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-1.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-1-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-1-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-1-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-1-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-1-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-1-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-2.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-2.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-2-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-2-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-2-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-2-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-2-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-2-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-3.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-3.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-3-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-3-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-3-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-3-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-3-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-14-3-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  </div>
-  <div class="swiper-button-prev"><svg class="qodef-svg--slider-arrow-left" xmlns="http://www.w3.org/2000/svg" width="10.607" height="18.385" viewBox="0 0 10.607 18.385"><path d="M8.70851355 17.90094068.48344748 9.6758746c-.26657926-.26657926-.16758431-.79973777.22344574-1.19076782s.92418856-.490025 1.19076782-.22344574l8.22506608 8.22506608c.26657925.26657925.1661701.80115198-.22344575 1.19076782s-.92418856.490025-1.19076782.22344574Z" /><path d="M10.12294068 1.89748645 1.8978746 10.12255252c-.26657926.26657926-.79973777.16758431-1.19076782-.22344574s-.490025-.92418856-.22344574-1.19076782L8.70872712.48327288c.26657925-.26657925.80115198-.1661701 1.19076782.22344575s.490025.92418856.22344574 1.19076782Z" /></svg></div>
-  <div class="swiper-button-next"><svg class="qodef-svg--slider-arrow-right" xmlns="http://www.w3.org/2000/svg" width="10.607" height="18.385" viewBox="0 0 10.607 18.385"><path d="m1.89827288 17.90172712 8.22506608-8.22506608c.26657926-.26657926.1675843-.79973777-.22344574-1.19076782s-.92418856-.490025-1.19076782-.22344574L.48405932 16.48751355c-.26728636.26728637-.1661701.80115199.22344574 1.19076782s.92348146.49073211 1.19076782.22344575Z" /><path d="m.48327288 1.89827288 8.22506608 8.22506608c.26657926.26657926.79973777.1675843 1.19076782-.22344574s.490025-.92418856.22344574-1.19076782L1.89748645.48405932C1.63020008.21677296 1.09633446.31788922.70671863.70750506s-.49073211.92348146-.22344575 1.19076782Z" /></svg></div>
-  </div>
-  </div>
-  </div>
-  <div class="qodef-woo-product-content-bottom">
-  <div class="qodef-woo-product-info-wrapper">
-  <h5 itemprop="name" class="qodef-woo-product-title entry-title">
-  <a itemprop="url" class="qodef-woo-product-title-link" href="https://gizmos.qodeinteractive.com/product/smartphone-ls-589662-midnight-black/">
-  Smartphone LS-589662 Midnight Black	</a>
-  </h5>
-  <div class="qodef-woo-product-price price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>770</span></div>
-  </div>
-  </div>
-  <a href="?add-to-cart=5773" data-quantity="1" class="button wp-element-button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="5773" data-product_sku="211" aria-label="Add &ldquo;Smartphone LS-589662 Midnight Black&rdquo; to your cart" rel="nofollow">Add to cart</a> </div>
-  </li>
-  <li class="qodef-e qodef-grid-item qodef-item--full product type-product post-5775 status-publish last instock product_cat-3d-printers has-post-thumbnail shipping-taxable purchasable product-type-simple">
-  <div class="qodef-e-inner">
-  <a href="https://gizmos.qodeinteractive.com/product/smart-robotic-vacuum-cleaner-fzp-550/" class="woocommerce-LoopProduct-link woocommerce-loop-product__link"></a> <div class="qodef-woo-product-content-top">
-  <div class="qodef-woo-product-category">
-  <div class="qodef-woo-product-categories qodef-e-info"><a href="https://gizmos.qodeinteractive.com/product-category/computers-tablets/3d-printers/" rel="tag">3D Printers</a></div>
-  <div class="qodef-info-separator-end"></div>
-  </div>
-  <div class="qodef-woo-product-compare-wishlist-wrapper">
-  <div class="yith-wcwl-add-to-wishlist add-to-wishlist-5775  wishlist-fragment on-first-load" data-fragment-ref="5775" data-fragment-options="{&quot;base_url&quot;:&quot;&quot;,&quot;in_default_wishlist&quot;:false,&quot;is_single&quot;:false,&quot;show_exists&quot;:false,&quot;product_id&quot;:5775,&quot;parent_product_id&quot;:5775,&quot;product_type&quot;:&quot;simple&quot;,&quot;show_view&quot;:false,&quot;browse_wishlist_text&quot;:&quot;Browse wishlist&quot;,&quot;already_in_wishslist_text&quot;:&quot;The product is already in your wishlist!&quot;,&quot;product_added_text&quot;:&quot;Product added!&quot;,&quot;heading_icon&quot;:&quot;fa-heart-o&quot;,&quot;available_multi_wishlist&quot;:false,&quot;disable_wishlist&quot;:false,&quot;show_count&quot;:false,&quot;ajax_loading&quot;:false,&quot;loop_position&quot;:&quot;after_add_to_cart&quot;,&quot;item&quot;:&quot;add_to_wishlist&quot;}">
-  
-  <div class="yith-wcwl-add-button">
-  <a href="?add_to_wishlist=5775&#038;_wpnonce=6e2b03d0d3" class="add_to_wishlist single_add_to_wishlist" data-product-id="5775" data-product-type="simple" data-original-product-id="5775" data-title="" rel="nofollow">
-  <i class="yith-wcwl-icon fa fa-heart-o"></i> <span></span>
-  </a>
-  </div>
-  
-  </div>
-  <a href="https://gizmos.qodeinteractive.com?action=yith-woocompare-add-product&id=5775" class="compare" data-product_id="5775" rel="nofollow"></a> </div>
-  </div>
-  <div class="qodef-woo-product-content-middle">
-  <div class="qodef-woo-product-image-wrapper">
-  <div class="qodef-woo-product-image">
-  <img width="1000" height="1000" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6.jpg" class="attachment-full size-full wp-post-image" alt="s" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6.jpg 1000w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-100x100.jpg 100w" sizes="(max-width: 1000px) 100vw, 1000px" /> </div>
-  <div class="qodef-woo-product-image-slider qodef-m-custom-swiper-container">
-  <div class="swiper-wrapper">
-  <div class="swiper-slide">
-  <img width="1000" height="1000" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6.jpg" class="attachment-full size-full" alt="s" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6.jpg 1000w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-100x100.jpg 100w" sizes="(max-width: 1000px) 100vw, 1000px" /> </div>
-  <div class="swiper-slide">
-  <img width="1000" height="1000" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-2.jpg" class="attachment-full size-full" alt="c" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-2.jpg 1000w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-2-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-2-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-2-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-2-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-2-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-2-100x100.jpg 100w" sizes="(max-width: 1000px) 100vw, 1000px" /> </div>
-  <div class="swiper-slide">
-  <img width="1000" height="1000" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-3.jpg" class="attachment-full size-full" alt="v" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-3.jpg 1000w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-3-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-3-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-3-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-3-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-3-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-3-100x100.jpg 100w" sizes="(max-width: 1000px) 100vw, 1000px" /> </div>
-  <div class="swiper-slide">
-  <img width="1000" height="1000" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-4.jpg" class="attachment-full size-full" alt="a" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-4.jpg 1000w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-4-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-4-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-4-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-4-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-4-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-4-100x100.jpg 100w" sizes="(max-width: 1000px) 100vw, 1000px" /> </div>
-  <div class="swiper-slide">
-  <img width="1000" height="1000" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-5.jpg" class="attachment-full size-full" alt="s" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-5.jpg 1000w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-5-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-5-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-5-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-5-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-5-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/h12-shop-img6-5-100x100.jpg 100w" sizes="(max-width: 1000px) 100vw, 1000px" /> </div>
-  </div>
-  <div class="swiper-button-prev"><svg class="qodef-svg--slider-arrow-left" xmlns="http://www.w3.org/2000/svg" width="10.607" height="18.385" viewBox="0 0 10.607 18.385"><path d="M8.70851355 17.90094068.48344748 9.6758746c-.26657926-.26657926-.16758431-.79973777.22344574-1.19076782s.92418856-.490025 1.19076782-.22344574l8.22506608 8.22506608c.26657925.26657925.1661701.80115198-.22344575 1.19076782s-.92418856.490025-1.19076782.22344574Z" /><path d="M10.12294068 1.89748645 1.8978746 10.12255252c-.26657926.26657926-.79973777.16758431-1.19076782-.22344574s-.490025-.92418856-.22344574-1.19076782L8.70872712.48327288c.26657925-.26657925.80115198-.1661701 1.19076782.22344575s.490025.92418856.22344574 1.19076782Z" /></svg></div>
-  <div class="swiper-button-next"><svg class="qodef-svg--slider-arrow-right" xmlns="http://www.w3.org/2000/svg" width="10.607" height="18.385" viewBox="0 0 10.607 18.385"><path d="m1.89827288 17.90172712 8.22506608-8.22506608c.26657926-.26657926.1675843-.79973777-.22344574-1.19076782s-.92418856-.490025-1.19076782-.22344574L.48405932 16.48751355c-.26728636.26728637-.1661701.80115199.22344574 1.19076782s.92348146.49073211 1.19076782.22344575Z" /><path d="m.48327288 1.89827288 8.22506608 8.22506608c.26657926.26657926.79973777.1675843 1.19076782-.22344574s.490025-.92418856.22344574-1.19076782L1.89748645.48405932C1.63020008.21677296 1.09633446.31788922.70671863.70750506s-.49073211.92348146-.22344575 1.19076782Z" /></svg></div>
-  </div>
-  </div>
-  </div>
-  <div class="qodef-woo-product-content-bottom">
-  <div class="qodef-woo-product-info-wrapper">
-  <h5 itemprop="name" class="qodef-woo-product-title entry-title">
-  <a itemprop="url" class="qodef-woo-product-title-link" href="https://gizmos.qodeinteractive.com/product/smart-robotic-vacuum-cleaner-fzp-550/">
-  Smart Robotic Vacuum Cleaner FZP-550	</a>
-  </h5>
-  <div class="qodef-woo-product-price price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>440</span></div>
-   </div>
-  </div>
-  <a href="?add-to-cart=5775" data-quantity="1" class="button wp-element-button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="5775" data-product_sku="212" aria-label="Add &ldquo;Smart Robotic Vacuum Cleaner FZP-550&rdquo; to your cart" rel="nofollow">Add to cart</a> </div>
-  </li>
-  <li class="qodef-e qodef-grid-item qodef-item--full product type-product post-5785 status-publish first instock product_cat-3d-printers product_tag-usb product_tag-wireless has-post-thumbnail shipping-taxable purchasable product-type-simple">
-  <div class="qodef-e-inner">
-  <a href="https://gizmos.qodeinteractive.com/product/high-airflow-tempered-glass-computer-case/" class="woocommerce-LoopProduct-link woocommerce-loop-product__link"></a> <div class="qodef-woo-product-content-top">
-  <div class="qodef-woo-product-category">
-  <div class="qodef-woo-product-categories qodef-e-info"><a href="https://gizmos.qodeinteractive.com/product-category/computers-tablets/3d-printers/" rel="tag">3D Printers</a></div>
-  <div class="qodef-info-separator-end"></div>
-  </div>
-  <div class="qodef-woo-product-compare-wishlist-wrapper">
-  <div class="yith-wcwl-add-to-wishlist add-to-wishlist-5785  wishlist-fragment on-first-load" data-fragment-ref="5785" data-fragment-options="{&quot;base_url&quot;:&quot;&quot;,&quot;in_default_wishlist&quot;:false,&quot;is_single&quot;:false,&quot;show_exists&quot;:false,&quot;product_id&quot;:5785,&quot;parent_product_id&quot;:5785,&quot;product_type&quot;:&quot;simple&quot;,&quot;show_view&quot;:false,&quot;browse_wishlist_text&quot;:&quot;Browse wishlist&quot;,&quot;already_in_wishslist_text&quot;:&quot;The product is already in your wishlist!&quot;,&quot;product_added_text&quot;:&quot;Product added!&quot;,&quot;heading_icon&quot;:&quot;fa-heart-o&quot;,&quot;available_multi_wishlist&quot;:false,&quot;disable_wishlist&quot;:false,&quot;show_count&quot;:false,&quot;ajax_loading&quot;:false,&quot;loop_position&quot;:&quot;after_add_to_cart&quot;,&quot;item&quot;:&quot;add_to_wishlist&quot;}">
-  
-  <div class="yith-wcwl-add-button">
-  <a href="?add_to_wishlist=5785&#038;_wpnonce=6e2b03d0d3" class="add_to_wishlist single_add_to_wishlist" data-product-id="5785" data-product-type="simple" data-original-product-id="5785" data-title="" rel="nofollow">
-  <i class="yith-wcwl-icon fa fa-heart-o"></i> <span></span>
-  </a>
-  </div>
-  
-  </div>
-  <a href="https://gizmos.qodeinteractive.com?action=yith-woocompare-add-product&id=5785" class="compare" data-product_id="5785" rel="nofollow"></a> </div>
-  </div>
-  <div class="qodef-woo-product-content-middle">
-  <div class="qodef-woo-product-image-wrapper">
-  <div class="qodef-woo-product-image">
-  <img width="1000" height="1000" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75.jpg" class="attachment-full size-full wp-post-image" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75.jpg 1000w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-100x100.jpg 100w" sizes="(max-width: 1000px) 100vw, 1000px" /> </div>
-  <div class="qodef-woo-product-image-slider qodef-m-custom-swiper-container">
-  <div class="swiper-wrapper">
-  <div class="swiper-slide">
-  <img width="1000" height="1000" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75.jpg 1000w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-100x100.jpg 100w" sizes="(max-width: 1000px) 100vw, 1000px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-4.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-4.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-4-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-4-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-4-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-4-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-4-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-4-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-1.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-1.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-1-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-1-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-1-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-1-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-1-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-1-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-2.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-2.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-2-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-2-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-2-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-2-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-2-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-2-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-3.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-3.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-3-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-3-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-3-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-3-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-3-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-75-3-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  </div>
-  <div class="swiper-button-prev"><svg class="qodef-svg--slider-arrow-left" xmlns="http://www.w3.org/2000/svg" width="10.607" height="18.385" viewBox="0 0 10.607 18.385"><path d="M8.70851355 17.90094068.48344748 9.6758746c-.26657926-.26657926-.16758431-.79973777.22344574-1.19076782s.92418856-.490025 1.19076782-.22344574l8.22506608 8.22506608c.26657925.26657925.1661701.80115198-.22344575 1.19076782s-.92418856.490025-1.19076782.22344574Z" /><path d="M10.12294068 1.89748645 1.8978746 10.12255252c-.26657926.26657926-.79973777.16758431-1.19076782-.22344574s-.490025-.92418856-.22344574-1.19076782L8.70872712.48327288c.26657925-.26657925.80115198-.1661701 1.19076782.22344575s.490025.92418856.22344574 1.19076782Z" /></svg></div>
-  <div class="swiper-button-next"><svg class="qodef-svg--slider-arrow-right" xmlns="http://www.w3.org/2000/svg" width="10.607" height="18.385" viewBox="0 0 10.607 18.385"><path d="m1.89827288 17.90172712 8.22506608-8.22506608c.26657926-.26657926.1675843-.79973777-.22344574-1.19076782s-.92418856-.490025-1.19076782-.22344574L.48405932 16.48751355c-.26728636.26728637-.1661701.80115199.22344574 1.19076782s.92348146.49073211 1.19076782.22344575Z" /><path d="m.48327288 1.89827288 8.22506608 8.22506608c.26657926.26657926.79973777.1675843 1.19076782-.22344574s.490025-.92418856.22344574-1.19076782L1.89748645.48405932C1.63020008.21677296 1.09633446.31788922.70671863.70750506s-.49073211.92348146-.22344575 1.19076782Z" /></svg></div>
-  </div>
-  </div>
-  </div>
-  <div class="qodef-woo-product-content-bottom">
-  <div class="qodef-woo-product-info-wrapper">
-  <h5 itemprop="name" class="qodef-woo-product-title entry-title">
-  <a itemprop="url" class="qodef-woo-product-title-link" href="https://gizmos.qodeinteractive.com/product/high-airflow-tempered-glass-computer-case/">
-  High-Airflow Tempered Glass Computer Case	</a>
-  </h5>
-  <div class="qodef-woo-product-price price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>3,850</span></div>
-  </div>
-  </div>
-  <a href="?add-to-cart=5785" data-quantity="1" class="button wp-element-button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="5785" data-product_sku="213" aria-label="Add &ldquo;High-Airflow Tempered Glass Computer Case&rdquo; to your cart" rel="nofollow">Add to cart</a> </div>
-  </li>
-  </ul>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </section>
-  <section class="elementor-section elementor-top-section elementor-element elementor-element-ff6f3fa elementor-section-full_width qodef-elementor-content-grid elementor-section-height-default elementor-section-height-default" data-id="ff6f3fa" data-element_type="section">
-  <div class="elementor-container elementor-column-gap-no">
-  <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-9a15c95" data-id="9a15c95" data-element_type="column">
-  <div class="elementor-widget-wrap elementor-element-populated">
-  <div class="elementor-element elementor-element-c8c3f75 elementor-widget elementor-widget-gizmos_core_banner" data-id="c8c3f75" data-element_type="widget" data-widget_type="gizmos_core_banner.default">
-  <div class="elementor-widget-container">
-  <div class="qodef-shortcode qodef-m  qodef-banner qodef-layout--link-overlay ">
-  <div class="qodef-m-image" style="--qodef-image-height--768: 240px;--qodef-image-height--680: 190px">
-  <img width="1378" height="500" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-4.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-4.jpg 1378w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-4-300x109.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-4-1024x372.jpg 1024w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-4-768x279.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-4-600x218.jpg 600w" sizes="(max-width: 1378px) 100vw, 1378px" /></div>
-  <div class="qodef-m-content">
-  <div class="qodef-m-content-inner" style="--qodef-content-padding: 50px 40px 38px 40px;--qodef-content-padding--1440: 30px 30px 18px 30px;--qodef-content-padding--768: 35px 35px 25px 35px ;--qodef-content-padding--680: 25px 25px 15px 25px">
-  <div>
-  <h2 class="qodef-m-title" style="--qodef-title-font-size--680: 28px;color: #FFFFFF">
-  E-77 Camera	</h2>
-  <h5 class="qodef-m-subtitle" style="color: #ACACAC;font-weight: 400">
-  MF841HN/A 13&quot;	</h5>
-  </div>
-  <div>
-  <h6 class="qodef-m-text" style="color: #ACACAC">
-  weekend sale	</h6>
-  <span class="qodef-m-bottom-text" style="color: #FFFFFF;--qodef-bottom-text-font-size--680: 37px">
-  20%	</span>
-  </div>
-  </div>
-  </div>
-  <a itemprop="url" href="https://gizmos.qodeinteractive.com/product-category/computers-tablets/3d-printers/" class="qodef-m-banner-link" target="_self"></a>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-113c628" data-id="113c628" data-element_type="column">
-  <div class="elementor-widget-wrap elementor-element-populated">
-  <div class="elementor-element elementor-element-f4ec3a5 elementor-widget elementor-widget-gizmos_core_banner" data-id="f4ec3a5" data-element_type="widget" data-widget_type="gizmos_core_banner.default">
-  <div class="elementor-widget-container">
-  <div class="qodef-shortcode qodef-m  qodef-banner qodef-layout--link-overlay ">
-  <div class="qodef-m-image" style="--qodef-image-height--768: 240px;--qodef-image-height--680: 190px">
-  <img width="1378" height="500" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-4-banner-2.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-4-banner-2.jpg 1378w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-4-banner-2-300x109.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-4-banner-2-1024x372.jpg 1024w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-4-banner-2-768x279.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-4-banner-2-600x218.jpg 600w" sizes="(max-width: 1378px) 100vw, 1378px" /></div>
-  <div class="qodef-m-content">
-  <div class="qodef-m-content-inner" style="--qodef-content-padding: 50px 40px 38px 40px;--qodef-content-padding--1440: 30px 30px 18px 30px;--qodef-content-padding--768: 35px 35px 25px 35px ;--qodef-content-padding--680: 25px 25px 15px 25px">
-  <div>
-  <h2 class="qodef-m-title" style="--qodef-title-font-size--680: 28px;color: #FFFFFF">
-  HP Ultimate	</h2>
-  <h5 class="qodef-m-subtitle" style="color: #ACACAC;font-weight: 400">
-  with Bluetooth 5.1	</h5>
-  </div>
-  <div>
-  <h6 class="qodef-m-text" style="color: #ACACAC">
-  discount -30%	</h6>
-  <span class="qodef-m-bottom-text" style="color: #FFFFFF;--qodef-bottom-text-font-size--680: 37px">
-  $349	</span>
-  </div>
-  </div>
-  </div>
-  <a itemprop="url" href="https://gizmos.qodeinteractive.com/product-category/webcams-equipment/gopro/" class="qodef-m-banner-link" target="_self"></a>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </section>
-  <section class="elementor-section elementor-top-section elementor-element elementor-element-7be8b20 elementor-section-full_width qodef-elementor-content-grid elementor-section-height-default elementor-section-height-default" data-id="7be8b20" data-element_type="section">
-  <div class="elementor-container elementor-column-gap-no">
-  <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-4fb8a7f" data-id="4fb8a7f" data-element_type="column">
-  <div class="elementor-widget-wrap elementor-element-populated">
-  <div class="elementor-element elementor-element-9e684b5 elementor-widget elementor-widget-gizmos_core_product_list" data-id="9e684b5" data-element_type="widget" data-widget_type="gizmos_core_product_list.default">
-  <div class="elementor-widget-container">
-  <div class="qodef-e-product-list-slider-holder">
-  <div class="qodef-shortcode qodef-m  qodef-woo-shortcode qodef-woo-product-list qodef-item-layout--info-below   qodef-category-filter-type--simple    qodef-grid qodef-swiper-container  qodef-gutter--small qodef-col-num--4 qodef-item-layout--info-below qodef-filter--on qodef--no-bottom-space qodef-pagination--off qodef-responsive--predefined" data-options="{&quot;slidesPerView&quot;:&quot;4&quot;,&quot;spaceBetween&quot;:20,&quot;loop&quot;:false,&quot;autoplay&quot;:false,&quot;speed&quot;:&quot;&quot;,&quot;speedAnimation&quot;:&quot;&quot;,&quot;slideAnimation&quot;:&quot;&quot;,&quot;outsideNavigation&quot;:&quot;yes&quot;,&quot;unique&quot;:&quot;2&quot;,&quot;plugin&quot;:&quot;gizmos_core&quot;,&quot;module&quot;:&quot;plugins\/woocommerce\/shortcodes&quot;,&quot;shortcode&quot;:&quot;product-list&quot;,&quot;post_type&quot;:&quot;product&quot;,&quot;next_page&quot;:&quot;2&quot;,&quot;max_pages_num&quot;:1,&quot;product_list_title&quot;:&quot;Featured Products&quot;,&quot;behavior&quot;:&quot;slider&quot;,&quot;images_proportion&quot;:&quot;full&quot;,&quot;columns&quot;:&quot;4&quot;,&quot;columns_responsive&quot;:&quot;predefined&quot;,&quot;space&quot;:&quot;small&quot;,&quot;slider_loop&quot;:&quot;no&quot;,&quot;slider_autoplay&quot;:&quot;no&quot;,&quot;slider_pagination&quot;:&quot;no&quot;,&quot;posts_per_page&quot;:&quot;5&quot;,&quot;orderby&quot;:&quot;date&quot;,&quot;order&quot;:&quot;ASC&quot;,&quot;additional_params&quot;:&quot;tax&quot;,&quot;tax&quot;:&quot;product_cat&quot;,&quot;tax_slug&quot;:&quot;computer-systems&quot;,&quot;layout&quot;:&quot;info-below&quot;,&quot;title_tag&quot;:&quot;h5&quot;,&quot;enable_category&quot;:&quot;yes&quot;,&quot;enable_banner&quot;:&quot;no&quot;,&quot;enable_compare_product&quot;:&quot;yes&quot;,&quot;enable_wishlist&quot;:&quot;yes&quot;,&quot;enable_filter&quot;:&quot;yes&quot;,&quot;pagination_type&quot;:&quot;no-pagination&quot;,&quot;filter_type&quot;:&quot;simple&quot;,&quot;category_filter_type&quot;:&quot;simple&quot;,&quot;enable_ordering_filter&quot;:&quot;no&quot;,&quot;enable_results_count&quot;:&quot;no&quot;,&quot;custom_grid&quot;:&quot;no&quot;,&quot;object_class_name&quot;:&quot;GizmosCore_Product_List_Shortcode&quot;,&quot;additional_query_args&quot;:{&quot;tax_query&quot;:[{&quot;taxonomy&quot;:&quot;product_cat&quot;,&quot;field&quot;:&quot;slug&quot;,&quot;terms&quot;:&quot;computer-systems&quot;}]},&quot;taxonomy_filter&quot;:&quot;product_cat&quot;,&quot;space_value&quot;:10}">
-  <div class="qodef-m-top">
-  <h3 class="qodef-m-product-list-title">Featured Products</h3>
-  <div class="qodef-m-filter">
-  <div class="qodef-m-filter-items">
-  <a class="qodef-m-filter-item qodef--active" href="#" data-taxonomy="product_cat" data-filter="*">
-  <span class="qodef-m-filter-item-name">Show All</span>
-  </a>
-  <a class="qodef-m-filter-item" href="#" data-taxonomy="product_cat" data-filter="chromebooks">
-  <span class="qodef-m-filter-item-name">Chromebooks</span>
-  </a>
-  <a class="qodef-m-filter-item" href="#" data-taxonomy="product_cat" data-filter="notebooks">
-  <span class="qodef-m-filter-item-name">Notebooks</span>
-  </a>
-  </div>
-  </div>
-  <svg class="qodef-svg--spinner qodef-filter-pagination-spinner" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><path d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"></path></svg> <div class="qodef-swipper-nav-wrapper">
-  <div class="swiper-button-prev swiper-button-outside swiper-button-prev-2"><svg class="qodef-svg--slider-arrow-left" xmlns="http://www.w3.org/2000/svg" width="10.607" height="18.385" viewBox="0 0 10.607 18.385"><path d="M8.70851355 17.90094068.48344748 9.6758746c-.26657926-.26657926-.16758431-.79973777.22344574-1.19076782s.92418856-.490025 1.19076782-.22344574l8.22506608 8.22506608c.26657925.26657925.1661701.80115198-.22344575 1.19076782s-.92418856.490025-1.19076782.22344574Z" /><path d="M10.12294068 1.89748645 1.8978746 10.12255252c-.26657926.26657926-.79973777.16758431-1.19076782-.22344574s-.490025-.92418856-.22344574-1.19076782L8.70872712.48327288c.26657925-.26657925.80115198-.1661701 1.19076782.22344575s.490025.92418856.22344574 1.19076782Z" /></svg></div>
-  <div class="swiper-button-next swiper-button-outside swiper-button-next-2"><svg class="qodef-svg--slider-arrow-right" xmlns="http://www.w3.org/2000/svg" width="10.607" height="18.385" viewBox="0 0 10.607 18.385"><path d="m1.89827288 17.90172712 8.22506608-8.22506608c.26657926-.26657926.1675843-.79973777-.22344574-1.19076782s-.92418856-.490025-1.19076782-.22344574L.48405932 16.48751355c-.26728636.26728637-.1661701.80115199.22344574 1.19076782s.92348146.49073211 1.19076782.22344575Z" /><path d="m.48327288 1.89827288 8.22506608 8.22506608c.26657926.26657926.79973777.1675843 1.19076782-.22344574s.490025-.92418856.22344574-1.19076782L1.89748645.48405932C1.63020008.21677296 1.09633446.31788922.70671863.70750506s-.49073211.92348146-.22344575 1.19076782Z" /></svg></div>
-  </div>
-  </div>
-  <ul class="qodef-grid-inner swiper-wrapper clear">
-  <li class="qodef-e swiper-slide qodef-item--full product type-product post-6057 status-publish instock product_cat-chromebooks product_tag-computers product_tag-equipment has-post-thumbnail shipping-taxable purchasable product-type-simple">
-  <div class="qodef-e-inner">
-  <a href="https://gizmos.qodeinteractive.com/product/fractal-design-s7-tempered-glass-computer-case/" class="woocommerce-LoopProduct-link woocommerce-loop-product__link"></a> <div class="qodef-woo-product-content-top">
-  <div class="qodef-woo-product-category">
-  <div class="qodef-woo-product-categories qodef-e-info"><a href="https://gizmos.qodeinteractive.com/product-category/computer-systems/chromebooks/" rel="tag">Chromebooks</a></div>
-  <div class="qodef-info-separator-end"></div>
-  </div>
-  <div class="qodef-woo-product-compare-wishlist-wrapper">
-  <div class="yith-wcwl-add-to-wishlist add-to-wishlist-6057  wishlist-fragment on-first-load" data-fragment-ref="6057" data-fragment-options="{&quot;base_url&quot;:&quot;&quot;,&quot;in_default_wishlist&quot;:false,&quot;is_single&quot;:false,&quot;show_exists&quot;:false,&quot;product_id&quot;:6057,&quot;parent_product_id&quot;:6057,&quot;product_type&quot;:&quot;simple&quot;,&quot;show_view&quot;:false,&quot;browse_wishlist_text&quot;:&quot;Browse wishlist&quot;,&quot;already_in_wishslist_text&quot;:&quot;The product is already in your wishlist!&quot;,&quot;product_added_text&quot;:&quot;Product added!&quot;,&quot;heading_icon&quot;:&quot;fa-heart-o&quot;,&quot;available_multi_wishlist&quot;:false,&quot;disable_wishlist&quot;:false,&quot;show_count&quot;:false,&quot;ajax_loading&quot;:false,&quot;loop_position&quot;:&quot;after_add_to_cart&quot;,&quot;item&quot;:&quot;add_to_wishlist&quot;}">
-  
-  <div class="yith-wcwl-add-button">
-  <a href="?add_to_wishlist=6057&#038;_wpnonce=6e2b03d0d3" class="add_to_wishlist single_add_to_wishlist" data-product-id="6057" data-product-type="simple" data-original-product-id="6057" data-title="" rel="nofollow">
-  <i class="yith-wcwl-icon fa fa-heart-o"></i> <span></span>
-  </a>
-  </div>
-  
-  </div>
-  <a href="https://gizmos.qodeinteractive.com?action=yith-woocompare-add-product&id=6057" class="compare" data-product_id="6057" rel="nofollow"></a> </div>
-  </div>
-  <div class="qodef-woo-product-content-middle">
-  <div class="qodef-woo-product-image-wrapper">
-  <div class="qodef-woo-product-image">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-80.jpg" class="attachment-full size-full wp-post-image" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-80.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-80-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-80-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-80-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-80-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-80-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-80-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="qodef-woo-product-image-slider qodef-m-custom-swiper-container">
-  <div class="swiper-wrapper">
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-80.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-80.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-80-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-80-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-80-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-80-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-80-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-80-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-119.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-119.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-119-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-119-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-119-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-119-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-119-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-119-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="1000" height="1000" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-98.png" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-98.png 1000w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-98-300x300.png 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-98-150x150.png 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-98-768x768.png 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-98-650x650.png 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-98-600x600.png 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-98-100x100.png 100w" sizes="(max-width: 1000px) 100vw, 1000px" /> </div>
-  <div class="swiper-slide">
-  <img width="1000" height="1000" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-104.png" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-104.png 1000w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-104-300x300.png 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-104-150x150.png 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-104-768x768.png 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-104-650x650.png 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-104-600x600.png 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-104-100x100.png 100w" sizes="(max-width: 1000px) 100vw, 1000px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-49.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-49.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-49-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-49-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-49-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-49-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-49-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-49-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  </div>
-  <div class="swiper-button-prev"><svg class="qodef-svg--slider-arrow-left" xmlns="http://www.w3.org/2000/svg" width="10.607" height="18.385" viewBox="0 0 10.607 18.385"><path d="M8.70851355 17.90094068.48344748 9.6758746c-.26657926-.26657926-.16758431-.79973777.22344574-1.19076782s.92418856-.490025 1.19076782-.22344574l8.22506608 8.22506608c.26657925.26657925.1661701.80115198-.22344575 1.19076782s-.92418856.490025-1.19076782.22344574Z" /><path d="M10.12294068 1.89748645 1.8978746 10.12255252c-.26657926.26657926-.79973777.16758431-1.19076782-.22344574s-.490025-.92418856-.22344574-1.19076782L8.70872712.48327288c.26657925-.26657925.80115198-.1661701 1.19076782.22344575s.490025.92418856.22344574 1.19076782Z" /></svg></div>
-  <div class="swiper-button-next"><svg class="qodef-svg--slider-arrow-right" xmlns="http://www.w3.org/2000/svg" width="10.607" height="18.385" viewBox="0 0 10.607 18.385"><path d="m1.89827288 17.90172712 8.22506608-8.22506608c.26657926-.26657926.1675843-.79973777-.22344574-1.19076782s-.92418856-.490025-1.19076782-.22344574L.48405932 16.48751355c-.26728636.26728637-.1661701.80115199.22344574 1.19076782s.92348146.49073211 1.19076782.22344575Z" /><path d="m.48327288 1.89827288 8.22506608 8.22506608c.26657926.26657926.79973777.1675843 1.19076782-.22344574s.490025-.92418856.22344574-1.19076782L1.89748645.48405932C1.63020008.21677296 1.09633446.31788922.70671863.70750506s-.49073211.92348146-.22344575 1.19076782Z" /></svg></div>
-  </div>
-  </div>
-  </div>
-  <div class="qodef-woo-product-content-bottom">
-  <div class="qodef-woo-product-info-wrapper">
-  <h5 itemprop="name" class="qodef-woo-product-title entry-title">
-  <a itemprop="url" class="qodef-woo-product-title-link" href="https://gizmos.qodeinteractive.com/product/fractal-design-s7-tempered-glass-computer-case/">
-  Fractal Design Tempered Glass S7 Computer Case	</a>
-  </h5>
-  <div class="qodef-woo-product-price price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>2,790</span></div>
-  </div>
-  </div>
-  <a href="?add-to-cart=6057" data-quantity="1" class="button wp-element-button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="6057" data-product_sku="242" aria-label="Add &ldquo;Fractal Design Tempered Glass S7 Computer Case&rdquo; to your cart" rel="nofollow">Add to cart</a> </div>
-  </li>
-  <li class="qodef-e swiper-slide qodef-item--full product type-product post-6087 status-publish instock product_cat-notebooks has-post-thumbnail shipping-taxable purchasable product-type-simple">
-  <div class="qodef-e-inner">
-  <a href="https://gizmos.qodeinteractive.com/product/sm-225088-closed-back-white-wireless-headphones/" class="woocommerce-LoopProduct-link woocommerce-loop-product__link"></a> <div class="qodef-woo-product-content-top">
-  <div class="qodef-woo-product-category">
-  <div class="qodef-woo-product-categories qodef-e-info"><a href="https://gizmos.qodeinteractive.com/product-category/computer-systems/notebooks/" rel="tag">Notebooks</a></div>
-  <div class="qodef-info-separator-end"></div>
-  </div>
-  <div class="qodef-woo-product-compare-wishlist-wrapper">
-  <div class="yith-wcwl-add-to-wishlist add-to-wishlist-6087  wishlist-fragment on-first-load" data-fragment-ref="6087" data-fragment-options="{&quot;base_url&quot;:&quot;&quot;,&quot;in_default_wishlist&quot;:false,&quot;is_single&quot;:false,&quot;show_exists&quot;:false,&quot;product_id&quot;:6087,&quot;parent_product_id&quot;:6087,&quot;product_type&quot;:&quot;simple&quot;,&quot;show_view&quot;:false,&quot;browse_wishlist_text&quot;:&quot;Browse wishlist&quot;,&quot;already_in_wishslist_text&quot;:&quot;The product is already in your wishlist!&quot;,&quot;product_added_text&quot;:&quot;Product added!&quot;,&quot;heading_icon&quot;:&quot;fa-heart-o&quot;,&quot;available_multi_wishlist&quot;:false,&quot;disable_wishlist&quot;:false,&quot;show_count&quot;:false,&quot;ajax_loading&quot;:false,&quot;loop_position&quot;:&quot;after_add_to_cart&quot;,&quot;item&quot;:&quot;add_to_wishlist&quot;}">
-  
-  <div class="yith-wcwl-add-button">
-  <a href="?add_to_wishlist=6087&#038;_wpnonce=6e2b03d0d3" class="add_to_wishlist single_add_to_wishlist" data-product-id="6087" data-product-type="simple" data-original-product-id="6087" data-title="" rel="nofollow">
-  <i class="yith-wcwl-icon fa fa-heart-o"></i> <span></span>
-  </a>
-  </div>
-  
-  </div>
-  <a href="https://gizmos.qodeinteractive.com?action=yith-woocompare-add-product&id=6087" class="compare" data-product_id="6087" rel="nofollow"></a> </div>
-  </div>
-  <div class="qodef-woo-product-content-middle">
-  <div class="qodef-woo-product-image-wrapper">
-  <div class="qodef-woo-product-image">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10.jpg" class="attachment-full size-full wp-post-image" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="qodef-woo-product-image-slider qodef-m-custom-swiper-container">
-  <div class="swiper-wrapper">
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-2.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-2.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-2-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-2-100x100.jpg 100w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-2-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-2-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-2-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-2-650x650.jpg 650w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-3.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-3.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-3-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-3-100x100.jpg 100w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-3-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-3-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-3-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-3-650x650.jpg 650w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-1.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-1.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-1-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-1-100x100.jpg 100w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-1-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-1-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-1-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-1-650x650.jpg 650w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-4.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-4.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-4-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-4-100x100.jpg 100w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-4-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-4-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-4-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-10-4-650x650.jpg 650w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  </div>
-  <div class="swiper-button-prev"><svg class="qodef-svg--slider-arrow-left" xmlns="http://www.w3.org/2000/svg" width="10.607" height="18.385" viewBox="0 0 10.607 18.385"><path d="M8.70851355 17.90094068.48344748 9.6758746c-.26657926-.26657926-.16758431-.79973777.22344574-1.19076782s.92418856-.490025 1.19076782-.22344574l8.22506608 8.22506608c.26657925.26657925.1661701.80115198-.22344575 1.19076782s-.92418856.490025-1.19076782.22344574Z" /><path d="M10.12294068 1.89748645 1.8978746 10.12255252c-.26657926.26657926-.79973777.16758431-1.19076782-.22344574s-.490025-.92418856-.22344574-1.19076782L8.70872712.48327288c.26657925-.26657925.80115198-.1661701 1.19076782.22344575s.490025.92418856.22344574 1.19076782Z" /></svg></div>
-  <div class="swiper-button-next"><svg class="qodef-svg--slider-arrow-right" xmlns="http://www.w3.org/2000/svg" width="10.607" height="18.385" viewBox="0 0 10.607 18.385"><path d="m1.89827288 17.90172712 8.22506608-8.22506608c.26657926-.26657926.1675843-.79973777-.22344574-1.19076782s-.92418856-.490025-1.19076782-.22344574L.48405932 16.48751355c-.26728636.26728637-.1661701.80115199.22344574 1.19076782s.92348146.49073211 1.19076782.22344575Z" /><path d="m.48327288 1.89827288 8.22506608 8.22506608c.26657926.26657926.79973777.1675843 1.19076782-.22344574s.490025-.92418856.22344574-1.19076782L1.89748645.48405932C1.63020008.21677296 1.09633446.31788922.70671863.70750506s-.49073211.92348146-.22344575 1.19076782Z" /></svg></div>
-  </div>
-  </div>
-  </div>
-  <div class="qodef-woo-product-content-bottom">
-  <div class="qodef-woo-product-info-wrapper">
-  <h5 itemprop="name" class="qodef-woo-product-title entry-title">
-  <a itemprop="url" class="qodef-woo-product-title-link" href="https://gizmos.qodeinteractive.com/product/sm-225088-closed-back-white-wireless-headphones/">
-  SM-225088 Closed-Back White Wireless Headphones	</a>
-  </h5>
-  <div class="qodef-woo-product-price price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>590</span></div>
-  </div>
-  </div>
-  <a href="?add-to-cart=6087" data-quantity="1" class="button wp-element-button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="6087" data-product_sku="243" aria-label="Add &ldquo;SM-225088 Closed-Back White Wireless Headphones&rdquo; to your cart" rel="nofollow">Add to cart</a> </div>
-  </li>
-  <li class="qodef-e swiper-slide qodef-item--full product type-product post-6093 status-publish last outofstock product_cat-notebooks product_tag-usb product_tag-wireless has-post-thumbnail shipping-taxable purchasable product-type-simple">
-  <div class="qodef-e-inner">
-  <a href="https://gizmos.qodeinteractive.com/product/bw-235700-closed-back-wireless-headphones/" class="woocommerce-LoopProduct-link woocommerce-loop-product__link"></a> <div class="qodef-woo-product-content-top">
-  <div class="qodef-woo-product-category">
-  <div class="qodef-woo-product-categories qodef-e-info"><a href="https://gizmos.qodeinteractive.com/product-category/computer-systems/notebooks/" rel="tag">Notebooks</a></div>
-  <div class="qodef-info-separator-end"></div>
-  </div>
-  <div class="qodef-woo-product-compare-wishlist-wrapper">
-  <div class="yith-wcwl-add-to-wishlist add-to-wishlist-6093  wishlist-fragment on-first-load" data-fragment-ref="6093" data-fragment-options="{&quot;base_url&quot;:&quot;&quot;,&quot;in_default_wishlist&quot;:false,&quot;is_single&quot;:false,&quot;show_exists&quot;:false,&quot;product_id&quot;:6093,&quot;parent_product_id&quot;:6093,&quot;product_type&quot;:&quot;simple&quot;,&quot;show_view&quot;:false,&quot;browse_wishlist_text&quot;:&quot;Browse wishlist&quot;,&quot;already_in_wishslist_text&quot;:&quot;The product is already in your wishlist!&quot;,&quot;product_added_text&quot;:&quot;Product added!&quot;,&quot;heading_icon&quot;:&quot;fa-heart-o&quot;,&quot;available_multi_wishlist&quot;:false,&quot;disable_wishlist&quot;:false,&quot;show_count&quot;:false,&quot;ajax_loading&quot;:false,&quot;loop_position&quot;:&quot;after_add_to_cart&quot;,&quot;item&quot;:&quot;add_to_wishlist&quot;}">
-  
-  <div class="yith-wcwl-add-button">
-  <a href="?add_to_wishlist=6093&#038;_wpnonce=6e2b03d0d3" class="add_to_wishlist single_add_to_wishlist" data-product-id="6093" data-product-type="simple" data-original-product-id="6093" data-title="" rel="nofollow">
-  <i class="yith-wcwl-icon fa fa-heart-o"></i> <span></span>
-  </a>
-  </div>
-  
-  </div>
-  <a href="https://gizmos.qodeinteractive.com?action=yith-woocompare-add-product&id=6093" class="compare" data-product_id="6093" rel="nofollow"></a> </div>
-  </div>
-  <div class="qodef-woo-product-content-middle">
-  <div class="qodef-woo-product-image-wrapper">
-  <div class="qodef-woo-product-image">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9.jpg" class="attachment-full size-full wp-post-image" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="qodef-woo-product-image-slider qodef-m-custom-swiper-container">
-  <div class="swiper-wrapper">
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-4.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-4.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-4-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-4-100x100.jpg 100w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-4-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-4-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-4-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-4-650x650.jpg 650w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-1.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-1.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-1-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-1-100x100.jpg 100w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-1-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-1-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-1-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-1-650x650.jpg 650w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-2.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-2.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-2-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-2-100x100.jpg 100w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-2-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-2-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-2-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-2-650x650.jpg 650w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-3.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-3.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-3-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-3-100x100.jpg 100w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-3-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-3-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-3-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/08/shop-img-9-3-650x650.jpg 650w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  </div>
-  <div class="swiper-button-prev"><svg class="qodef-svg--slider-arrow-left" xmlns="http://www.w3.org/2000/svg" width="10.607" height="18.385" viewBox="0 0 10.607 18.385"><path d="M8.70851355 17.90094068.48344748 9.6758746c-.26657926-.26657926-.16758431-.79973777.22344574-1.19076782s.92418856-.490025 1.19076782-.22344574l8.22506608 8.22506608c.26657925.26657925.1661701.80115198-.22344575 1.19076782s-.92418856.490025-1.19076782.22344574Z" /><path d="M10.12294068 1.89748645 1.8978746 10.12255252c-.26657926.26657926-.79973777.16758431-1.19076782-.22344574s-.490025-.92418856-.22344574-1.19076782L8.70872712.48327288c.26657925-.26657925.80115198-.1661701 1.19076782.22344575s.490025.92418856.22344574 1.19076782Z" /></svg></div>
-  <div class="swiper-button-next"><svg class="qodef-svg--slider-arrow-right" xmlns="http://www.w3.org/2000/svg" width="10.607" height="18.385" viewBox="0 0 10.607 18.385"><path d="m1.89827288 17.90172712 8.22506608-8.22506608c.26657926-.26657926.1675843-.79973777-.22344574-1.19076782s-.92418856-.490025-1.19076782-.22344574L.48405932 16.48751355c-.26728636.26728637-.1661701.80115199.22344574 1.19076782s.92348146.49073211 1.19076782.22344575Z" /><path d="m.48327288 1.89827288 8.22506608 8.22506608c.26657926.26657926.79973777.1675843 1.19076782-.22344574s.490025-.92418856.22344574-1.19076782L1.89748645.48405932C1.63020008.21677296 1.09633446.31788922.70671863.70750506s-.49073211.92348146-.22344575 1.19076782Z" /></svg></div>
-  </div>
-  </div>
-  </div>
-  <div class="qodef-woo-product-content-bottom">
-  <div class="qodef-woo-product-info-wrapper">
-   <span class="qodef-woo-product-mark qodef-out-of-stock">Sold</span> <h5 itemprop="name" class="qodef-woo-product-title entry-title">
-  <a itemprop="url" class="qodef-woo-product-title-link" href="https://gizmos.qodeinteractive.com/product/bw-235700-closed-back-wireless-headphones/">
-  BW-235700 Closed-Back Wireless Headphones	</a>
-  </h5>
-  <div class="qodef-woo-product-price price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>700</span></div>
-  </div>
-  </div>
-  <a href="https://gizmos.qodeinteractive.com/product/bw-235700-closed-back-wireless-headphones/" data-quantity="1" class="button wp-element-button product_type_simple" data-product_id="6093" data-product_sku="244" aria-label="Read more about &ldquo;BW-235700 Closed-Back Wireless Headphones&rdquo;" rel="nofollow">Read more</a> </div>
-  </li>
-  <li class="qodef-e swiper-slide qodef-item--full product type-product post-6098 status-publish first instock product_cat-chromebooks has-post-thumbnail shipping-taxable purchasable product-type-simple">
-  <div class="qodef-e-inner">
-  <a href="https://gizmos.qodeinteractive.com/product/air-purifier-mika-clean-basic-659566-white/" class="woocommerce-LoopProduct-link woocommerce-loop-product__link"></a> <div class="qodef-woo-product-content-top">
-  <div class="qodef-woo-product-category">
-  <div class="qodef-woo-product-categories qodef-e-info"><a href="https://gizmos.qodeinteractive.com/product-category/computer-systems/chromebooks/" rel="tag">Chromebooks</a></div>
-  <div class="qodef-info-separator-end"></div>
-  </div>
-  <div class="qodef-woo-product-compare-wishlist-wrapper">
-  <div class="yith-wcwl-add-to-wishlist add-to-wishlist-6098  wishlist-fragment on-first-load" data-fragment-ref="6098" data-fragment-options="{&quot;base_url&quot;:&quot;&quot;,&quot;in_default_wishlist&quot;:false,&quot;is_single&quot;:false,&quot;show_exists&quot;:false,&quot;product_id&quot;:6098,&quot;parent_product_id&quot;:6098,&quot;product_type&quot;:&quot;simple&quot;,&quot;show_view&quot;:false,&quot;browse_wishlist_text&quot;:&quot;Browse wishlist&quot;,&quot;already_in_wishslist_text&quot;:&quot;The product is already in your wishlist!&quot;,&quot;product_added_text&quot;:&quot;Product added!&quot;,&quot;heading_icon&quot;:&quot;fa-heart-o&quot;,&quot;available_multi_wishlist&quot;:false,&quot;disable_wishlist&quot;:false,&quot;show_count&quot;:false,&quot;ajax_loading&quot;:false,&quot;loop_position&quot;:&quot;after_add_to_cart&quot;,&quot;item&quot;:&quot;add_to_wishlist&quot;}">
-  
-  <div class="yith-wcwl-add-button">
-  <a href="?add_to_wishlist=6098&#038;_wpnonce=6e2b03d0d3" class="add_to_wishlist single_add_to_wishlist" data-product-id="6098" data-product-type="simple" data-original-product-id="6098" data-title="" rel="nofollow">
-  <i class="yith-wcwl-icon fa fa-heart-o"></i> <span></span>
-  </a>
-  </div>
-  
-  </div>
-  <a href="https://gizmos.qodeinteractive.com?action=yith-woocompare-add-product&id=6098" class="compare" data-product_id="6098" rel="nofollow"></a> </div>
-  </div>
-  <div class="qodef-woo-product-content-middle">
-  <div class="qodef-woo-product-image-wrapper">
-  <div class="qodef-woo-product-image">
-  <img width="1000" height="1000" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-60.jpg" class="attachment-full size-full wp-post-image" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-60.jpg 1000w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-60-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-60-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-60-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-60-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-60-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-60-100x100.jpg 100w" sizes="(max-width: 1000px) 100vw, 1000px" /> </div>
-  <div class="qodef-woo-product-image-slider qodef-m-custom-swiper-container">
-  <div class="swiper-wrapper">
-  <div class="swiper-slide">
-  <img width="1000" height="1000" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-60.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-60.jpg 1000w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-60-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-60-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-60-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-60-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-60-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-60-100x100.jpg 100w" sizes="(max-width: 1000px) 100vw, 1000px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-1.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-1.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-1-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-1-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-1-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-1-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-1-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-1-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-2.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-2.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-2-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-2-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-2-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-2-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-2-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-2-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-3.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-3.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-3-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-3-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-3-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-3-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-3-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-3-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-4.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-4.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-4-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-4-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-4-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-4-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-4-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-13-4-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  </div>
-  <div class="swiper-button-prev"><svg class="qodef-svg--slider-arrow-left" xmlns="http://www.w3.org/2000/svg" width="10.607" height="18.385" viewBox="0 0 10.607 18.385"><path d="M8.70851355 17.90094068.48344748 9.6758746c-.26657926-.26657926-.16758431-.79973777.22344574-1.19076782s.92418856-.490025 1.19076782-.22344574l8.22506608 8.22506608c.26657925.26657925.1661701.80115198-.22344575 1.19076782s-.92418856.490025-1.19076782.22344574Z" /><path d="M10.12294068 1.89748645 1.8978746 10.12255252c-.26657926.26657926-.79973777.16758431-1.19076782-.22344574s-.490025-.92418856-.22344574-1.19076782L8.70872712.48327288c.26657925-.26657925.80115198-.1661701 1.19076782.22344575s.490025.92418856.22344574 1.19076782Z" /></svg></div>
-  <div class="swiper-button-next"><svg class="qodef-svg--slider-arrow-right" xmlns="http://www.w3.org/2000/svg" width="10.607" height="18.385" viewBox="0 0 10.607 18.385"><path d="m1.89827288 17.90172712 8.22506608-8.22506608c.26657926-.26657926.1675843-.79973777-.22344574-1.19076782s-.92418856-.490025-1.19076782-.22344574L.48405932 16.48751355c-.26728636.26728637-.1661701.80115199.22344574 1.19076782s.92348146.49073211 1.19076782.22344575Z" /><path d="m.48327288 1.89827288 8.22506608 8.22506608c.26657926.26657926.79973777.1675843 1.19076782-.22344574s.490025-.92418856.22344574-1.19076782L1.89748645.48405932C1.63020008.21677296 1.09633446.31788922.70671863.70750506s-.49073211.92348146-.22344575 1.19076782Z" /></svg></div>
-  </div>
-  </div>
-  </div>
-  <div class="qodef-woo-product-content-bottom">
-  <div class="qodef-woo-product-info-wrapper">
-  <h5 itemprop="name" class="qodef-woo-product-title entry-title">
-  <a itemprop="url" class="qodef-woo-product-title-link" href="https://gizmos.qodeinteractive.com/product/air-purifier-mika-clean-basic-659566-white/">
-  Air Purifier Mika Clean Basic-659566 White	</a>
-  </h5>
-  <div class="qodef-woo-product-price price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>1,390</span></div>
-  </div>
-  </div>
-  <a href="?add-to-cart=6098" data-quantity="1" class="button wp-element-button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="6098" data-product_sku="245" aria-label="Add &ldquo;Air Purifier Mika Clean Basic-659566 White&rdquo; to your cart" rel="nofollow">Add to cart</a> </div>
-  </li>
-  <li class="qodef-e swiper-slide qodef-item--full product type-product post-6103 status-publish instock product_cat-chromebooks has-post-thumbnail shipping-taxable purchasable product-type-simple">
-  <div class="qodef-e-inner">
-  <a href="https://gizmos.qodeinteractive.com/product/wireless-bluetooth-speaker-gs-997-multiple-colors/" class="woocommerce-LoopProduct-link woocommerce-loop-product__link"></a> <div class="qodef-woo-product-content-top">
-  <div class="qodef-woo-product-category">
-  <div class="qodef-woo-product-categories qodef-e-info"><a href="https://gizmos.qodeinteractive.com/product-category/computer-systems/chromebooks/" rel="tag">Chromebooks</a></div>
-  <div class="qodef-info-separator-end"></div>
-  </div>
-  <div class="qodef-woo-product-compare-wishlist-wrapper">
-  <div class="yith-wcwl-add-to-wishlist add-to-wishlist-6103  wishlist-fragment on-first-load" data-fragment-ref="6103" data-fragment-options="{&quot;base_url&quot;:&quot;&quot;,&quot;in_default_wishlist&quot;:false,&quot;is_single&quot;:false,&quot;show_exists&quot;:false,&quot;product_id&quot;:6103,&quot;parent_product_id&quot;:6103,&quot;product_type&quot;:&quot;simple&quot;,&quot;show_view&quot;:false,&quot;browse_wishlist_text&quot;:&quot;Browse wishlist&quot;,&quot;already_in_wishslist_text&quot;:&quot;The product is already in your wishlist!&quot;,&quot;product_added_text&quot;:&quot;Product added!&quot;,&quot;heading_icon&quot;:&quot;fa-heart-o&quot;,&quot;available_multi_wishlist&quot;:false,&quot;disable_wishlist&quot;:false,&quot;show_count&quot;:false,&quot;ajax_loading&quot;:false,&quot;loop_position&quot;:&quot;after_add_to_cart&quot;,&quot;item&quot;:&quot;add_to_wishlist&quot;}">
-  
-  <div class="yith-wcwl-add-button">
-  <a href="?add_to_wishlist=6103&#038;_wpnonce=6e2b03d0d3" class="add_to_wishlist single_add_to_wishlist" data-product-id="6103" data-product-type="simple" data-original-product-id="6103" data-title="" rel="nofollow">
-  <i class="yith-wcwl-icon fa fa-heart-o"></i> <span></span>
-  </a>
-  </div>
-  
-  </div>
-  <a href="https://gizmos.qodeinteractive.com?action=yith-woocompare-add-product&id=6103" class="compare" data-product_id="6103" rel="nofollow"></a> </div>
-  </div>
-  <div class="qodef-woo-product-content-middle">
-  <div class="qodef-woo-product-image-wrapper">
-  <div class="qodef-woo-product-image">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15.jpg" class="attachment-full size-full wp-post-image" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="qodef-woo-product-image-slider qodef-m-custom-swiper-container">
-  <div class="swiper-wrapper">
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-4.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-4.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-4-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-4-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-4-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-4-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-4-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-4-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-1.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-1.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-1-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-1-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-1-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-1-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-1-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-1-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-2.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-2.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-2-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-2-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-2-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-2-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-2-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-2-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <div class="swiper-slide">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-3.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-3.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-3-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-3-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-3-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-3-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-3-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-15-3-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  </div>
-  <div class="swiper-button-prev"><svg class="qodef-svg--slider-arrow-left" xmlns="http://www.w3.org/2000/svg" width="10.607" height="18.385" viewBox="0 0 10.607 18.385"><path d="M8.70851355 17.90094068.48344748 9.6758746c-.26657926-.26657926-.16758431-.79973777.22344574-1.19076782s.92418856-.490025 1.19076782-.22344574l8.22506608 8.22506608c.26657925.26657925.1661701.80115198-.22344575 1.19076782s-.92418856.490025-1.19076782.22344574Z" /><path d="M10.12294068 1.89748645 1.8978746 10.12255252c-.26657926.26657926-.79973777.16758431-1.19076782-.22344574s-.490025-.92418856-.22344574-1.19076782L8.70872712.48327288c.26657925-.26657925.80115198-.1661701 1.19076782.22344575s.490025.92418856.22344574 1.19076782Z" /></svg></div>
-  <div class="swiper-button-next"><svg class="qodef-svg--slider-arrow-right" xmlns="http://www.w3.org/2000/svg" width="10.607" height="18.385" viewBox="0 0 10.607 18.385"><path d="m1.89827288 17.90172712 8.22506608-8.22506608c.26657926-.26657926.1675843-.79973777-.22344574-1.19076782s-.92418856-.490025-1.19076782-.22344574L.48405932 16.48751355c-.26728636.26728637-.1661701.80115199.22344574 1.19076782s.92348146.49073211 1.19076782.22344575Z" /><path d="m.48327288 1.89827288 8.22506608 8.22506608c.26657926.26657926.79973777.1675843 1.19076782-.22344574s.490025-.92418856.22344574-1.19076782L1.89748645.48405932C1.63020008.21677296 1.09633446.31788922.70671863.70750506s-.49073211.92348146-.22344575 1.19076782Z" /></svg></div>
-  </div>
-  </div>
-  </div>
-  <div class="qodef-woo-product-content-bottom">
-  <div class="qodef-woo-product-info-wrapper">
-  <h5 itemprop="name" class="qodef-woo-product-title entry-title">
-  <a itemprop="url" class="qodef-woo-product-title-link" href="https://gizmos.qodeinteractive.com/product/wireless-bluetooth-speaker-gs-997-multiple-colors/">
-  Wireless Bluetooth Speaker GS-997 Multiple Colors	</a>
-  </h5>
-  <div class="qodef-woo-product-price price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>500</span></div>
-  </div>
-  </div>
-  <a href="?add-to-cart=6103" data-quantity="1" class="button wp-element-button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="6103" data-product_sku="246" aria-label="Add &ldquo;Wireless Bluetooth Speaker GS-997 Multiple Colors&rdquo; to your cart" rel="nofollow">Add to cart</a> </div>
-  </li>
-  </ul>
+<div id="qodef-page-inner" class="qodef-content-full-width">
+<main id="qodef-page-content" class="qodef-grid qodef-layout--template " role="main">
+<div class="qodef-grid-inner clear">
+<div class="qodef-grid-item qodef-page-content-section qodef-col--12">
+<div data-elementor-type="wp-page" data-elementor-id="5601" class="elementor elementor-5601">
+<section class="elementor-section elementor-top-section elementor-element elementor-element-d6d2f84 elementor-section-full_width elementor-section-height-default elementor-section-height-default qodef-elementor-content-no" data-id="d6d2f84" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+<div class="elementor-container elementor-column-gap-no">
+<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-a813344" data-id="a813344" data-element_type="column">
+<div class="elementor-widget-wrap elementor-element-populated">
+<div class="elementor-element elementor-element-5e8ad62 elementor-widget elementor-widget-slider_revolution" data-id="5e8ad62" data-element_type="widget" data-widget_type="slider_revolution.default">
+<div class="elementor-widget-container">
+<div class="wp-block-themepunch-revslider">
+<p class="rs-p-wp-fix"></p>
+<rs-module-wrap id="rev_slider_17_1_wrapper" data-source="gallery" style="visibility:hidden;background:#ffffff;padding:0;margin:0px auto;margin-top:0;margin-bottom:0;">
+<rs-module id="rev_slider_17_1" style="" data-version="6.6.5">
+<rs-slides style="overflow: hidden; position: absolute;">
+<rs-slide style="position: absolute;" data-key="rs-37" data-title="Slide" data-thumb="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-2-rev-img-1.jpg" data-anim="adpr:false;" data-in="o:0;" data-out="a:false;">
+<img decoding="async" src="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="w" title="home-2-rev-img-1" width="1920" height="600" class="rev-slidebg tp-rs-img rs-lazyload" data-lazyload="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/transparent.png" data-bg="p:left center;" data-no-retina>
+<rs-group id="slider-17-slide-37-layer-3" data-type="group" data-xy="x:c;xo:-489px,-339px,0,0;y:m,m,m,t;yo:10px,11px,-95px,60px;" data-text="w:normal;" data-dim="w:420px,420px,86%,86%;h:250px,250px,230px,350px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="o:1;" data-frame_999="o:0;st:w;sA:2500;" style="z-index:13;"><rs-layer id="slider-17-slide-37-layer-1" data-type="text" data-color="#000000" data-xy="" data-pos="a" data-text="w:normal;s:46,46,42,42;l:52,52,48,48;fw:500;" data-dim="w:420px,420px,400px,100%;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:50;" data-frame_1="st:100;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:12;font-family:'Roboto';">Which Smartphone is Right For You?
+</rs-layer><rs-layer id="slider-17-slide-37-layer-2" data-type="text" data-color="#676770" data-xy="yo:118px,118px,106px,158px;" data-pos="a" data-text="w:normal;s:16;l:19;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:50;" data-frame_1="st:100;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:11;font-family:'Roboto';">Mei doctus principes interes
+</rs-layer><rs-layer id="slider-17-slide-37-layer-4" data-type="text" data-color="#676770" data-xy="yo:165px,165px,153px,205px;" data-pos="a" data-text="w:normal;s:11;ls:1px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:50;" data-frame_1="st:150;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:10;font-family:'Roboto';text-transform:uppercase;">starting at
+</rs-layer><rs-layer id="slider-17-slide-37-layer-5" data-type="text" data-color="#000000" data-xy="yo:186px,186px,174px,226px;" data-pos="a" data-text="w:normal;s:41;l:49;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:50;" data-frame_1="st:150;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:9;font-family:'Roboto';">$1.000
+</rs-layer></rs-group><rs-layer id="slider-17-slide-37-layer-6" data-type="image" data-xy="x:c;xo:0,0,-20px,-87px;y:b;yo:-1px,-1px,-5px,-5px;" data-text="w:normal;" data-dim="w:1400px,1100px,900px,520px;h:550px,432px,354px,204px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:50;" data-frame_1="st:50;sp:1000;" data-frame_999="o:0;e:power4.inOut;st:w;sp:1000;" style="z-index:8;"><img decoding="async" src="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="w" class="tp-rs-img rs-lazyload" width="1400" height="550" data-lazyload="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-8-rev-img-1.jpg" data-no-retina>
+</rs-layer> </rs-slide>
+<rs-slide style="position: absolute;" data-key="rs-38" data-title="Slide" data-thumb="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-2-rev-img-1.jpg" data-anim="adpr:false;" data-in="o:0;" data-out="a:false;">
+<img decoding="async" src="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="w" title="home-2-rev-img-1" width="1920" height="600" class="rev-slidebg tp-rs-img rs-lazyload" data-lazyload="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/transparent.png" data-bg="p:left center;" data-no-retina>
+<rs-group id="slider-17-slide-38-layer-3" data-type="group" data-xy="x:c;xo:-489px,-339px,0,0;y:m,m,m,t;yo:10px,11px,-95px,60px;" data-text="w:normal;" data-dim="w:420px,420px,86%,86%;h:250px,250px,230px,350px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="o:1;" data-frame_999="o:0;st:w;sA:2500;" style="z-index:13;"><rs-layer id="slider-17-slide-38-layer-1" data-type="text" data-color="#000000" data-xy="" data-pos="a" data-text="w:normal;s:46,46,42,42;l:52,52,48,48;fw:500;" data-dim="w:420px,420px,400px,100%;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:50;" data-frame_1="st:100;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:12;font-family:'Roboto';">Find The Perfect Pair of Headphones
+</rs-layer><rs-layer id="slider-17-slide-38-layer-2" data-type="text" data-color="#676770" data-xy="yo:118px,118px,106px,158px;" data-pos="a" data-text="w:normal;s:16;l:19;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:50;" data-frame_1="st:100;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:11;font-family:'Roboto';">Mei doctus principes interes
+</rs-layer><rs-layer id="slider-17-slide-38-layer-4" data-type="text" data-color="#676770" data-xy="yo:165px,165px,153px,205px;" data-pos="a" data-text="w:normal;s:11;ls:1px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:50;" data-frame_1="st:150;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:10;font-family:'Roboto';text-transform:uppercase;">starting at
+</rs-layer><rs-layer id="slider-17-slide-38-layer-5" data-type="text" data-color="#000000" data-xy="yo:186px,186px,174px,226px;" data-pos="a" data-text="w:normal;s:41;l:49;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:50;" data-frame_1="st:150;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:9;font-family:'Roboto';">$890
+</rs-layer></rs-group><rs-layer id="slider-17-slide-38-layer-6" data-type="image" data-xy="x:c;xo:0,50px,50px,110px;y:b;yo:0,0,0,-50px;" data-text="w:normal;" data-dim="w:1400px,1145px,1400px,1400px;h:550px,450px,550px,550px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="x:-50;" data-frame_1="st:50;sp:1000;" data-frame_999="o:0;e:power4.inOut;st:w;sp:1000;" style="z-index:8;"><img decoding="async" src="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="w" class="tp-rs-img rs-lazyload" width="1400" height="550" data-lazyload="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-8-slider-photo-2.jpg" data-no-retina>
+</rs-layer> </rs-slide>
+<rs-slide style="position: absolute;" data-key="rs-69" data-title="Slide" data-thumb="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-2-rev-img-1.jpg" data-anim="adpr:false;" data-in="o:0;" data-out="a:false;">
+<img decoding="async" src="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="w" title="home-2-rev-img-1" width="1920" height="600" class="rev-slidebg tp-rs-img rs-lazyload" data-lazyload="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/transparent.png" data-bg="p:left center;" data-no-retina>
+<rs-group id="slider-17-slide-69-layer-3" data-type="group" data-xy="x:c;xo:-489px,-339px,0,0;y:m,m,m,t;yo:10px,11px,-95px,70px;" data-text="w:normal;" data-dim="w:420px,420px,86%,86%;h:250px,250px,230px,350px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="o:1;" data-frame_999="o:0;st:w;sA:2500;" style="z-index:13;"><rs-layer id="slider-17-slide-69-layer-1" data-type="text" data-color="#000000" data-xy="" data-pos="a" data-text="w:normal;s:46,46,42,42;l:52,52,48,48;fw:500;" data-dim="w:420px,420px,400px,100%;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:50;" data-frame_1="st:100;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:12;font-family:'Roboto';">Next Generation of Tablets is Here
+</rs-layer><rs-layer id="slider-17-slide-69-layer-2" data-type="text" data-color="#676770" data-xy="yo:118px,118px,106px,158px;" data-pos="a" data-text="w:normal;s:16;l:19;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:50;" data-frame_1="st:100;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:11;font-family:'Roboto';">Mei doctus principes interes
+</rs-layer><rs-layer id="slider-17-slide-69-layer-4" data-type="text" data-color="#676770" data-xy="yo:165px,165px,153px,205px;" data-pos="a" data-text="w:normal;s:11;ls:1px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:50;" data-frame_1="st:150;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:10;font-family:'Roboto';text-transform:uppercase;">starting at
+</rs-layer><rs-layer id="slider-17-slide-69-layer-5" data-type="text" data-color="#000000" data-xy="yo:186px,186px,174px,226px;" data-pos="a" data-text="w:normal;s:41;l:49;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:50;" data-frame_1="st:150;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:9;font-family:'Roboto';">$1.950
+</rs-layer></rs-group><rs-layer id="slider-17-slide-69-layer-6" data-type="image" data-xy="x:c;xo:0,50px,140px,200px;y:b;" data-text="w:normal;" data-dim="w:1400px,1145px,1400px,1400px;h:550px,450px,550px,550px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="x:50;" data-frame_1="x:0px,0,0,0;y:-1px,0,0,0;st:50;sp:1000;" data-frame_999="o:0;e:power4.inOut;st:w;sp:1000;" style="z-index:8;"><img decoding="async" src="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="w" class="tp-rs-img rs-lazyload" width="1400" height="550" data-lazyload="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-8-slider-photo-3.jpg" data-no-retina>
+</rs-layer> </rs-slide>
+</rs-slides>
+</rs-module>
+
+</rs-module-wrap>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="elementor-section elementor-top-section elementor-element elementor-element-eba4d63 elementor-section-full_width qodef-elementor-content-grid elementor-section-height-default elementor-section-height-default" data-id="eba4d63" data-element_type="section">
+<div class="elementor-container elementor-column-gap-no">
+<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-7b8f69a" data-id="7b8f69a" data-element_type="column">
+<div class="elementor-widget-wrap elementor-element-populated">
+<div class="elementor-element elementor-element-d9c42c9 elementor-widget elementor-widget-gizmos_core_banner" data-id="d9c42c9" data-element_type="widget" data-widget_type="gizmos_core_banner.default">
+<div class="elementor-widget-container">
+<div class="qodef-shortcode qodef-m  qodef-banner qodef-layout--link-button ">
+<div class="qodef-m-image" style="--qodef-image-height--768: 230px">
+<img width="904" height="360" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-1.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-1.jpg 904w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-1-300x119.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-1-768x306.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-1-600x239.jpg 600w" sizes="(max-width: 904px) 100vw, 904px" /></div>
+<div class="qodef-m-content">
+<div class="qodef-m-content-inner" style="--qodef-content-padding--1440: 28px 28px 25px 28px;--qodef-content-padding--1024: 35px 35px 32px 35px;--qodef-content-padding--768: 35px 30px 32px 30px;--qodef-content-padding--680: 25px 20px 22px 20px">
+<div>
+<h4 class="qodef-m-title" style="--qodef-title-font-size--680: 20px">
+Sports Watches	</h4>
+</div>
+<div>
+<div class="qodef-m-button">
+<a class="qodef-shortcode qodef-m  qodef-button qodef-layout--textual  qodef-html--link" href="{{url('/app/ecommerce/shop/home?categorie=1')}}" target="_self"> <span class="qodef-m-text">shop now</span> <span class="qodef-m-icon"><svg class="qodef-svg--button-arrow" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><g><path d="M11 5H1a1 1 0 0 0 0 2h10a1 1 0 0 0 0-2Z" /><path d="M7 11V1a1 1 0 1 0-2 0v10a1 1 0 0 0 2 0Z" /></g></svg></span></a> </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-cbf290d" data-id="cbf290d" data-element_type="column">
+<div class="elementor-widget-wrap elementor-element-populated">
+<div class="elementor-element elementor-element-766762c elementor-widget elementor-widget-gizmos_core_banner" data-id="766762c" data-element_type="widget" data-widget_type="gizmos_core_banner.default">
+<div class="elementor-widget-container">
+<div class="qodef-shortcode qodef-m  qodef-banner qodef-layout--link-button ">
+<div class="qodef-m-image" style="--qodef-image-height--768: 230px">
+<img width="904" height="360" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-2.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-2.jpg 904w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-2-300x119.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-2-768x306.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-2-600x239.jpg 600w" sizes="(max-width: 904px) 100vw, 904px" /></div>
+<div class="qodef-m-content">
+<div class="qodef-m-content-inner" style="--qodef-content-padding--1440: 28px 28px 25px 28px;--qodef-content-padding--1024: 35px 35px 32px 35px;--qodef-content-padding--768: 35px 30px 32px 30px;--qodef-content-padding--680: 25px 20px 22px 20px">
+<div>
+<h4 class="qodef-m-title" style="--qodef-title-font-size--680: 20px;color: #FFFFFF">
+Gadgets &amp;<br /> Accessories	</h4>
+</div>
+<div>
+<div class="qodef-m-button">
+<a class="qodef-shortcode qodef-m  qodef-button qodef-layout--textual  qodef-html--link" href="{{url('/app/ecommerce/shop/home?categorie=5')}}"  target="_self" style="color: #FFFFFF"> <span class="qodef-m-text">shop now</span> <span class="qodef-m-icon"><svg class="qodef-svg--button-arrow" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><g><path d="M11 5H1a1 1 0 0 0 0 2h10a1 1 0 0 0 0-2Z" /><path d="M7 11V1a1 1 0 1 0-2 0v10a1 1 0 0 0 2 0Z" /></g></svg></span></a> </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-cce720e" data-id="cce720e" data-element_type="column">
+<div class="elementor-widget-wrap elementor-element-populated">
+<div class="elementor-element elementor-element-f1e5f69 elementor-widget elementor-widget-gizmos_core_banner" data-id="f1e5f69" data-element_type="widget" data-widget_type="gizmos_core_banner.default">
+<div class="elementor-widget-container">
+<div class="qodef-shortcode qodef-m  qodef-banner qodef-layout--link-button ">
+<div class="qodef-m-image" style="--qodef-image-height--768: 230px">
+<img width="904" height="360" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-3.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-3.jpg 904w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-3-300x119.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-3-768x306.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-3-600x239.jpg 600w" sizes="(max-width: 904px) 100vw, 904px" /></div>
+<div class="qodef-m-content">
+<div class="qodef-m-content-inner" style="--qodef-content-padding--1440: 28px 28px 25px 28px;--qodef-content-padding--1024: 35px 35px 32px 35px;--qodef-content-padding--768: 35px 30px 32px 30px;--qodef-content-padding--680: 25px 20px 22px 20px">
+<div>
+<h4 class="qodef-m-title" style="--qodef-title-font-size--680: 20px">
+Gaming Consoles<br /> &amp; Gamepads	</h4>
+</div>
+<div>
+<div class="qodef-m-button">
+<a class="qodef-shortcode qodef-m  qodef-button qodef-layout--textual  qodef-html--link" href="{{url('/app/ecommerce/shop/home?categorie=7')}}"  target="_self"> <span class="qodef-m-text">shop now</span> <span class="qodef-m-icon"><svg class="qodef-svg--button-arrow" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><g><path d="M11 5H1a1 1 0 0 0 0 2h10a1 1 0 0 0 0-2Z" /><path d="M7 11V1a1 1 0 1 0-2 0v10a1 1 0 0 0 2 0Z" /></g></svg></span></a> </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="elementor-section elementor-top-section elementor-element elementor-element-cb78e1c elementor-section-full_width qodef-elementor-content-grid elementor-section-height-default elementor-section-height-default" data-id="cb78e1c" data-element_type="section">
+<div class="elementor-container elementor-column-gap-no">
+<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-a4c1b11" data-id="a4c1b11" data-element_type="column">
+<div class="elementor-widget-wrap elementor-element-populated">
+<div class="elementor-element elementor-element-9ecc249 elementor-widget elementor-widget-gizmos_core_product_list" data-id="9ecc249" data-element_type="widget" data-widget_type="gizmos_core_product_list.default">
+<div class="elementor-widget-container">
+<div class="qodef-shortcode qodef-m  qodef-woo-shortcode qodef-woo-product-list qodef-item-layout--info-below   qodef-category-filter-type--simple    qodef-grid qodef-layout--columns  qodef-gutter--small qodef-col-num--5 qodef-item-layout--info-below qodef--no-bottom-space qodef-pagination--off qodef-responsive--custom qodef-col-num--1440--5 qodef-col-num--1366--5 qodef-col-num--1024--3 qodef-col-num--768--3 qodef-col-num--680--1 qodef-col-num--480--1" data-options="{&quot;plugin&quot;:&quot;gizmos_core&quot;,&quot;module&quot;:&quot;plugins\/woocommerce\/shortcodes&quot;,&quot;shortcode&quot;:&quot;product-list&quot;,&quot;post_type&quot;:&quot;product&quot;,&quot;next_page&quot;:&quot;2&quot;,&quot;max_pages_num&quot;:1,&quot;product_list_title&quot;:&quot;Featured Products&quot;,&quot;behavior&quot;:&quot;columns&quot;,&quot;images_proportion&quot;:&quot;full&quot;,&quot;columns&quot;:&quot;5&quot;,&quot;columns_responsive&quot;:&quot;custom&quot;,&quot;columns_1440&quot;:&quot;5&quot;,&quot;columns_1366&quot;:&quot;5&quot;,&quot;columns_1024&quot;:&quot;3&quot;,&quot;columns_768&quot;:&quot;3&quot;,&quot;columns_680&quot;:&quot;1&quot;,&quot;columns_480&quot;:&quot;1&quot;,&quot;space&quot;:&quot;small&quot;,&quot;posts_per_page&quot;:&quot;5&quot;,&quot;orderby&quot;:&quot;date&quot;,&quot;order&quot;:&quot;ASC&quot;,&quot;additional_params&quot;:&quot;tax&quot;,&quot;tax&quot;:&quot;product_cat&quot;,&quot;tax_slug&quot;:&quot;3d-printers&quot;,&quot;layout&quot;:&quot;info-below&quot;,&quot;title_tag&quot;:&quot;h5&quot;,&quot;enable_category&quot;:&quot;yes&quot;,&quot;enable_banner&quot;:&quot;no&quot;,&quot;enable_compare_product&quot;:&quot;yes&quot;,&quot;enable_wishlist&quot;:&quot;yes&quot;,&quot;enable_filter&quot;:&quot;no&quot;,&quot;pagination_type&quot;:&quot;no-pagination&quot;,&quot;category_filter_type&quot;:&quot;simple&quot;,&quot;enable_ordering_filter&quot;:&quot;no&quot;,&quot;enable_results_count&quot;:&quot;no&quot;,&quot;object_class_name&quot;:&quot;GizmosCore_Product_List_Shortcode&quot;,&quot;additional_query_args&quot;:{&quot;tax_query&quot;:[{&quot;taxonomy&quot;:&quot;product_cat&quot;,&quot;field&quot;:&quot;slug&quot;,&quot;terms&quot;:&quot;3d-printers&quot;}]},&quot;taxonomy_filter&quot;:&quot;product_cat&quot;,&quot;unique&quot;:&quot;1&quot;,&quot;space_value&quot;:10}">
+<div class="qodef-m-top">
+<h3 class="qodef-m-product-list-title">New Products</h3>
+<div class="qodef-m-button">
+  <a class="qodef-shortcode qodef-m  qodef-button qodef-layout--textual  qodef-html--link" href="{{url('/app/ecommerce/shop')}}"  target="_self"> <span class="qodef-m-text">shop now</span> <span class="qodef-m-icon"><svg class="qodef-svg--button-arrow" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><g><path d="M11 5H1a1 1 0 0 0 0 2h10a1 1 0 0 0 0-2Z" /><path d="M7 11V1a1 1 0 1 0-2 0v10a1 1 0 0 0 2 0Z" /></g></svg></span></a> </div>
+
+</div>
+
+
+  {{--
+    new product content here
+    --}}
+    <section id="new-products" class="grid-view d-flex flex-lg-nowrap flex-md-wrap flex-sm-wrap flex-xs-nowrap">
+      @include('content/home-new-products')
+      </section>
+      
+
+
+
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    <section class="elementor-section elementor-top-section elementor-element elementor-element-ff6f3fa elementor-section-full_width qodef-elementor-content-grid elementor-section-height-default elementor-section-height-default" data-id="ff6f3fa" data-element_type="section">
+    <div class="elementor-container elementor-column-gap-no">
+    <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-9a15c95" data-id="9a15c95" data-element_type="column">
+    <div class="elementor-widget-wrap elementor-element-populated">
+    <div class="elementor-element elementor-element-c8c3f75 elementor-widget elementor-widget-gizmos_core_banner" data-id="c8c3f75" data-element_type="widget" data-widget_type="gizmos_core_banner.default">
+    <div class="elementor-widget-container">
+    <div class="qodef-shortcode qodef-m  qodef-banner qodef-layout--link-overlay ">
+    <div class="qodef-m-image" style="--qodef-image-height--768: 240px;--qodef-image-height--680: 190px">
+    <img width="1378" height="500" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-4.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-4.jpg 1378w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-4-300x109.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-4-1024x372.jpg 1024w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-4-768x279.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-8-banner-4-600x218.jpg 600w" sizes="(max-width: 1378px) 100vw, 1378px" /></div>
+    <div class="qodef-m-content">
+    <div class="qodef-m-content-inner" style="--qodef-content-padding: 50px 40px 38px 40px;--qodef-content-padding--1440: 30px 30px 18px 30px;--qodef-content-padding--768: 35px 35px 25px 35px ;--qodef-content-padding--680: 25px 25px 15px 25px">
+    <div>
+    <h2 class="qodef-m-title" style="--qodef-title-font-size--680: 28px;color: #FFFFFF">
+    E-77 Camera	</h2>
+    <h5 class="qodef-m-subtitle" style="color: #ACACAC;font-weight: 400">
+    MF841HN/A 13&quot;	</h5>
+    </div>
+    <div>
+    <h6 class="qodef-m-text" style="color: #ACACAC">
+    weekend sale	</h6>
+    <span class="qodef-m-bottom-text" style="color: #FFFFFF;--qodef-bottom-text-font-size--680: 37px">
+    20%	</span>
+    </div>
+    </div>
+    </div>
+    <a itemprop="url" href="https://gizmos.qodeinteractive.com/product-category/computers-tablets/3d-printers/" class="qodef-m-banner-link" target="_self"></a>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-113c628" data-id="113c628" data-element_type="column">
+    <div class="elementor-widget-wrap elementor-element-populated">
+    <div class="elementor-element elementor-element-f4ec3a5 elementor-widget elementor-widget-gizmos_core_banner" data-id="f4ec3a5" data-element_type="widget" data-widget_type="gizmos_core_banner.default">
+    <div class="elementor-widget-container">
+    <div class="qodef-shortcode qodef-m  qodef-banner qodef-layout--link-overlay ">
+    <div class="qodef-m-image" style="--qodef-image-height--768: 240px;--qodef-image-height--680: 190px">
+    <img width="1378" height="500" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-4-banner-2.jpg" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-4-banner-2.jpg 1378w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-4-banner-2-300x109.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-4-banner-2-1024x372.jpg 1024w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-4-banner-2-768x279.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/home-4-banner-2-600x218.jpg 600w" sizes="(max-width: 1378px) 100vw, 1378px" /></div>
+    <div class="qodef-m-content">
+    <div class="qodef-m-content-inner" style="--qodef-content-padding: 50px 40px 38px 40px;--qodef-content-padding--1440: 30px 30px 18px 30px;--qodef-content-padding--768: 35px 35px 25px 35px ;--qodef-content-padding--680: 25px 25px 15px 25px">
+    <div>
+    <h2 class="qodef-m-title" style="--qodef-title-font-size--680: 28px;color: #FFFFFF">
+    HP Ultimate	</h2>
+    <h5 class="qodef-m-subtitle" style="color: #ACACAC;font-weight: 400">
+    with Bluetooth 5.1	</h5>
+    </div>
+    <div>
+    <h6 class="qodef-m-text" style="color: #ACACAC">
+    discount -30%	</h6>
+    <span class="qodef-m-bottom-text" style="color: #FFFFFF;--qodef-bottom-text-font-size--680: 37px">
+    $349	</span>
+    </div>
+    </div>
+    </div>
+    <a itemprop="url" href="https://gizmos.qodeinteractive.com/product-category/webcams-equipment/gopro/" class="qodef-m-banner-link" target="_self"></a>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    <section class="elementor-section elementor-top-section elementor-element elementor-element-7be8b20 elementor-section-full_width qodef-elementor-content-grid elementor-section-height-default elementor-section-height-default" data-id="7be8b20" data-element_type="section">
+    <div class="elementor-container elementor-column-gap-no">
+    <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-4fb8a7f" data-id="4fb8a7f" data-element_type="column">
+    <div class="elementor-widget-wrap elementor-element-populated">
+    <div class="elementor-element elementor-element-9e684b5 elementor-widget elementor-widget-gizmos_core_product_list" data-id="9e684b5" data-element_type="widget" data-widget_type="gizmos_core_product_list.default">
+    <div class="elementor-widget-container">
+    <div class="qodef-e-product-list-slider-holder">
+    <div class="qodef-shortcode qodef-m  qodef-woo-shortcode qodef-woo-product-list qodef-item-layout--info-below   qodef-category-filter-type--simple    qodef-grid qodef-swiper-container  qodef-gutter--small qodef-col-num--4 qodef-item-layout--info-below qodef-filter--on qodef--no-bottom-space qodef-pagination--off qodef-responsive--predefined" data-options="{&quot;slidesPerView&quot;:&quot;4&quot;,&quot;spaceBetween&quot;:20,&quot;loop&quot;:false,&quot;autoplay&quot;:false,&quot;speed&quot;:&quot;&quot;,&quot;speedAnimation&quot;:&quot;&quot;,&quot;slideAnimation&quot;:&quot;&quot;,&quot;outsideNavigation&quot;:&quot;yes&quot;,&quot;unique&quot;:&quot;2&quot;,&quot;plugin&quot;:&quot;gizmos_core&quot;,&quot;module&quot;:&quot;plugins\/woocommerce\/shortcodes&quot;,&quot;shortcode&quot;:&quot;product-list&quot;,&quot;post_type&quot;:&quot;product&quot;,&quot;next_page&quot;:&quot;2&quot;,&quot;max_pages_num&quot;:1,&quot;product_list_title&quot;:&quot;Featured Products&quot;,&quot;behavior&quot;:&quot;slider&quot;,&quot;images_proportion&quot;:&quot;full&quot;,&quot;columns&quot;:&quot;4&quot;,&quot;columns_responsive&quot;:&quot;predefined&quot;,&quot;space&quot;:&quot;small&quot;,&quot;slider_loop&quot;:&quot;no&quot;,&quot;slider_autoplay&quot;:&quot;no&quot;,&quot;slider_pagination&quot;:&quot;no&quot;,&quot;posts_per_page&quot;:&quot;5&quot;,&quot;orderby&quot;:&quot;date&quot;,&quot;order&quot;:&quot;ASC&quot;,&quot;additional_params&quot;:&quot;tax&quot;,&quot;tax&quot;:&quot;product_cat&quot;,&quot;tax_slug&quot;:&quot;computer-systems&quot;,&quot;layout&quot;:&quot;info-below&quot;,&quot;title_tag&quot;:&quot;h5&quot;,&quot;enable_category&quot;:&quot;yes&quot;,&quot;enable_banner&quot;:&quot;no&quot;,&quot;enable_compare_product&quot;:&quot;yes&quot;,&quot;enable_wishlist&quot;:&quot;yes&quot;,&quot;enable_filter&quot;:&quot;yes&quot;,&quot;pagination_type&quot;:&quot;no-pagination&quot;,&quot;filter_type&quot;:&quot;simple&quot;,&quot;category_filter_type&quot;:&quot;simple&quot;,&quot;enable_ordering_filter&quot;:&quot;no&quot;,&quot;enable_results_count&quot;:&quot;no&quot;,&quot;custom_grid&quot;:&quot;no&quot;,&quot;object_class_name&quot;:&quot;GizmosCore_Product_List_Shortcode&quot;,&quot;additional_query_args&quot;:{&quot;tax_query&quot;:[{&quot;taxonomy&quot;:&quot;product_cat&quot;,&quot;field&quot;:&quot;slug&quot;,&quot;terms&quot;:&quot;computer-systems&quot;}]},&quot;taxonomy_filter&quot;:&quot;product_cat&quot;,&quot;space_value&quot;:10}">
+    <div class="qodef-m-top">
+    <h3 class="qodef-m-product-list-title">Top Products</h3>
+    
+    <div class="qodef-m-filter">
+    
+    </div>
+     <div class="qodef-swipper-nav-wrapper">
+      <div class="qodef-m-button">
+        <a class="qodef-shortcode qodef-m  qodef-button qodef-layout--textual  qodef-html--link" href="{{url('/app/ecommerce/shop')}}"  target="_self"> <span class="qodef-m-text">shop now</span> <span class="qodef-m-icon"><svg class="qodef-svg--button-arrow" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><g><path d="M11 5H1a1 1 0 0 0 0 2h10a1 1 0 0 0 0-2Z" /><path d="M7 11V1a1 1 0 1 0-2 0v10a1 1 0 0 0 2 0Z" /></g></svg></span></a> </div>
+      
+    </div>
+    </div>
+    <section id="top-products" class=" swiper-wrapper ">
+    {{-- Top Product Content --}}
+    @include('content/home-top-products')
+    </section>
+    </div>
+    </div> </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    <section class="elementor-section elementor-top-section elementor-element elementor-element-5bed16b elementor-section-full_width elementor-section-height-default elementor-section-height-default qodef-elementor-content-no" data-id="5bed16b" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+    <div class="elementor-container elementor-column-gap-no">
+    <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-afc54d8" data-id="afc54d8" data-element_type="column">
+    <div class="elementor-widget-wrap elementor-element-populated">
+    <div class="elementor-element elementor-element-bc916fc elementor-widget elementor-widget-slider_revolution" data-id="bc916fc" data-element_type="widget" data-widget_type="slider_revolution.default">
+    <div class="elementor-widget-container">
+    <div class="wp-block-themepunch-revslider">
+    <p class="rs-p-wp-fix"></p>
+    <rs-module-wrap id="rev_slider_19_2_wrapper" data-source="gallery" style="visibility:hidden;background:transparent;padding:0;margin:0px auto;margin-top:0;margin-bottom:0;">
+    <rs-module id="rev_slider_19_2" style="" data-version="6.6.5">
+    <rs-slides style="overflow: hidden; position: absolute;">
+    <rs-slide style="position: absolute;" data-key="rs-41" data-title="Slide" data-thumb="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-8-rev-bg-img-1-50x100.jpg" data-anim="adpr:false;" data-in="o:0;" data-out="a:false;">
+    <img decoding="async" src="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="w" title="home-8-rev-bg-img-1" width="1920" height="500" class="rev-slidebg tp-rs-img rs-lazyload" data-lazyload="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-8-rev-bg-img-1.jpg" data-no-retina>
+    <rs-group id="slider-19-slide-41-layer-1" data-type="group" data-xy="x:c;xo:-470px,-320px,0,0;y:m,m,t,t;yo:12px,12px,65px,60px;" data-text="w:normal;" data-dim="w:460px,460px,86%,86%;h:200px,200px,200px,245px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="o:1;" data-frame_999="o:0;st:w;sA:2500;" style="z-index:13;"><rs-layer id="slider-19-slide-41-layer-0" data-type="text" data-xy="" data-pos="a" data-text="w:normal;s:46,46,46,42;l:52,52,52,48;fw:500;" data-dim="w:460px,460px,100%,100%;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="x:50;" data-frame_1="st:100;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:12;font-family:'Roboto';">Gaming Consoles
+    </rs-layer><rs-layer id="slider-19-slide-41-layer-2" data-type="text" data-color="#acacac" data-xy="yo:62px,62px,62px,106px;" data-pos="a" data-text="w:normal;s:16;l:19;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="x:50;" data-frame_1="st:150;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:11;font-family:'Roboto';text-transform:uppercase;">asus CX70 2QF-621XPL 13"
+    </rs-layer><rs-layer id="slider-19-slide-41-layer-3" data-type="text" data-color="#acacac" data-xy="yo:114px,114px,114px,158px;" data-pos="a" data-text="w:normal;s:11;l:15;ls:1px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="x:50;" data-frame_1="st:250;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:10;font-family:'Roboto';text-transform:uppercase;">starting at
+    </rs-layer><rs-layer id="slider-19-slide-41-layer-4" data-type="text" data-xy="yo:130px,130px,130px,174px;" data-pos="a" data-text="w:normal;s:41;l:49;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="x:50;" data-frame_1="st:250;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:9;font-family:'Roboto';">$1.250
+    </rs-layer></rs-group><rs-layer id="slider-19-slide-41-layer-5" data-type="image" data-xy="x:c;xo:215px,193px,125px,0;y:m,m,m,b;yo:24px,41px,77px,0;" data-text="w:normal;" data-dim="w:969px,750px,600px,350px;h:452px,350px,280px,163px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:30px;" data-frame_1="sp:1000;" data-frame_999="o:0;e:power4.inOut;st:w;sp:1000;" style="z-index:8;"><img decoding="async" src="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="w" class="tp-rs-img rs-lazyload" width="969" height="452" data-lazyload="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-8-rev-img-2.png" data-no-retina>
+    </rs-layer> </rs-slide>
+    <rs-slide style="position: absolute;" data-key="rs-70" data-title="Slide" data-thumb="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-8-rev-bg-img-1-50x100.jpg" data-anim="adpr:false;" data-in="o:0;" data-out="a:false;">
+    <img decoding="async" src="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="w" title="home-8-rev-bg-img-1" width="1920" height="500" class="rev-slidebg tp-rs-img rs-lazyload" data-lazyload="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-8-rev-bg-img-1.jpg" data-no-retina>
+    <rs-group id="slider-19-slide-70-layer-1" data-type="group" data-xy="x:c;xo:-470px,-320px,0,0;y:m,m,t,t;yo:12px,12px,65px,60px;" data-text="w:normal;" data-dim="w:460px,460px,86%,86%;h:200px,200px,200px,245px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="o:1;" data-frame_999="o:0;st:w;sA:2500;" style="z-index:7;"><rs-layer id="slider-19-slide-70-layer-0" data-type="text" data-xy="" data-pos="a" data-text="w:normal;s:46,46,46,42;l:52,52,52,48;fw:500;" data-dim="w:460px,460px,100%,100%;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="x:50;" data-frame_1="st:100;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:9;font-family:'Roboto';">Vacuum Cleaners
+    </rs-layer><rs-layer id="slider-19-slide-70-layer-2" data-type="text" data-color="#acacac" data-xy="yo:62px,62px,62px,106px;" data-pos="a" data-text="w:normal;s:16;l:19;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="x:50;" data-frame_1="st:150;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:8;font-family:'Roboto';text-transform:uppercase;">Clenso 2QF-621XPL 13
+    </rs-layer><rs-layer id="slider-19-slide-70-layer-3" data-type="text" data-color="#acacac" data-xy="yo:114px,114px,114px,158px;" data-pos="a" data-text="w:normal;s:11;l:15;ls:1px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="x:50;" data-frame_1="st:250;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:7;font-family:'Roboto';text-transform:uppercase;">starting at
+    </rs-layer><rs-layer id="slider-19-slide-70-layer-4" data-type="text" data-xy="yo:130px,130px,130px,174px;" data-pos="a" data-text="w:normal;s:41;l:49;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="x:50;" data-frame_1="st:250;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:6;font-family:'Roboto';">$1.650
+    </rs-layer></rs-group><rs-layer id="slider-19-slide-70-layer-6" data-type="image" data-xy="x:c;xo:0,0,20px,-66px;y:m,m,b,b;yo:0,0,0,-6px;" data-text="w:normal;" data-dim="w:1400px,1100px,900px,650px;h:500px,393px,321px,232px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:30px;" data-frame_1="sp:1000;" data-frame_999="o:0;e:power4.inOut;st:w;sp:1000;" style="z-index:3;"><img decoding="async" src="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="w" class="tp-rs-img rs-lazyload" width="1400" height="500" data-lazyload="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-8-banner-slider-photo-2.png" data-no-retina>
+    </rs-layer> </rs-slide>
+    <rs-slide style="position: absolute;" data-key="rs-71" data-title="Slide" data-thumb="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-8-rev-bg-img-1-50x100.jpg" data-anim="adpr:false;" data-in="o:0;" data-out="a:false;">
+    <img decoding="async" src="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="w" title="home-8-rev-bg-img-1" width="1920" height="500" class="rev-slidebg tp-rs-img rs-lazyload" data-lazyload="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-8-rev-bg-img-1.jpg" data-no-retina>
+    <rs-group id="slider-19-slide-71-layer-1" data-type="group" data-xy="x:c;xo:-470px,-320px,0,0;y:m,m,t,t;yo:12px,12px,65px,60px;" data-text="w:normal;" data-dim="w:460px,460px,86%,86%;h:200px,200px,200px,245px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="o:1;" data-frame_999="o:0;st:w;sA:2500;" style="z-index:7;"><rs-layer id="slider-19-slide-71-layer-0" data-type="text" data-xy="" data-pos="a" data-text="w:normal;s:46,46,46,42;l:52,52,52,48;fw:500;" data-dim="w:460px,460px,100%,100%;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="x:50;" data-frame_1="st:100;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:9;font-family:'Roboto';">Cameras & Lenses
+    </rs-layer><rs-layer id="slider-19-slide-71-layer-2" data-type="text" data-color="#acacac" data-xy="yo:62px,62px,62px,106px;" data-pos="a" data-text="w:normal;s:16;l:19;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="x:50;" data-frame_1="st:150;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:8;font-family:'Roboto';text-transform:uppercase;">Media Pro CX70 2QF-621
+    </rs-layer><rs-layer id="slider-19-slide-71-layer-3" data-type="text" data-color="#acacac" data-xy="yo:114px,114px,114px,158px;" data-pos="a" data-text="w:normal;s:11;l:15;ls:1px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="x:50;" data-frame_1="st:250;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:7;font-family:'Roboto';text-transform:uppercase;">starting at
+    </rs-layer><rs-layer id="slider-19-slide-71-layer-4" data-type="text" data-xy="yo:130px,130px,130px,174px;" data-pos="a" data-text="w:normal;s:41;l:49;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="x:50;" data-frame_1="st:250;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:6;font-family:'Roboto';">$1.950
+    </rs-layer></rs-group><rs-layer id="slider-19-slide-71-layer-7" data-type="image" data-xy="x:c;xo:0,0,20px,-82px;y:m,m,b,b;" data-text="w:normal;" data-dim="w:1400px,1100px,900px,650px;h:500px,393px,321px,232px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:30px;" data-frame_1="sp:1000;" data-frame_999="o:0;e:power4.inOut;st:w;sp:1000;" style="z-index:5;"><img decoding="async" src="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="w" class="tp-rs-img rs-lazyload" width="1400" height="500" data-lazyload="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-8-banner-slider-photo-3.png" data-no-retina>
+    </rs-layer> </rs-slide>
+    </rs-slides>
+    </rs-module>
+    
+    </rs-module-wrap>
+    
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    <section class="elementor-section elementor-top-section elementor-element elementor-element-d8e1cee elementor-section-full_width qodef-elementor-content-grid elementor-section-height-default elementor-section-height-default" data-id="d8e1cee" data-element_type="section">
+    <div class="elementor-container elementor-column-gap-no">
+    <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3d139f1" data-id="3d139f1" data-element_type="column">
+    <div class="elementor-widget-wrap elementor-element-populated">
+    <div class="elementor-element elementor-element-31b00da elementor-widget elementor-widget-gizmos_core_product_list" data-id="31b00da" data-element_type="widget" data-widget_type="gizmos_core_product_list.default">
+    <div class="elementor-widget-container">
+    <div class="qodef-e-product-list-slider-holder">
+    <div class="qodef-shortcode qodef-m  qodef-woo-shortcode qodef-woo-product-list qodef-item-layout--info-on-side   qodef-category-filter-type--simple    qodef-grid qodef-swiper-container  qodef-gutter--small qodef-col-num--3 qodef-item-layout--info-on-side qodef--no-bottom-space qodef-pagination--off qodef-responsive--predefined" data-options="{&quot;slidesPerView&quot;:&quot;3&quot;,&quot;spaceBetween&quot;:20,&quot;loop&quot;:true,&quot;autoplay&quot;:true,&quot;speed&quot;:&quot;&quot;,&quot;speedAnimation&quot;:&quot;&quot;,&quot;slideAnimation&quot;:&quot;&quot;,&quot;outsideNavigation&quot;:&quot;yes&quot;,&quot;unique&quot;:&quot;3&quot;,&quot;plugin&quot;:&quot;gizmos_core&quot;,&quot;module&quot;:&quot;plugins\/woocommerce\/shortcodes&quot;,&quot;shortcode&quot;:&quot;product-list&quot;,&quot;post_type&quot;:&quot;product&quot;,&quot;next_page&quot;:&quot;2&quot;,&quot;max_pages_num&quot;:1,&quot;product_list_title&quot;:&quot;Trending Products&quot;,&quot;behavior&quot;:&quot;slider&quot;,&quot;images_proportion&quot;:&quot;full&quot;,&quot;columns&quot;:&quot;3&quot;,&quot;columns_responsive&quot;:&quot;predefined&quot;,&quot;space&quot;:&quot;small&quot;,&quot;slider_navigation&quot;:&quot;yes&quot;,&quot;slider_pagination&quot;:&quot;no&quot;,&quot;posts_per_page&quot;:&quot;4&quot;,&quot;orderby&quot;:&quot;date&quot;,&quot;order&quot;:&quot;ASC&quot;,&quot;additional_params&quot;:&quot;tax&quot;,&quot;tax&quot;:&quot;product_cat&quot;,&quot;tax_slug&quot;:&quot;new-arrivals&quot;,&quot;layout&quot;:&quot;info-on-side&quot;,&quot;title_tag&quot;:&quot;h5&quot;,&quot;enable_category&quot;:&quot;yes&quot;,&quot;enable_banner&quot;:&quot;no&quot;,&quot;enable_compare_product&quot;:&quot;yes&quot;,&quot;enable_wishlist&quot;:&quot;yes&quot;,&quot;enable_filter&quot;:&quot;no&quot;,&quot;pagination_type&quot;:&quot;no-pagination&quot;,&quot;category_filter_type&quot;:&quot;simple&quot;,&quot;enable_ordering_filter&quot;:&quot;no&quot;,&quot;enable_results_count&quot;:&quot;no&quot;,&quot;custom_grid&quot;:&quot;no&quot;,&quot;object_class_name&quot;:&quot;GizmosCore_Product_List_Shortcode&quot;,&quot;additional_query_args&quot;:{&quot;tax_query&quot;:[{&quot;taxonomy&quot;:&quot;product_cat&quot;,&quot;field&quot;:&quot;slug&quot;,&quot;terms&quot;:&quot;new-arrivals&quot;}]},&quot;taxonomy_filter&quot;:&quot;product_cat&quot;,&quot;space_value&quot;:10}">
+    <div class="qodef-m-top">
+    <h3 class="qodef-m-product-list-title">Best Sellers</h3>
+    <div class="qodef-swipper-nav-wrapper">
+      <div class="qodef-m-button">
+        <a class="qodef-shortcode qodef-m  qodef-button qodef-layout--textual  qodef-html--link" href="{{url('/app/ecommerce/shop')}}"  target="_self"> <span class="qodef-m-text">shop now</span> <span class="qodef-m-icon"><svg class="qodef-svg--button-arrow" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><g><path d="M11 5H1a1 1 0 0 0 0 2h10a1 1 0 0 0 0-2Z" /><path d="M7 11V1a1 1 0 1 0-2 0v10a1 1 0 0 0 2 0Z" /></g></svg></span></a> </div>
+      
+     </div>
+      </div>
+      <section id="best-sellers" class="qodef-grid-inner swiper-wrapper clear list-view d-flex  flex-nowrap">
+        @include('content/home-best-sellers')
+    </section>
+
   </div>
   </div> </div>
   </div>
@@ -1219,185 +938,7 @@ if (window.RS_MODULES.checkMinimal!==undefined) { window.RS_MODULES.checkMinimal
   </div>
   </div>
   </section>
-  <section class="elementor-section elementor-top-section elementor-element elementor-element-5bed16b elementor-section-full_width elementor-section-height-default elementor-section-height-default qodef-elementor-content-no" data-id="5bed16b" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-  <div class="elementor-container elementor-column-gap-no">
-  <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-afc54d8" data-id="afc54d8" data-element_type="column">
-  <div class="elementor-widget-wrap elementor-element-populated">
-  <div class="elementor-element elementor-element-bc916fc elementor-widget elementor-widget-slider_revolution" data-id="bc916fc" data-element_type="widget" data-widget_type="slider_revolution.default">
-  <div class="elementor-widget-container">
-  <div class="wp-block-themepunch-revslider">
-  <p class="rs-p-wp-fix"></p>
-  <rs-module-wrap id="rev_slider_19_2_wrapper" data-source="gallery" style="visibility:hidden;background:transparent;padding:0;margin:0px auto;margin-top:0;margin-bottom:0;">
-  <rs-module id="rev_slider_19_2" style="" data-version="6.6.5">
-  <rs-slides style="overflow: hidden; position: absolute;">
-  <rs-slide style="position: absolute;" data-key="rs-41" data-title="Slide" data-thumb="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-8-rev-bg-img-1-50x100.jpg" data-anim="adpr:false;" data-in="o:0;" data-out="a:false;">
-  <img decoding="async" src="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="w" title="home-8-rev-bg-img-1" width="1920" height="500" class="rev-slidebg tp-rs-img rs-lazyload" data-lazyload="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-8-rev-bg-img-1.jpg" data-no-retina>
-  <rs-group id="slider-19-slide-41-layer-1" data-type="group" data-xy="x:c;xo:-470px,-320px,0,0;y:m,m,t,t;yo:12px,12px,65px,60px;" data-text="w:normal;" data-dim="w:460px,460px,86%,86%;h:200px,200px,200px,245px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="o:1;" data-frame_999="o:0;st:w;sA:2500;" style="z-index:13;"><rs-layer id="slider-19-slide-41-layer-0" data-type="text" data-xy="" data-pos="a" data-text="w:normal;s:46,46,46,42;l:52,52,52,48;fw:500;" data-dim="w:460px,460px,100%,100%;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="x:50;" data-frame_1="st:100;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:12;font-family:'Roboto';">Gaming Consoles
-  </rs-layer><rs-layer id="slider-19-slide-41-layer-2" data-type="text" data-color="#acacac" data-xy="yo:62px,62px,62px,106px;" data-pos="a" data-text="w:normal;s:16;l:19;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="x:50;" data-frame_1="st:150;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:11;font-family:'Roboto';text-transform:uppercase;">asus CX70 2QF-621XPL 13"
-  </rs-layer><rs-layer id="slider-19-slide-41-layer-3" data-type="text" data-color="#acacac" data-xy="yo:114px,114px,114px,158px;" data-pos="a" data-text="w:normal;s:11;l:15;ls:1px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="x:50;" data-frame_1="st:250;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:10;font-family:'Roboto';text-transform:uppercase;">starting at
-  </rs-layer><rs-layer id="slider-19-slide-41-layer-4" data-type="text" data-xy="yo:130px,130px,130px,174px;" data-pos="a" data-text="w:normal;s:41;l:49;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="x:50;" data-frame_1="st:250;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:9;font-family:'Roboto';">$1.250
-  </rs-layer></rs-group><rs-layer id="slider-19-slide-41-layer-5" data-type="image" data-xy="x:c;xo:215px,193px,125px,0;y:m,m,m,b;yo:24px,41px,77px,0;" data-text="w:normal;" data-dim="w:969px,750px,600px,350px;h:452px,350px,280px,163px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:30px;" data-frame_1="sp:1000;" data-frame_999="o:0;e:power4.inOut;st:w;sp:1000;" style="z-index:8;"><img decoding="async" src="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="w" class="tp-rs-img rs-lazyload" width="969" height="452" data-lazyload="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-8-rev-img-2.png" data-no-retina>
-  </rs-layer> </rs-slide>
-  <rs-slide style="position: absolute;" data-key="rs-70" data-title="Slide" data-thumb="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-8-rev-bg-img-1-50x100.jpg" data-anim="adpr:false;" data-in="o:0;" data-out="a:false;">
-  <img decoding="async" src="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="w" title="home-8-rev-bg-img-1" width="1920" height="500" class="rev-slidebg tp-rs-img rs-lazyload" data-lazyload="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-8-rev-bg-img-1.jpg" data-no-retina>
-  <rs-group id="slider-19-slide-70-layer-1" data-type="group" data-xy="x:c;xo:-470px,-320px,0,0;y:m,m,t,t;yo:12px,12px,65px,60px;" data-text="w:normal;" data-dim="w:460px,460px,86%,86%;h:200px,200px,200px,245px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="o:1;" data-frame_999="o:0;st:w;sA:2500;" style="z-index:7;"><rs-layer id="slider-19-slide-70-layer-0" data-type="text" data-xy="" data-pos="a" data-text="w:normal;s:46,46,46,42;l:52,52,52,48;fw:500;" data-dim="w:460px,460px,100%,100%;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="x:50;" data-frame_1="st:100;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:9;font-family:'Roboto';">Vacuum Cleaners
-  </rs-layer><rs-layer id="slider-19-slide-70-layer-2" data-type="text" data-color="#acacac" data-xy="yo:62px,62px,62px,106px;" data-pos="a" data-text="w:normal;s:16;l:19;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="x:50;" data-frame_1="st:150;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:8;font-family:'Roboto';text-transform:uppercase;">Clenso 2QF-621XPL 13
-  </rs-layer><rs-layer id="slider-19-slide-70-layer-3" data-type="text" data-color="#acacac" data-xy="yo:114px,114px,114px,158px;" data-pos="a" data-text="w:normal;s:11;l:15;ls:1px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="x:50;" data-frame_1="st:250;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:7;font-family:'Roboto';text-transform:uppercase;">starting at
-  </rs-layer><rs-layer id="slider-19-slide-70-layer-4" data-type="text" data-xy="yo:130px,130px,130px,174px;" data-pos="a" data-text="w:normal;s:41;l:49;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="x:50;" data-frame_1="st:250;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:6;font-family:'Roboto';">$1.650
-  </rs-layer></rs-group><rs-layer id="slider-19-slide-70-layer-6" data-type="image" data-xy="x:c;xo:0,0,20px,-66px;y:m,m,b,b;yo:0,0,0,-6px;" data-text="w:normal;" data-dim="w:1400px,1100px,900px,650px;h:500px,393px,321px,232px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:30px;" data-frame_1="sp:1000;" data-frame_999="o:0;e:power4.inOut;st:w;sp:1000;" style="z-index:3;"><img decoding="async" src="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="w" class="tp-rs-img rs-lazyload" width="1400" height="500" data-lazyload="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-8-banner-slider-photo-2.png" data-no-retina>
-  </rs-layer> </rs-slide>
-  <rs-slide style="position: absolute;" data-key="rs-71" data-title="Slide" data-thumb="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-8-rev-bg-img-1-50x100.jpg" data-anim="adpr:false;" data-in="o:0;" data-out="a:false;">
-  <img decoding="async" src="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="w" title="home-8-rev-bg-img-1" width="1920" height="500" class="rev-slidebg tp-rs-img rs-lazyload" data-lazyload="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-8-rev-bg-img-1.jpg" data-no-retina>
-  <rs-group id="slider-19-slide-71-layer-1" data-type="group" data-xy="x:c;xo:-470px,-320px,0,0;y:m,m,t,t;yo:12px,12px,65px,60px;" data-text="w:normal;" data-dim="w:460px,460px,86%,86%;h:200px,200px,200px,245px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="o:1;" data-frame_999="o:0;st:w;sA:2500;" style="z-index:7;"><rs-layer id="slider-19-slide-71-layer-0" data-type="text" data-xy="" data-pos="a" data-text="w:normal;s:46,46,46,42;l:52,52,52,48;fw:500;" data-dim="w:460px,460px,100%,100%;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="x:50;" data-frame_1="st:100;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:9;font-family:'Roboto';">Cameras & Lenses
-  </rs-layer><rs-layer id="slider-19-slide-71-layer-2" data-type="text" data-color="#acacac" data-xy="yo:62px,62px,62px,106px;" data-pos="a" data-text="w:normal;s:16;l:19;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="x:50;" data-frame_1="st:150;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:8;font-family:'Roboto';text-transform:uppercase;">Media Pro CX70 2QF-621
-  </rs-layer><rs-layer id="slider-19-slide-71-layer-3" data-type="text" data-color="#acacac" data-xy="yo:114px,114px,114px,158px;" data-pos="a" data-text="w:normal;s:11;l:15;ls:1px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="x:50;" data-frame_1="st:250;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:7;font-family:'Roboto';text-transform:uppercase;">starting at
-  </rs-layer><rs-layer id="slider-19-slide-71-layer-4" data-type="text" data-xy="yo:130px,130px,130px,174px;" data-pos="a" data-text="w:normal;s:41;l:49;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="x:50;" data-frame_1="st:250;sp:1000;" data-frame_999="o:0;st:w;" style="z-index:6;font-family:'Roboto';">$1.950
-  </rs-layer></rs-group><rs-layer id="slider-19-slide-71-layer-7" data-type="image" data-xy="x:c;xo:0,0,20px,-82px;y:m,m,b,b;" data-text="w:normal;" data-dim="w:1400px,1100px,900px,650px;h:500px,393px,321px,232px;" data-basealign="slide" data-rsp_o="off" data-rsp_bd="off" data-frame_0="y:30px;" data-frame_1="sp:1000;" data-frame_999="o:0;e:power4.inOut;st:w;sp:1000;" style="z-index:5;"><img decoding="async" src="//gizmos.qodeinteractive.com/wp-content/plugins/revslider/public/assets/assets/dummy.png" alt="w" class="tp-rs-img rs-lazyload" width="1400" height="500" data-lazyload="//gizmos.qodeinteractive.com/wp-content/uploads/2022/10/home-8-banner-slider-photo-3.png" data-no-retina>
-  </rs-layer> </rs-slide>
-  </rs-slides>
-  </rs-module>
-  <script>
-            setREVStartSize({c: 'rev_slider_19_2',rl:[1920,1700,1025,680],el:[500,450,450,500],gw:[1400,1100,600,300],gh:[500,450,450,500],type:'standard',justify:'',layout:'fullwidth',mh:"0"});if (window.RS_MODULES!==undefined && window.RS_MODULES.modules!==undefined && window.RS_MODULES.modules["revslider192"]!==undefined) {window.RS_MODULES.modules["revslider192"].once = false;window.revapi19 = undefined;if (window.RS_MODULES.checkMinimal!==undefined) window.RS_MODULES.checkMinimal()}
-          </script>
-  </rs-module-wrap>
-  
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </section>
-  <section class="elementor-section elementor-top-section elementor-element elementor-element-d8e1cee elementor-section-full_width qodef-elementor-content-grid elementor-section-height-default elementor-section-height-default" data-id="d8e1cee" data-element_type="section">
-  <div class="elementor-container elementor-column-gap-no">
-  <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3d139f1" data-id="3d139f1" data-element_type="column">
-  <div class="elementor-widget-wrap elementor-element-populated">
-  <div class="elementor-element elementor-element-31b00da elementor-widget elementor-widget-gizmos_core_product_list" data-id="31b00da" data-element_type="widget" data-widget_type="gizmos_core_product_list.default">
-  <div class="elementor-widget-container">
-  <div class="qodef-e-product-list-slider-holder">
-  <div class="qodef-shortcode qodef-m  qodef-woo-shortcode qodef-woo-product-list qodef-item-layout--info-on-side   qodef-category-filter-type--simple    qodef-grid qodef-swiper-container  qodef-gutter--small qodef-col-num--3 qodef-item-layout--info-on-side qodef--no-bottom-space qodef-pagination--off qodef-responsive--predefined" data-options="{&quot;slidesPerView&quot;:&quot;3&quot;,&quot;spaceBetween&quot;:20,&quot;loop&quot;:true,&quot;autoplay&quot;:true,&quot;speed&quot;:&quot;&quot;,&quot;speedAnimation&quot;:&quot;&quot;,&quot;slideAnimation&quot;:&quot;&quot;,&quot;outsideNavigation&quot;:&quot;yes&quot;,&quot;unique&quot;:&quot;3&quot;,&quot;plugin&quot;:&quot;gizmos_core&quot;,&quot;module&quot;:&quot;plugins\/woocommerce\/shortcodes&quot;,&quot;shortcode&quot;:&quot;product-list&quot;,&quot;post_type&quot;:&quot;product&quot;,&quot;next_page&quot;:&quot;2&quot;,&quot;max_pages_num&quot;:1,&quot;product_list_title&quot;:&quot;Trending Products&quot;,&quot;behavior&quot;:&quot;slider&quot;,&quot;images_proportion&quot;:&quot;full&quot;,&quot;columns&quot;:&quot;3&quot;,&quot;columns_responsive&quot;:&quot;predefined&quot;,&quot;space&quot;:&quot;small&quot;,&quot;slider_navigation&quot;:&quot;yes&quot;,&quot;slider_pagination&quot;:&quot;no&quot;,&quot;posts_per_page&quot;:&quot;4&quot;,&quot;orderby&quot;:&quot;date&quot;,&quot;order&quot;:&quot;ASC&quot;,&quot;additional_params&quot;:&quot;tax&quot;,&quot;tax&quot;:&quot;product_cat&quot;,&quot;tax_slug&quot;:&quot;new-arrivals&quot;,&quot;layout&quot;:&quot;info-on-side&quot;,&quot;title_tag&quot;:&quot;h5&quot;,&quot;enable_category&quot;:&quot;yes&quot;,&quot;enable_banner&quot;:&quot;no&quot;,&quot;enable_compare_product&quot;:&quot;yes&quot;,&quot;enable_wishlist&quot;:&quot;yes&quot;,&quot;enable_filter&quot;:&quot;no&quot;,&quot;pagination_type&quot;:&quot;no-pagination&quot;,&quot;category_filter_type&quot;:&quot;simple&quot;,&quot;enable_ordering_filter&quot;:&quot;no&quot;,&quot;enable_results_count&quot;:&quot;no&quot;,&quot;custom_grid&quot;:&quot;no&quot;,&quot;object_class_name&quot;:&quot;GizmosCore_Product_List_Shortcode&quot;,&quot;additional_query_args&quot;:{&quot;tax_query&quot;:[{&quot;taxonomy&quot;:&quot;product_cat&quot;,&quot;field&quot;:&quot;slug&quot;,&quot;terms&quot;:&quot;new-arrivals&quot;}]},&quot;taxonomy_filter&quot;:&quot;product_cat&quot;,&quot;space_value&quot;:10}">
-  <div class="qodef-m-top">
-  <h3 class="qodef-m-product-list-title">Trending Products</h3>
-  <div class="qodef-swipper-nav-wrapper">
-  <div class="swiper-button-prev swiper-button-outside swiper-button-prev-3"><svg class="qodef-svg--slider-arrow-left" xmlns="http://www.w3.org/2000/svg" width="10.607" height="18.385" viewBox="0 0 10.607 18.385"><path d="M8.70851355 17.90094068.48344748 9.6758746c-.26657926-.26657926-.16758431-.79973777.22344574-1.19076782s.92418856-.490025 1.19076782-.22344574l8.22506608 8.22506608c.26657925.26657925.1661701.80115198-.22344575 1.19076782s-.92418856.490025-1.19076782.22344574Z" /><path d="M10.12294068 1.89748645 1.8978746 10.12255252c-.26657926.26657926-.79973777.16758431-1.19076782-.22344574s-.490025-.92418856-.22344574-1.19076782L8.70872712.48327288c.26657925-.26657925.80115198-.1661701 1.19076782.22344575s.490025.92418856.22344574 1.19076782Z" /></svg></div>
-  <div class="swiper-button-next swiper-button-outside swiper-button-next-3"><svg class="qodef-svg--slider-arrow-right" xmlns="http://www.w3.org/2000/svg" width="10.607" height="18.385" viewBox="0 0 10.607 18.385"><path d="m1.89827288 17.90172712 8.22506608-8.22506608c.26657926-.26657926.1675843-.79973777-.22344574-1.19076782s-.92418856-.490025-1.19076782-.22344574L.48405932 16.48751355c-.26728636.26728637-.1661701.80115199.22344574 1.19076782s.92348146.49073211 1.19076782.22344575Z" /><path d="m.48327288 1.89827288 8.22506608 8.22506608c.26657926.26657926.79973777.1675843 1.19076782-.22344574s.490025-.92418856.22344574-1.19076782L1.89748645.48405932C1.63020008.21677296 1.09633446.31788922.70671863.70750506s-.49073211.92348146-.22344575 1.19076782Z" /></svg></div>
-  </div>
-  </div>
-  <ul class="qodef-grid-inner swiper-wrapper clear">
-  <li class="qodef-e swiper-slide qodef-item--full product type-product post-5208 status-publish instock product_cat-new-arrivals has-post-thumbnail shipping-taxable purchasable product-type-simple">
-  <div class="qodef-e-inner">
-  <div class="qodef-woo-product-content-left">
-  <div class="qodef-woo-product-image-wrapper">
-  <div class="qodef-woo-product-image">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-73.jpg" class="attachment-full size-full wp-post-image" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-73.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-73-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-73-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-73-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-73-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-73-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-73-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <a href="https://gizmos.qodeinteractive.com/product/retro-gaming-console-4012-in-coal-black/" class="woocommerce-LoopProduct-link woocommerce-loop-product__link"></a> </div>
-  </div>
-  <div class="qodef-woo-product-content-right">
-  <div class="qodef-woo-product-content-right-top">
-  <div class="qodef-woo-product-category">
-  <div class="qodef-woo-product-categories qodef-e-info"><a href="https://gizmos.qodeinteractive.com/product-category/new-arrivals/" rel="tag">New Arrivals</a></div>
-  <div class="qodef-info-separator-end"></div>
-  </div>
-  <div class="qodef-woo-product-compare-wishlist-wrapper">
-  <div class="yith-wcwl-add-to-wishlist add-to-wishlist-5208  wishlist-fragment on-first-load" data-fragment-ref="5208" data-fragment-options="{&quot;base_url&quot;:&quot;&quot;,&quot;in_default_wishlist&quot;:false,&quot;is_single&quot;:false,&quot;show_exists&quot;:false,&quot;product_id&quot;:5208,&quot;parent_product_id&quot;:5208,&quot;product_type&quot;:&quot;simple&quot;,&quot;show_view&quot;:false,&quot;browse_wishlist_text&quot;:&quot;Browse wishlist&quot;,&quot;already_in_wishslist_text&quot;:&quot;The product is already in your wishlist!&quot;,&quot;product_added_text&quot;:&quot;Product added!&quot;,&quot;heading_icon&quot;:&quot;fa-heart-o&quot;,&quot;available_multi_wishlist&quot;:false,&quot;disable_wishlist&quot;:false,&quot;show_count&quot;:false,&quot;ajax_loading&quot;:false,&quot;loop_position&quot;:&quot;after_add_to_cart&quot;,&quot;item&quot;:&quot;add_to_wishlist&quot;}">
-  
-  <div class="yith-wcwl-add-button">
-  <a href="?add_to_wishlist=5208&#038;_wpnonce=6e2b03d0d3" class="add_to_wishlist single_add_to_wishlist" data-product-id="5208" data-product-type="simple" data-original-product-id="5208" data-title="" rel="nofollow">
-  <i class="yith-wcwl-icon fa fa-heart-o"></i> <span></span>
-  </a>
-  </div>
-  
-  </div>
-  <a href="https://gizmos.qodeinteractive.com?action=yith-woocompare-add-product&id=5208" class="compare" data-product_id="5208" rel="nofollow"></a> </div>
-  </div>
-  <div class="qodef-woo-product-content-right-bottom">
-  <h5 itemprop="name" class="qodef-woo-product-title entry-title">
-  <a itemprop="url" class="qodef-woo-product-title-link" href="https://gizmos.qodeinteractive.com/product/retro-gaming-console-4012-in-coal-black/">
-  Retro Gaming Console 4012 in Coal Black	</a>
-  </h5>
-  <div class="qodef-woo-product-price price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>290</span></div>
-  </div>
-  </div>
-  <a href="?add-to-cart=5208" data-quantity="1" class="button wp-element-button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="5208" data-product_sku="190" aria-label="Add &ldquo;Retro Gaming Console 4012 in Coal Black&rdquo; to your cart" rel="nofollow">Add to cart</a> </div>
-  </li><li class="qodef-e swiper-slide qodef-item--full sale product type-product post-5213 status-publish last instock product_cat-new-arrivals has-post-thumbnail shipping-taxable purchasable product-type-simple">
-  <div class="qodef-e-inner">
-  <div class="qodef-woo-product-content-left">
-  <div class="qodef-woo-product-image-wrapper">
-  <div class="qodef-woo-product-image">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-72.jpg" class="attachment-full size-full wp-post-image" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-72.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-72-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-72-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-72-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-72-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-72-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-72-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <a href="https://gizmos.qodeinteractive.com/product/waterproof-fitness-watch-gsps-100550/" class="woocommerce-LoopProduct-link woocommerce-loop-product__link"></a> </div>
-  </div>
-  <div class="qodef-woo-product-content-right">
-  <div class="qodef-woo-product-content-right-top">
-  <div class="qodef-woo-product-category">
-  <div class="qodef-woo-product-categories qodef-e-info"><a href="https://gizmos.qodeinteractive.com/product-category/new-arrivals/" rel="tag">New Arrivals</a></div>
-  <div class="qodef-info-separator-end"></div>
-  </div>
-  <div class="qodef-woo-product-compare-wishlist-wrapper">
-  <div class="yith-wcwl-add-to-wishlist add-to-wishlist-5213  wishlist-fragment on-first-load" data-fragment-ref="5213" data-fragment-options="{&quot;base_url&quot;:&quot;&quot;,&quot;in_default_wishlist&quot;:false,&quot;is_single&quot;:false,&quot;show_exists&quot;:false,&quot;product_id&quot;:5213,&quot;parent_product_id&quot;:5213,&quot;product_type&quot;:&quot;simple&quot;,&quot;show_view&quot;:false,&quot;browse_wishlist_text&quot;:&quot;Browse wishlist&quot;,&quot;already_in_wishslist_text&quot;:&quot;The product is already in your wishlist!&quot;,&quot;product_added_text&quot;:&quot;Product added!&quot;,&quot;heading_icon&quot;:&quot;fa-heart-o&quot;,&quot;available_multi_wishlist&quot;:false,&quot;disable_wishlist&quot;:false,&quot;show_count&quot;:false,&quot;ajax_loading&quot;:false,&quot;loop_position&quot;:&quot;after_add_to_cart&quot;,&quot;item&quot;:&quot;add_to_wishlist&quot;}">
-  
-  <div class="yith-wcwl-add-button">
-  <a href="?add_to_wishlist=5213&#038;_wpnonce=6e2b03d0d3" class="add_to_wishlist single_add_to_wishlist" data-product-id="5213" data-product-type="simple" data-original-product-id="5213" data-title="" rel="nofollow">
-  <i class="yith-wcwl-icon fa fa-heart-o"></i> <span></span>
-  </a>
-  </div>
-  
-  </div>
-  <a href="https://gizmos.qodeinteractive.com?action=yith-woocompare-add-product&id=5213" class="compare" data-product_id="5213" rel="nofollow"></a> </div>
-  <span class="qodef-woo-product-mark qodef-woo-onsale">Sale</span> </div>
-  <div class="qodef-woo-product-content-right-bottom">
-  <h5 itemprop="name" class="qodef-woo-product-title entry-title">
-  <a itemprop="url" class="qodef-woo-product-title-link" href="https://gizmos.qodeinteractive.com/product/waterproof-fitness-watch-gsps-100550/">
-  Waterproof Fitness Watch GSPS-100550	</a>
-  </h5>
-  <div class="qodef-woo-product-price price"><del aria-hidden="true"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>490</span></del> <ins><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>430</span></ins></div>
-  </div>
-  </div>
-  <a href="?add-to-cart=5213" data-quantity="1" class="button wp-element-button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="5213" data-product_sku="191" aria-label="Add &ldquo;Waterproof Fitness Watch GSPS-100550&rdquo; to your cart" rel="nofollow">Add to cart</a> </div>
-  </li><li class="qodef-e swiper-slide qodef-item--full product type-product post-5218 status-publish first instock product_cat-new-arrivals has-post-thumbnail shipping-taxable purchasable product-type-simple">
-  <div class="qodef-e-inner">
-  <div class="qodef-woo-product-content-left">
-  <div class="qodef-woo-product-image-wrapper">
-  <div class="qodef-woo-product-image">
-  <img width="900" height="900" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-74.jpg" class="attachment-full size-full wp-post-image" alt="w" decoding="async" loading="lazy" srcset="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-74.jpg 900w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-74-300x300.jpg 300w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-74-150x150.jpg 150w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-74-768x768.jpg 768w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-74-650x650.jpg 650w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-74-600x600.jpg 600w, https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/shop-img-74-100x100.jpg 100w" sizes="(max-width: 900px) 100vw, 900px" /> </div>
-  <a href="https://gizmos.qodeinteractive.com/product/4k-monitor-red-black-expo-sdm-6671/" class="woocommerce-LoopProduct-link woocommerce-loop-product__link"></a> </div>
-  </div>
-  <div class="qodef-woo-product-content-right">
-  <div class="qodef-woo-product-content-right-top">
-  <div class="qodef-woo-product-category">
-  <div class="qodef-woo-product-categories qodef-e-info"><a href="https://gizmos.qodeinteractive.com/product-category/new-arrivals/" rel="tag">New Arrivals</a></div>
-  <div class="qodef-info-separator-end"></div>
-  </div>
-  <div class="qodef-woo-product-compare-wishlist-wrapper">
-  <div class="yith-wcwl-add-to-wishlist add-to-wishlist-5218  wishlist-fragment on-first-load" data-fragment-ref="5218" data-fragment-options="{&quot;base_url&quot;:&quot;&quot;,&quot;in_default_wishlist&quot;:false,&quot;is_single&quot;:false,&quot;show_exists&quot;:false,&quot;product_id&quot;:5218,&quot;parent_product_id&quot;:5218,&quot;product_type&quot;:&quot;simple&quot;,&quot;show_view&quot;:false,&quot;browse_wishlist_text&quot;:&quot;Browse wishlist&quot;,&quot;already_in_wishslist_text&quot;:&quot;The product is already in your wishlist!&quot;,&quot;product_added_text&quot;:&quot;Product added!&quot;,&quot;heading_icon&quot;:&quot;fa-heart-o&quot;,&quot;available_multi_wishlist&quot;:false,&quot;disable_wishlist&quot;:false,&quot;show_count&quot;:false,&quot;ajax_loading&quot;:false,&quot;loop_position&quot;:&quot;after_add_to_cart&quot;,&quot;item&quot;:&quot;add_to_wishlist&quot;}">
-  
-  <div class="yith-wcwl-add-button">
-  <a href="?add_to_wishlist=5218&#038;_wpnonce=6e2b03d0d3" class="add_to_wishlist single_add_to_wishlist" data-product-id="5218" data-product-type="simple" data-original-product-id="5218" data-title="" rel="nofollow">
-  <i class="yith-wcwl-icon fa fa-heart-o"></i> <span></span>
-  </a>
-  </div>
-  
-  </div>
-  <a href="https://gizmos.qodeinteractive.com?action=yith-woocompare-add-product&id=5218" class="compare" data-product_id="5218" rel="nofollow"></a> </div>
-  </div>
-  <div class="qodef-woo-product-content-right-bottom">
-  <h5 itemprop="name" class="qodef-woo-product-title entry-title">
-  <a itemprop="url" class="qodef-woo-product-title-link" href="https://gizmos.qodeinteractive.com/product/4k-monitor-red-black-expo-sdm-6671/">
-  4K Monitor Red and Black Expo SDM-6671	</a>
-  </h5>
-  <div class="qodef-woo-product-price price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">&#036;</span>1,490</span></div>
-  </div>
-  </div>
-  <a href="?add-to-cart=5218" data-quantity="1" class="button wp-element-button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="5218" data-product_sku="192" aria-label="Add &ldquo;4K Monitor Red and Black Expo SDM-6671&rdquo; to your cart" rel="nofollow">Add to cart</a> </div>
-  </li> </ul>
-  </div>
-  </div> </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </section>
-  <section class="elementor-section elementor-top-section elementor-element elementor-element-6a26395 elementor-section-full_width qodef-elementor-content-grid elementor-section-height-default elementor-section-height-default" data-id="6a26395" data-element_type="section">
+  {{-- <section class="elementor-section elementor-top-section elementor-element elementor-element-6a26395 elementor-section-full_width qodef-elementor-content-grid elementor-section-height-default elementor-section-height-default" data-id="6a26395" data-element_type="section">
   <div class="elementor-container elementor-column-gap-no">
   <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-4120cc2" data-id="4120cc2" data-element_type="column">
   <div class="elementor-widget-wrap elementor-element-populated">
@@ -1623,7 +1164,7 @@ if (window.RS_MODULES.checkMinimal!==undefined) { window.RS_MODULES.checkMinimal
   </div>
   </div>
   </div>
-  </section>
+  </section> --}}
   <section class="elementor-section elementor-top-section elementor-element elementor-element-2197c53 elementor-section-full_width qodef-elementor-content-grid elementor-section-height-default elementor-section-height-default" data-id="2197c53" data-element_type="section">
   <div class="elementor-container elementor-column-gap-no">
   <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-9090423" data-id="9090423" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
@@ -1635,9 +1176,9 @@ if (window.RS_MODULES.checkMinimal!==undefined) { window.RS_MODULES.checkMinimal
   <span class="qodef-e qodef-grid-item ">
   <span class="qodef-e-inner">
   <span class="qodef-e-image">
-  <a itemprop="url" href="#" target="_blank">
+  <a  href="{{url('/app/ecommerce/shop/home?brand=1')}}" >
   <span class="qodef-e-logo">
-  <img width="42" height="80" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/client-1.png" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" /> </span>
+  <img width="70" height="70" src="{{asset('/images/logo/apple.png')}}" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" /> </span>
   </a>
   </span>
   </span>
@@ -1645,9 +1186,9 @@ if (window.RS_MODULES.checkMinimal!==undefined) { window.RS_MODULES.checkMinimal
   <span class="qodef-e qodef-grid-item ">
   <span class="qodef-e-inner">
   <span class="qodef-e-image">
-  <a itemprop="url" href="#" target="_blank">
+  <a  href="{{url('/app/ecommerce/shop/home?brand=2')}}" >
   <span class="qodef-e-logo">
-  <img width="50" height="80" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/client-2.png" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" /> </span>
+    <img width="65" height="65 "style="margin-top: 5px" src="{{asset('/images/logo/hp.png')}}" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" /> </span>
   </a>
   </span>
   </span>
@@ -1655,9 +1196,9 @@ if (window.RS_MODULES.checkMinimal!==undefined) { window.RS_MODULES.checkMinimal
   <span class="qodef-e qodef-grid-item ">
   <span class="qodef-e-inner">
   <span class="qodef-e-image">
-   <a itemprop="url" href="#" target="_blank">
+   <a href="{{url('/app/ecommerce/shop/home?brand=3')}}">
   <span class="qodef-e-logo">
-  <img width="73" height="80" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/client-3.png" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" /> </span>
+    <img width="100" style="margin-top: 30px" src="{{asset('/images/logo/asus.png')}}" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" /> </span>
   </a>
   </span>
   </span>
@@ -1665,9 +1206,9 @@ if (window.RS_MODULES.checkMinimal!==undefined) { window.RS_MODULES.checkMinimal
   <span class="qodef-e qodef-grid-item ">
   <span class="qodef-e-inner">
   <span class="qodef-e-image">
-  <a itemprop="url" href="#" target="_blank">
+  <a href="{{url('/app/ecommerce/shop/home?brand=4')}}">
   <span class="qodef-e-logo">
-  <img width="46" height="80" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/client-4.png" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" /> </span>
+    <img width="65" height="65 "style="margin-top: 5px" src="{{asset('/images/logo/intel.png')}}" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" /> </span>
   </a>
   </span>
   </span>
@@ -1675,9 +1216,9 @@ if (window.RS_MODULES.checkMinimal!==undefined) { window.RS_MODULES.checkMinimal
   <span class="qodef-e qodef-grid-item ">
   <span class="qodef-e-inner">
   <span class="qodef-e-image">
-  <a itemprop="url" href="#" target="_blank">
+  <a href="{{url('/app/ecommerce/shop/home?brand=5')}}">
   <span class="qodef-e-logo">
-  <img width="138" height="80" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/client-5.png" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" /> </span>
+    <img width="130" style="margin-top: 25px" src="{{asset('/images/logo/samsung.png')}}" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" /> </span>
   </a>
   </span>
   </span>
@@ -1685,9 +1226,9 @@ if (window.RS_MODULES.checkMinimal!==undefined) { window.RS_MODULES.checkMinimal
   <span class="qodef-e qodef-grid-item ">
   <span class="qodef-e-inner">
   <span class="qodef-e-image">
-  <a itemprop="url" href="#" target="_blank">
+  <a href="{{url('/app/ecommerce/shop/home?brand=6')}}">
   <span class="qodef-e-logo">
-  <img width="54" height="80" src="https://gizmos.qodeinteractive.com/wp-content/uploads/2022/09/client-6.png" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" /> </span>
+    <img width="90" style="margin-top: 27px" src="{{asset('/images/logo/sony.png')}}" class="attachment-full size-full" alt="w" decoding="async" loading="lazy" /> </span>
   </a>
   </span>
   </span>
@@ -1700,7 +1241,7 @@ if (window.RS_MODULES.checkMinimal!==undefined) { window.RS_MODULES.checkMinimal
   </div>
   </div>
   </section>
-  <section class="elementor-section elementor-top-section elementor-element elementor-element-f1809b1 elementor-section-full_width qodef-elementor-content-grid elementor-section-height-default elementor-section-height-default" data-id="f1809b1" data-element_type="section">
+  {{-- <section class="elementor-section elementor-top-section elementor-element elementor-element-f1809b1 elementor-section-full_width qodef-elementor-content-grid elementor-section-height-default elementor-section-height-default" data-id="f1809b1" data-element_type="section">
   <div class="elementor-container elementor-column-gap-no">
   <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-593a484" data-id="593a484" data-element_type="column">
   <div class="elementor-widget-wrap elementor-element-populated">
@@ -1814,7 +1355,7 @@ if (window.RS_MODULES.checkMinimal!==undefined) { window.RS_MODULES.checkMinimal
   </div>
   </div>
   </div>
-  </section>
+  </section> --}}
   </div>
   </div>
   </div>
@@ -1823,818 +1364,4 @@ if (window.RS_MODULES.checkMinimal!==undefined) { window.RS_MODULES.checkMinimal
   </div>
  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-{{-- <script src="{{asset("vendor/simplebar/simplebar.min.js")}}"></script>
-<script src="{{asset("vendors/imagesloaded/imagesloaded.pkgd.min.js")}}"></script>
-<script src="{{asset("assets/js/config.js")}}"></script>
-<link href="{{asset("vendors/simplebar/simplebar.min.css")}}" rel="stylesheet">
-<link rel="stylesheet" href="{{asset("assets/css/line.css")}}">
-<link rel="stylesheet" href="{{asset("css/homecss.css")}}">
-<link href="{{asset("vendors/swiper/swiper-bundle.min.css")}}" rel="stylesheet">
-<section class="py-0">
-  <div class="container-small">
-    <div class="scrollbar">
-      <div class="d-flex justify-content-between"><a class="icon-nav-item" href="#!">
-          <div class="icon-container mb-2 bg-warning-100 light"><i data-feather="home" style="size:300px"></i></div>
-          <p class="nav-label">Deals</p>
-        </a><a class="icon-nav-item" href="#!">
-          <div class="icon-container mb-2"><span class="fs-4 uil uil-shopping-bag"></span></div>
-          <p class="nav-label">Grocery</p>
-        </a><a class="icon-nav-item" href="#!">
-          <div class="icon-container mb-2"><span class="fs-4 uil uil-watch-alt"></span></div>
-          <p class="nav-label">Fashion</p>
-        </a><a class="icon-nav-item" href="#!">
-          <div class="icon-container mb-2"><span class="fs-4 uil uil-mobile-android"></span></div>
-          <p class="nav-label">Mobile</p>
-        </a><a class="icon-nav-item" href="#!">
-          <div class="icon-container mb-2"><span class="fs-4 uil uil-monitor"></span></div>
-          <p class="nav-label">Electronics</p>
-        </a><a class="icon-nav-item" href="#!">
-          <div class="icon-container mb-2"><span class="fs-4 uil uil-estate"></span></div>
-          <p class="nav-label">Home</p>
-        </a><a class="icon-nav-item" href="#!">
-          <div class="icon-container mb-2"><span class="fs-4 uil uil-lamp"></span></div>
-          <p class="nav-label">Dining</p>
-        </a><a class="icon-nav-item" href="#!">
-          <div class="icon-container mb-2"><span class="fs-4 uil uil-gift"></span></div>
-          <p class="nav-label">Gifts</p>
-        </a><a class="icon-nav-item" href="#!">
-          <div class="icon-container mb-2"><span class="fs-4 uil uil-wrench"></span></div>
-          <p class="nav-label">Tools</p>
-        </a><a class="icon-nav-item" href="#!">
-          <div class="icon-container mb-2"><span class="fs-4 uil uil-plane-departure"></span></div>
-          <p class="nav-label">Travel</p>
-        </a><a class="icon-nav-item" href="#!">
-          <div class="icon-container mb-2"><span class="fs-4 uil uil-palette"></span></div>
-          <p class="nav-label">Others</p>
-        </a></div>
-    </div>
-  </div><!-- end of .container-->
-</section>
-<section class="py-0 px-xl-3">
-  <div class="container px-xl-0 px-xxl-3">
-    <div class="row g-3 mb-9">
-      <div class="col-12">
-        <div class="whooping-banner w-100 rounded-3 overflow-hidden">
-          <div class="bg-holder z-index--1 product-bg" style="background-image:url(../../../assets/img/e-commerce/whooping_banner_product.png);background-position: bottom right;"></div>
-          <!--/.bg-holder-->
-          <div class="bg-holder z-index--1 shape-bg" style="background-image:url(../../../assets/img/e-commerce/whooping_banner_shape_2.png);background-position: bottom left;"></div>
-          <!--/.bg-holder-->
-          <div class="banner-text light">
-            <h2 class="text-warning-300 fw-bolder fs-lg-5 fs-xxl-6">Whooping <span class="gradient-text">60% </span>Off</h2>
-            <h3 class="fw-bolder fs-lg-3 fs-xxl-5 text-white light">on everyday items</h3>
-          </div><a class="btn btn-lg btn-primary rounded-pill banner-button" href="#!">Shop Now</a>
-        </div>
-      </div>
-      <div class="col-12 col-xl-6">
-        <div class="gift-items-banner w-100 rounded-3 overflow-hidden">
-          <div class="bg-holder z-index--1 banner-bg" style="background-image:url(../../../assets/img/e-commerce/gift-items-banner-bg.png);"></div>
-          <!--/.bg-holder-->
-          <div class="banner-text text-md-center light">
-            <h2 class="text-white fw-bolder fs-xl-4">Get <span class="gradient-text">10% Off </span><br class="d-md-none"> on gift items</h2><a class="btn btn-lg btn-primary rounded-pill banner-button" href="#!">Buy Now</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-xl-6">
-        <div class="best-in-market-banner d-flex h-100 px-4 px-sm-7 py-5 px-md-11 rounded-3 overflow-hidden">
-          <div class="bg-holder z-index--1 banner-bg" style="background-image:url(../../../assets/img/e-commerce/best-in-market-bg.png);"></div>
-          <!--/.bg-holder-->
-          <div class="row align-items-center w-sm-100">
-            <div class="col-8">
-              <div class="banner-text light">
-                <h2 class="text-white fw-bolder fs-sm-4 mb-5">MI 11 Pro<br><span class="fs-1 fs-sm-2"> Best in the market</span></h2><a class="btn btn-lg btn-warning rounded-pill banner-button" href="#!">Buy Now</a>
-              </div>
-            </div>
-            <div class="col-4"><img class="w-100 w-sm-75" src="../../../assets/img/e-commerce/5.png" alt=""></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row g-4 mb-6">
-      <div class="col-12 col-lg-9 col-xxl-10">
-        <div class="d-flex flex-between-center mb-3">
-          <div class="d-flex"><span class="fas fa-bolt text-warning fs-2"></span>
-            <h3 class="mx-2">Top Deals today</h3><span class="fas fa-bolt text-warning fs-2"></span>
-          </div><a class="btn btn-link btn-lg p-0 d-none d-md-block" href="#!">Explore more<span class="fas fa-chevron-right fs--1 ms-1"></span></a>
-        </div>
-        <div class="swiper-theme-container products-slider">
-          <div class="swiper swiper-container theme-slider" data-swiper='{"slidesPerView":1,"spaceBetween":16,"breakpoints":{"450":{"slidesPerView":2,"spaceBetween":16},"768":{"slidesPerView":3,"spaceBetween":20},"1200":{"slidesPerView":4,"spaceBetween":16},"1540":{"slidesPerView":5,"spaceBetween":16}}}'>
-            <div class="swiper-wrapper">
-
-              {{-- @foreach ($produits as $produit ) --}}
-                
-                 
-              {{-- <div class="swiper-slide">
-                <div class="position-relative text-decoration-none product-card h-100">
-                  <div class="d-flex flex-column justify-content-between h-100">
-                    <div>
-                      <div class="border border-1 rounded-3 position-relative mb-3"><button class="btn rounded-circle p-0 d-flex flex-center btn-wish z-index-2 d-toggle-container btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to wishlist"><span class="fas fa-heart d-block-hover"></span><span class="far fa-heart d-none-hover"></span></button><img class="img-fluid" src="../../../assets/img/products/6.png" alt=""></div><a class="stretched-link text-decoration-none" href="product-details.html">
-                        <h6 class="mb-2 lh-sm line-clamp-3 product-name">PlayStation 5 DualSense Wireless Controller</h6>
-                      </a>
-                      <p class="fs--1"><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="text-500 fw-semi-bold ms-1">(67 people rated)</span></p>
-                    </div>
-                    <div>
-                      <p class="fs--1 text-1000 fw-bold mb-2">dbrand skin available</p>
-                      <div class="d-flex align-items-center mb-1">
-                        <p class="me-2 text-900 text-decoration-line-through mb-0">$125.00</p>
-                        <h3 class="text-1100 mb-0">$89.00</h3>
-                      </div>
-                      <p class="text-700 fw-semi-bold fs--1 lh-1 mb-0">2 colors</p>
-                    </div>
-                  </div>  --}} 
-                  {{-- <div class="ecommerce-card">
-                    <div class="item-img text-center">
-                      <a href="{{url('app/ecommerce/details/'.$produit->id)}}">
-                        <img
-                          class="img-fluid card-img-top"
-                          src="{{asset($produit->photo)}}"
-                          alt="img-placeholder"
-                      /></a>
-                    </div>
-                    <div class="card-body">
-                      <div class="item-wrapper">
-                        <div class="item-rating">
-                          <ul class="unstyled-list list-inline">
-                            @for ($i = 0; $i < $produit->rating; $i++)
-                   
-                              <li class="ratings-list-item"><i data-feather="star" class="filled-star"></i></li>
-                            @endfor
-                            @for ($i = 0; $i < 5 - $produit->rating; $i++)
-                   
-                              <li class="ratings-list-item"><i data-feather="star" class="unfilled-star"></i></li>
-                            @endfor
-                
-                            
-                          </ul>
-                        </div>
-                        <div>
-                          <h6 class="item-price">${{$produit->price}}</h6>
-                        </div>
-                      </div>
-                      <h6 class="item-name">
-                        <a class="text-body" href="{{url('app/ecommerce/details/'.$produit->id)}}">{{$produit->libelle}}</a>
-                        {{-- <span class="card-text item-company">By <a href="#" class="company-name">{{$produit->brand}}</a></span> --}}
-                      {{-- </h6> --}}
-                      {{-- <p class="card-text item-description">
-                        {{$produit->description}}
-                      </p> --}}
-                    {{-- </div>
-                    <div class="item-options text-center">
-                      <div class="item-wrapper">
-                        <div class="item-cost">
-                          <h4 class="item-price">${{$produit->price}}</h4>
-                        </div>
-                      </div> --}}
-                      {{-- @if (Auth::check())
-                      <a href="#" class="btn btn-light btn-wishlist" >
-                       @foreach ($wishlist as $item)
-                       @if ($item->id==$produit->id)
-                       <input type="hidden" id="id" value="{{$produit->id}}">
-                       <i class="text-danger" data-feather="heart"></i>
-                       <span>Wishlist</span>
-               
-                       @elseif($item->id!=$produit->id)
-                       <input type="hidden" id="id" value="{{$produit->id}}">
-                   
-                   <i data-feather="heart"></i>
-                   <span>Wishlist</span> 
-                       @endif
-                       
-                       @endforeach
-                       
-                
-                      </a>
-                 
-                      @endif --}}
-               
-                      {{-- @if (Auth::check()) --}}
-                      {{-- <a href="#" class="btn btn-light btn-wishlist" >
-                      @foreach ($wishlist as $item)
-                      @if ($item->id==$produit->id)
-                      <input type="hidden" id="id" value="{{$produit->id}}">
-                      <i class="text-danger" data-feather="heart"></i>
-                      <span>Wishlist</span>
-                      
-               
-                          
-                      @endif
-                          
-                      @endforeach
-                      
-                      <input type="hidden" id="id" value="{{$produit->id}}">
-                   
-                      <i data-feather="heart"></i>
-                      <span>Wishlist</span> 
-                
-               
-               
-                     </a> --}}
-                     {{-- <a href="#" class="btn btn-light btn-wishlist">
-                       @php
-                           $inWishlist = false;
-                           foreach ($wishlist as $item) {
-                               if ($item->id == $produit->id) {
-                                   $inWishlist = true;
-                                   break;
-                               }
-                           }
-                       @endphp
-                       <input type="hidden" id="id" value="{{$produit->id}}">
-                       @if ($inWishlist)
-                           <i class="text-danger" data-feather="heart"></i>
-                       @else
-                           <i data-feather="heart"></i>
-                       @endif
-                       <span>Wishlist</span>
-                   </a>
-                     @endif
-                      <a href="{{ route('add_to_cart', $produit->id) }}"  class="btn btn-primary btn-cart">
-                        <i data-feather="shopping-cart"></i>
-                       
-                        <span class="add-to-cart">Add to cart</span>
-                      </a>
-                    </div> --}}
-                  {{-- </div>  --}} 
-                
-                {{-- </div>
-              </div>
-       @endforeach --}}
-              {{-- <div class="swiper-slide">
-                <div class="position-relative text-decoration-none product-card h-100">
-                  <div class="d-flex flex-column justify-content-between h-100">
-                    <div>
-                      <div class="border border-1 rounded-3 position-relative mb-3"><button class="btn rounded-circle p-0 d-flex flex-center btn-wish z-index-2 d-toggle-container btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to wishlist"><span class="fas fa-heart d-block-hover"></span><span class="far fa-heart d-none-hover"></span></button><img class="img-fluid" src="../../../assets/img/products/1.png" alt=""><span class="badge bg-success fs--2 product-verified-badge">Verified<span class="fas fa-check ms-1"></span></span></div><a class="stretched-link text-decoration-none" href="product-details.html">
-                        <h6 class="mb-2 lh-sm line-clamp-3 product-name">Fitbit Sense Advanced Smartwatch with Tools for Heart Health, Stress Management &amp; Skin Temperature ...</h6>
-                      </a>
-                      <p class="fs--1"><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="text-500 fw-semi-bold ms-1">(74 people rated)</span></p>
-                    </div>
-                    <div>
-                      <div class="d-flex align-items-center mb-1">
-                        <p class="me-2 text-900 text-decoration-line-through mb-0">$49.99</p>
-                        <h3 class="text-1100 mb-0">$34.99</h3>
-                      </div>
-                      <p class="text-success fw-bold fs--1 lh-1 mb-0">Deal time ends in days</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="position-relative text-decoration-none product-card h-100">
-                  <div class="d-flex flex-column justify-content-between h-100">
-                    <div>
-                      <div class="border border-1 rounded-3 position-relative mb-3"><button class="btn rounded-circle p-0 d-flex flex-center btn-wish z-index-2 d-toggle-container btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to wishlist"><span class="fas fa-heart d-block-hover"></span><span class="far fa-heart d-none-hover"></span></button><img class="img-fluid" src="../../../assets/img/products/2.png" alt=""></div><a class="stretched-link text-decoration-none" href="product-details.html">
-                        <h6 class="mb-2 lh-sm line-clamp-3 product-name">iPhone 13 pro max-Pacific Blue, 128GB storage</h6>
-                      </a>
-                      <p class="fs--1"><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="text-500 fw-semi-bold ms-1">(33 people rated)</span></p>
-                    </div>
-                    <div>
-                      <p class="fs--1 text-1000 fw-bold mb-2">Stock limited</p>
-                      <div class="d-flex align-items-center mb-1">
-                        <p class="me-2 text-900 text-decoration-line-through mb-0">$899.99</p>
-                        <h3 class="text-1100 mb-0">$850.99</h3>
-                      </div>
-                      <p class="text-700 fw-semi-bold fs--1 lh-1 mb-0">5 colors</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="position-relative text-decoration-none product-card h-100">
-                  <div class="d-flex flex-column justify-content-between h-100">
-                    <div>
-                      <div class="border border-1 rounded-3 position-relative mb-3"><button class="btn rounded-circle p-0 d-flex flex-center btn-wish z-index-2 d-toggle-container btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to wishlist"><span class="fas fa-heart d-block-hover"></span><span class="far fa-heart d-none-hover"></span></button><img class="img-fluid" src="../../../assets/img/products/3.png" alt=""></div><a class="stretched-link text-decoration-none" href="product-details.html">
-                        <h6 class="mb-2 lh-sm line-clamp-3 product-name">Apple MacBook Pro 13 inch-M1-8/256GB-Space Gray</h6>
-                      </a>
-                      <p class="fs--1"><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="text-500 fw-semi-bold ms-1">(97 people rated)</span></p>
-                    </div>
-                    <div>
-                      <p class="fs--1 text-1000 fw-bold mb-2">Apple care included</p>
-                      <div class="d-flex align-items-center mb-1">
-                        <p class="me-2 text-900 text-decoration-line-through mb-0">$1299.00</p>
-                        <h3 class="text-1100 mb-0">$1149.00</h3>
-                      </div>
-                      <p class="text-700 fw-semi-bold fs--1 lh-1 mb-0">2 colors</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="position-relative text-decoration-none product-card h-100">
-                  <div class="d-flex flex-column justify-content-between h-100">
-                    <div>
-                      <div class="border border-1 rounded-3 position-relative mb-3"><button class="btn rounded-circle p-0 d-flex flex-center btn-wish z-index-2 d-toggle-container btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to wishlist"><span class="fas fa-heart d-block-hover"></span><span class="far fa-heart d-none-hover"></span></button><img class="img-fluid" src="../../../assets/img/products/4.png" alt=""></div><a class="stretched-link text-decoration-none" href="product-details.html">
-                        <h6 class="mb-2 lh-sm line-clamp-3 product-name">Apple iMac 24&quot; 4K Retina Display M1 8 Core CPU, 7 Core GPU, 256GB SSD, Green (MJV83ZP/A) 2021</h6>
-                      </a>
-                      <p class="fs--1"><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="text-500 fw-semi-bold ms-1">(134 people rated)</span></p>
-                    </div>
-                    <div>
-                      <p class="fs--1 text-1000 fw-bold mb-2">Exchange with kidney</p>
-                      <div class="d-flex align-items-center mb-1">
-                        <p class="me-2 text-900 text-decoration-line-through mb-0">$1499.00</p>
-                        <h3 class="text-1100 mb-0">$1399.00</h3>
-                      </div>
-                      <p class="text-700 fw-semi-bold fs--1 lh-1 mb-0">7 colors</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="position-relative text-decoration-none product-card h-100">
-                  <div class="d-flex flex-column justify-content-between h-100">
-                    <div>
-                      <div class="border border-1 rounded-3 position-relative mb-3"><button class="btn rounded-circle p-0 d-flex flex-center btn-wish z-index-2 d-toggle-container btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to wishlist"><span class="fas fa-heart d-block-hover"></span><span class="far fa-heart d-none-hover"></span></button><img class="img-fluid" src="../../../assets/img/products/5.png" alt=""></div><a class="stretched-link text-decoration-none" href="product-details.html">
-                        <h6 class="mb-2 lh-sm line-clamp-3 product-name">Razer Kraken v3 x Wired 7.1 Surroung Sound Gaming headset</h6>
-                      </a>
-                      <p class="fs--1"><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="text-500 fw-semi-bold ms-1">(59 people rated)</span></p>
-                    </div>
-                    <div>
-                      <h3 class="text-1100">$59.00</h3>
-                      <p class="text-700 fw-semi-bold fs--1 lh-1 mb-0">2 colors</p>
-                    </div>
-                  </div>
-                </div>
-              </div> --}}
-            {{-- </div>
-          </div>
-          <div class="swiper-nav swiper-product-nav">
-            <div class="swiper-button-next"><span class="fas fa-chevron-right nav-icon"></span></div>
-            <div class="swiper-button-prev"><span class="fas fa-chevron-left nav-icon"></span></div>
-          </div>
-        </div><a class="fw-bold d-md-none px-0" href="#!">Explore more<span class="fas fa-chevron-right fs--1 ms-1"></span></a>
-      </div>
-      <div class="col-lg-3 d-none d-lg-block col-xxl-2">
-        <div class="h-100 position-relative rounded-3 overflow-hidden">
-          <div class="bg-holder" style="background-image:url(../../../assets/img/e-commerce/4.png);"></div>
-          <!--/.bg-holder-->
-        </div>
-      </div>
-      <div class="col-12 d-lg-none"><a href="#!"><img class="w-100 rounded-3" src="../../../assets/img/e-commerce/6.png" alt=""></a></div>
-    </div>
-    <div class="mb-6">
-      <div class="d-flex flex-between-center mb-3">
-        <h3>Top Electronics</h3><a class="fw-bold d-none d-md-block" href="#!">Explore more<span class="fas fa-chevron-right fs--1 ms-1"></span></a>
-      </div>
-      <div class="swiper-theme-container products-slider">
-        <div class="swiper swiper-container theme-slider" data-swiper='{"slidesPerView":1,"spaceBetween":16,"breakpoints":{"450":{"slidesPerView":2,"spaceBetween":16},"576":{"slidesPerView":3,"spaceBetween":20},"768":{"slidesPerView":4,"spaceBetween":20},"992":{"slidesPerView":5,"spaceBetween":20},"1200":{"slidesPerView":6,"spaceBetween":16}}}'>
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="position-relative text-decoration-none product-card h-100">
-                <div class="d-flex flex-column justify-content-between h-100">
-                  <div>
-                    <div class="border border-1 rounded-3 position-relative mb-3"><button class="btn rounded-circle p-0 d-flex flex-center btn-wish z-index-2 d-toggle-container btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to wishlist"><span class="fas fa-heart d-block-hover"></span><span class="far fa-heart d-none-hover"></span></button><img class="img-fluid" src="../../../assets/img/products/5.png" alt=""></div><a class="stretched-link text-decoration-none" href="product-details.html">
-                      <h6 class="mb-2 lh-sm line-clamp-3 product-name">Razer Kraken v3 x Wired 7.1 Surroung Sound Gaming headset</h6>
-                    </a>
-                    <p class="fs--1"><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="text-500 fw-semi-bold ms-1">(59 people rated)</span></p>
-                  </div>
-                  <div>
-                    <h3 class="text-1100">$59.00</h3>
-                    <p class="text-700 fw-semi-bold fs--1 lh-1 mb-0">2 colors</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="position-relative text-decoration-none product-card h-100">
-                <div class="d-flex flex-column justify-content-between h-100">
-                  <div>
-                    <div class="border border-1 rounded-3 position-relative mb-3"><button class="btn rounded-circle p-0 d-flex flex-center btn-wish z-index-2 d-toggle-container btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to wishlist"><span class="fas fa-heart d-block-hover"></span><span class="far fa-heart d-none-hover"></span></button><img class="img-fluid" src="../../../assets/img/products/7.png" alt=""></div><a class="stretched-link text-decoration-none" href="product-details.html">
-                      <h6 class="mb-2 lh-sm line-clamp-3 product-name">2021 Apple 12.9-inch iPad Pro (Wi‑Fi, 128GB) - Space Gray</h6>
-                    </a>
-                    <p class="fs--1"><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="text-500 fw-semi-bold ms-1">(13 people rated)</span></p>
-                  </div>
-                  <div>
-                    <h3 class="text-1100">$799.00</h3>
-                    <p class="text-700 fw-semi-bold fs--1 lh-1 mb-0">2 colors</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="position-relative text-decoration-none product-card h-100">
-                <div class="d-flex flex-column justify-content-between h-100">
-                  <div>
-                    <div class="border border-1 rounded-3 position-relative mb-3"><button class="btn rounded-circle p-0 d-flex flex-center btn-wish z-index-2 d-toggle-container btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to wishlist"><span class="fas fa-heart d-block-hover"></span><span class="far fa-heart d-none-hover"></span></button><img class="img-fluid" src="../../../assets/img/products/12.png" alt=""></div><a class="stretched-link text-decoration-none" href="product-details.html">
-                      <h6 class="mb-2 lh-sm line-clamp-3 product-name">HORI Racing Wheel Apex for PlayStation 4/3, and PC</h6>
-                    </a>
-                    <p class="fs--1"><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="text-500 fw-semi-bold ms-1">(64 people rated)</span></p>
-                  </div>
-                  <div>
-                    <p class="fs--1 text-1000 fs--1 mb-0 fw-bold">Leather cover add-on available</p>
-                    <p class="fs--1 text-700 fs--1 mb-2">supports Windows 11</p>
-                    <h3 class="text-1100">$299.00</h3>
-                    <p class="text-700 fw-semi-bold fs--1 lh-1 mb-0">1 colors</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="position-relative text-decoration-none product-card h-100">
-                <div class="d-flex flex-column justify-content-between h-100">
-                  <div>
-                    <div class="border border-1 rounded-3 position-relative mb-3"><button class="btn rounded-circle p-0 d-flex flex-center btn-wish z-index-2 d-toggle-container btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Remove from wishlist"><span class="fas fa-heart"></span></button><img class="img-fluid" src="../../../assets/img/products/1.png" alt=""><span class="badge bg-success fs--2 product-verified-badge">Verified<span class="fas fa-check ms-1"></span></span></div><a class="stretched-link text-decoration-none" href="product-details.html">
-                      <h6 class="mb-2 lh-sm line-clamp-3 product-name">Amazfit T-Rex Pro Smart Watch with GPS, Outdoor Fitness Watch for Men, Military Standard Certified</h6>
-                    </a>
-                    <p class="fs--1"><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="text-500 fw-semi-bold ms-1">(32 people rated)</span></p>
-                  </div>
-                  <div>
-                    <h3 class="text-1100">$20.00</h3>
-                    <p class="text-success fw-bold fs--1 lh-1 mb-0">Deal time ends in 24 hours</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="position-relative text-decoration-none product-card h-100">
-                <div class="d-flex flex-column justify-content-between h-100">
-                  <div>
-                    <div class="border border-1 rounded-3 position-relative mb-3"><button class="btn rounded-circle p-0 d-flex flex-center btn-wish z-index-2 d-toggle-container btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to wishlist"><span class="fas fa-heart d-block-hover"></span><span class="far fa-heart d-none-hover"></span></button><img class="img-fluid" src="../../../assets/img/products/16.png" alt=""></div><a class="stretched-link text-decoration-none" href="product-details.html">
-                      <h6 class="mb-2 lh-sm line-clamp-3 product-name">Apple AirPods Pro</h6>
-                    </a>
-                    <p class="fs--1"><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="text-500 fw-semi-bold ms-1">(39 people rated)</span></p>
-                  </div>
-                  <div>
-                    <p class="fs--1 text-1000 fs--1 mb-0 fw-bold">Free with iPhone 5s</p>
-                    <p class="fs--1 text-700 fs--1 mb-2">Ships to Canada</p>
-                    <h3 class="text-1100">$59.00</h3>
-                    <p class="text-700 fw-semi-bold fs--1 lh-1 mb-0">3 colors</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="position-relative text-decoration-none product-card h-100">
-                <div class="d-flex flex-column justify-content-between h-100">
-                  <div>
-                    <div class="border border-1 rounded-3 position-relative mb-3"><button class="btn rounded-circle p-0 d-flex flex-center btn-wish z-index-2 d-toggle-container btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to wishlist"><span class="fas fa-heart d-block-hover"></span><span class="far fa-heart d-none-hover"></span></button><img class="img-fluid" src="../../../assets/img/products/10.png" alt=""></div><a class="stretched-link text-decoration-none" href="product-details.html">
-                      <h6 class="mb-2 lh-sm line-clamp-3 product-name">Apple Magic Mouse (Wireless, Rechargable) - Silver</h6>
-                    </a>
-                    <p class="fs--1"><span class="fa fa-star text-warning"></span><span class="fa-regular fa-star text-warning-300"></span><span class="fa-regular fa-star text-warning-300"></span><span class="fa-regular fa-star text-warning-300"></span><span class="fa-regular fa-star text-warning-300"></span><span class="text-500 fw-semi-bold ms-1">(6 people rated)</span></p>
-                  </div>
-                  <div>
-                    <p class="fs--1 text-1000 fs--1 mb-0 fw-bold">Bundle available</p>
-                    <p class="fs--1 text-700 fs--1 mb-2">Charger not included</p>
-                    <h3 class="text-1100">$89.00</h3>
-                    <p class="text-700 fw-semi-bold fs--1 lh-1 mb-0">2 colors</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="position-relative text-decoration-none product-card h-100">
-                <div class="d-flex flex-column justify-content-between h-100">
-                  <div>
-                    <div class="border border-1 rounded-3 position-relative mb-3"><button class="btn rounded-circle p-0 d-flex flex-center btn-wish z-index-2 d-toggle-container btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to wishlist"><span class="fas fa-heart d-block-hover"></span><span class="far fa-heart d-none-hover"></span></button><img class="img-fluid" src="../../../assets/img/products/8.png" alt=""></div><a class="stretched-link text-decoration-none" href="product-details.html">
-                      <h6 class="mb-2 lh-sm line-clamp-3 product-name">Amazon Basics Matte Black Wired Keyboard - US Layout (QWERTY)</h6>
-                    </a>
-                    <p class="fs--1"><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa-regular fa-star text-warning-300"></span><span class="fa-regular fa-star text-warning-300"></span><span class="text-500 fw-semi-bold ms-1">(7 people rated)</span></p>
-                  </div>
-                  <div>
-                    <h3 class="text-1100">$98.00</h3>
-                    <p class="text-700 fw-semi-bold fs--1 lh-1 mb-0">1 colors</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-nav">
-          <div class="swiper-button-next"><span class="fas fa-chevron-right nav-icon"></span></div>
-          <div class="swiper-button-prev"><span class="fas fa-chevron-left nav-icon"></span></div>
-        </div>
-      </div><a class="fw-bold d-md-none" href="#!">Explore more<span class="fas fa-chevron-right fs--1 ms-1"></span></a>
-    </div>
-    <div class="mb-6">
-      <div class="d-flex flex-between-center mb-3">
-        <h3>Best Offers</h3><a class="fw-bold d-none d-md-block" href="#!">Explore more<span class="fas fa-chevron-right fs--1 ms-1"></span></a>
-      </div>
-      <div class="swiper-theme-container products-slider">
-        <div class="swiper swiper-container theme-slider" data-swiper='{"slidesPerView":1,"spaceBetween":16,"breakpoints":{"450":{"slidesPerView":2,"spaceBetween":16},"576":{"slidesPerView":3,"spaceBetween":20},"768":{"slidesPerView":4,"spaceBetween":20},"992":{"slidesPerView":5,"spaceBetween":20},"1200":{"slidesPerView":6,"spaceBetween":16}}}'>
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="position-relative text-decoration-none product-card h-100">
-                <div class="d-flex flex-column justify-content-between h-100">
-                  <div>
-                    <div class="border border-1 rounded-3 position-relative mb-3"><button class="btn rounded-circle p-0 d-flex flex-center btn-wish z-index-2 d-toggle-container btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to wishlist"><span class="fas fa-heart d-block-hover"></span><span class="far fa-heart d-none-hover"></span></button><img class="img-fluid" src="../../../assets/img/products/25.png" alt=""></div><a class="stretched-link text-decoration-none" href="product-details.html">
-                      <h6 class="mb-2 lh-sm line-clamp-3 product-name">RESPAWN 200 Racing Style Gaming Chair, in Gray RSP 200 GRY</h6>
-                    </a>
-                    <p class="fs--1"><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span></p>
-                  </div>
-                  <div>
-                    <h6 class="text-success lh-1 mb-0">35% off</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="position-relative text-decoration-none product-card h-100">
-                <div class="d-flex flex-column justify-content-between h-100">
-                  <div>
-                    <div class="border border-1 rounded-3 position-relative mb-3"><button class="btn rounded-circle p-0 d-flex flex-center btn-wish z-index-2 d-toggle-container btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to wishlist"><span class="fas fa-heart d-block-hover"></span><span class="far fa-heart d-none-hover"></span></button><img class="img-fluid" src="../../../assets/img/products/27.png" alt=""></div><a class="stretched-link text-decoration-none" href="product-details.html">
-                      <h6 class="mb-2 lh-sm line-clamp-3 product-name">LEVOIT Humidifiers for Bedroom Large Room 6L Warm and Cool Mist for...</h6>
-                    </a>
-                    <p class="fs--1"><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa-regular fa-star text-warning-300"></span></p>
-                  </div>
-                  <div>
-                    <h6 class="text-success lh-1 mb-0">18% off</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="position-relative text-decoration-none product-card h-100">
-                <div class="d-flex flex-column justify-content-between h-100">
-                  <div>
-                    <div class="border border-1 rounded-3 position-relative mb-3"><button class="btn rounded-circle p-0 d-flex flex-center btn-wish z-index-2 d-toggle-container btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to wishlist"><span class="fas fa-heart d-block-hover"></span><span class="far fa-heart d-none-hover"></span></button><img class="img-fluid" src="../../../assets/img/products/26.png" alt=""></div><a class="stretched-link text-decoration-none" href="product-details.html">
-                      <h6 class="mb-2 lh-sm line-clamp-3 product-name">NETGEAR Nighthawk Pro Gaming XR500 Wi-Fi Router with 4 Ethernet Ports...</h6>
-                    </a>
-                    <p class="fs--1"><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span></p>
-                  </div>
-                  <div>
-                    <h6 class="text-success lh-1 mb-0">15% off</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="position-relative text-decoration-none product-card h-100">
-                <div class="d-flex flex-column justify-content-between h-100">
-                  <div>
-                    <div class="border border-1 rounded-3 position-relative mb-3"><button class="btn rounded-circle p-0 d-flex flex-center btn-wish z-index-2 d-toggle-container btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to wishlist"><span class="fas fa-heart d-block-hover"></span><span class="far fa-heart d-none-hover"></span></button><img class="img-fluid" src="../../../assets/img/products/18.png" alt=""></div><a class="stretched-link text-decoration-none" href="product-details.html">
-                      <h6 class="mb-2 lh-sm line-clamp-3 product-name">Rachael Ray Cucina Bakeware Set Includes Nonstick Bread Baking Cookie Sheet...</h6>
-                    </a>
-                    <p class="fs--1"><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star-half-alt star-icon text-warning"></span><span class="fa-regular fa-star text-warning-300"></span></p>
-                  </div>
-                  <div>
-                    <h6 class="text-success lh-1 mb-0">20% off</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="position-relative text-decoration-none product-card h-100">
-                <div class="d-flex flex-column justify-content-between h-100">
-                  <div>
-                    <div class="border border-1 rounded-3 position-relative mb-3"><button class="btn rounded-circle p-0 d-flex flex-center btn-wish z-index-2 d-toggle-container btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to wishlist"><span class="fas fa-heart d-block-hover"></span><span class="far fa-heart d-none-hover"></span></button><img class="img-fluid" src="../../../assets/img/products/17.png" alt=""></div><a class="stretched-link text-decoration-none" href="product-details.html">
-                      <h6 class="mb-2 lh-sm line-clamp-3 product-name">Xbox Series S</h6>
-                    </a>
-                    <p class="fs--1"><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span></p>
-                  </div>
-                  <div>
-                    <h6 class="text-success lh-1 mb-0">12% off</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="position-relative text-decoration-none product-card h-100">
-                <div class="d-flex flex-column justify-content-between h-100">
-                  <div>
-                    <div class="border border-1 rounded-3 position-relative mb-3"><button class="btn rounded-circle p-0 d-flex flex-center btn-wish z-index-2 d-toggle-container btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to wishlist"><span class="fas fa-heart d-block-hover"></span><span class="far fa-heart d-none-hover"></span></button><img class="img-fluid" src="../../../assets/img/products/24.png" alt=""></div><a class="stretched-link text-decoration-none" href="product-details.html">
-                      <h6 class="mb-2 lh-sm line-clamp-3 product-name">FURINNO Computer Writing Desk, Walnut</h6>
-                    </a>
-                    <p class="fs--1"><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span></p>
-                  </div>
-                  <div>
-                    <h6 class="text-success lh-1 mb-0">16% off</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="position-relative text-decoration-none product-card h-100">
-                <div class="d-flex flex-column justify-content-between h-100">
-                  <div>
-                    <div class="border border-1 rounded-3 position-relative mb-3"><button class="btn rounded-circle p-0 d-flex flex-center btn-wish z-index-2 d-toggle-container btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to wishlist"><span class="fas fa-heart d-block-hover"></span><span class="far fa-heart d-none-hover"></span></button><img class="img-fluid" src="../../../assets/img/products/18.png" alt=""></div><a class="stretched-link text-decoration-none" href="product-details.html">
-                      <h6 class="mb-2 lh-sm line-clamp-3 product-name">Seagate Portable 2TB External Hard Drive Portable HDD</h6>
-                    </a>
-                    <p class="fs--1"><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa-regular fa-star text-warning-300"></span></p>
-                  </div>
-                  <div>
-                    <h6 class="text-success lh-1 mb-0">15% off</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-nav">
-          <div class="swiper-button-next"><span class="fas fa-chevron-right nav-icon"></span></div>
-          <div class="swiper-button-prev"><span class="fas fa-chevron-left nav-icon"></span></div>
-        </div>
-      </div><a class="fw-bold d-md-none" href="#!">Explore more<span class="fas fa-chevron-right fs--1 ms-1"></span></a>
-    </div>
-    <div class="row flex-center mb-15 mt-11 gy-6">
-      <div class="col-auto"><img class="d-dark-none" src="../../../assets/img/spot-illustrations/light_30.png" alt="" width="305"><img class="d-light-none" src="../../../assets/img/spot-illustrations/dark_30.png" alt="" width="305"></div>
-      <div class="col-auto">
-        <div class="text-center text-lg-start">
-          <h3 class="text-1000 mb-2"><span class="fw-semi-bold">Want to have the </span>ultimate customer experience?</h3>
-          <h1 class="display-3 fw-semi-bold mb-4">Become a <span class="text-primary fw-bolder">member </span>today!</h1><a class="btn btn-lg btn-primary px-7" href="../../../pages/authentication/simple/sign-up.html">Sign up<span class="fas fa-chevron-right ms-2 fs--1"></span></a>
-        </div>
-      </div>
-    </div>
-  </div><!-- end of .container-->
-</section> --}}
-<script src="{{asset("vendors/popper/popper.min.js")}}"></script>
-<script src="{{asset("vendors/bootstrap/bootstrap.min.js")}}"></script>
-<script src="{{asset("vendors/anchorjs/anchor.min.js")}}"></script>
-<script src="{{asset("vendors/is/is.min.js")}}"></script>
-<script src="{{asset("vendors/fontawesome/all.min.js")}}"></script>
-<script src="{{asset("vendors/lodash/lodash.min.js")}}"></script>
-{{-- <script src="../../../../../v3/polyfill.min.js?features=window.scroll"></script> --}}
-<script src="{{asset("vendors/list.js/list.min.js")}}"></script>
-<script src="{{asset("vendors/feather-icons/feather.min.js")}}"></script>
-<script src="{{asset("vendors/dayjs/dayjs.min.js")}}"></script>
-<script src="{{asset("assets/js/phoenix.js")}}"></script>
-<script src="{{asset("vendors/swiper/swiper-bundle.min.js")}}"></script>
 @endsection
-{{-- <style>
-  .images{
-    transition: transform .5s;
-    }
-  .images:hover{
-    -ms-transform: scale(1.5); /* IE 9 */
-    transform: scale(1.5);
-    }
-</style>
-  <div class="container">
-    <div class="row">
-      <div class="col-8">
-        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active" data-bs-interval="5000">
-            <img src="https://thumbs.dreamstime.com/b/headphone-golden-textual-background-91972489.jpg" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item" data-bs-interval="5000">
-            <img src="https://i5.walmartimages.com/dfw/4ff9c6c9-8b8c/k2-_99d4f7c2-814c-47ea-a05d-2dbcf50bc85a.v1.png?odnHeight=340&odnWidth=604&odnBg=FFFFFF" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item" data-bs-interval="5000">
-            <img src="https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/Samsung-Galaxy-S20-Family-CC?wid=517&hei=291&fit=crop" class="d-block w-100" alt="...">
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div> 
-      </div>
-      <div class="col-4">
-        <div class="container text-center">
-          <div class="row row-cols-1">
-            <div class="col ">
-              <div class="card">
-                <div class="card-body">
-                  <ul>
-                    <li class="pb-2">Quality electronics, fast delivery..</li>
-                    <li class="pb-2">Wide selection, best prices online.</li>
-                    <li>Easy online shopping, attentive customer service.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="{{asset('images/phone.png' )}}" class="d-block w-100" width="690px" height="300px">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="{{asset('images/casque.png' )}}" class="d-block w-100" width="690px" height="300px">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="{{asset('images/phone.png' )}}" class="d-block w-100" width="690px" height="300px">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-    {{-- card 1  --}}
-    {{-- <div class="card mt-4">
-      <div class="card-header shadow-lg rounded" style="background-color: #7B70F1">
-        <span class="text-white">Top deals | Tech Week</span> 
-      </div>
-      <div class="card-body">
-        <div class="row pt-3">
-          <div class="col-2">
-            <img src="{{asset('images/phone.png' )}}" width="80%" class="images">
-            <p class="">designation top</p>
-          </div>
-          <div class="col-2">
-            <img src="{{asset('images/phone.png' )}}" width="80%" class="images">
-            <p class="">designation top</p>
-          </div>
-          <div class="col-2">
-            <img src="{{asset('images/phone.png' )}}" width="80%" class="images">
-            <p class="">designation top</p>
-          </div>
-          <div class="col-2">
-            <img src="{{asset('images/phone.png' )}}" width="80%" class="images">
-            <p class="">designation top</p>
-          </div>
-          <div class="col-2">
-            <img src="{{asset('images/phone.png' )}}" width="80%" class="images">
-            <p class="">designation top</p>
-          </div>
-          <div class="col-2">
-            <img src="{{asset('images/phone.png' )}}" width="80%" class="images">
-            <p class="">designation top</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    {{-- card 2  --}}
-    {{-- <div class="card mt-4">
-      <div class="card-header shadow-lg rounded" style="background-color: #7B70F1">
-        <span class="text-white">Headphones</span>
-      </div>
-      <div class="card-body">
-        <div class="row pt-3">
-          <div class="col-2">
-            <img src="{{asset('images/casque.png' )}}" width="100%" class="images">
-            <p class="">designation top</p>
-          </div>
-          <div class="col-2">
-            <img src="{{asset('images/casque.png' )}}" width="100%" class="images">
-            <p class="">designation top</p>
-          </div>
-          <div class="col-2">
-            <img src="{{asset('images/casque.png' )}}" width="100%" class="images">
-            <p class="">designation top</p>
-          </div>
-          <div class="col-2">
-            <img src="{{asset('images/casque.png' )}}" width="100%" class="images">
-            <p class="">designation top</p>
-          </div>
-          <div class="col-2">
-            <img src="{{asset('images/casque.png' )}}" width="100%" class="images">
-            <p class="">designation top</p>
-          </div>
-          <div class="col-2">
-            <img src="{{asset('images/casque.png' )}}" width="100%" class="images">
-            <p class="">designation top</p>
-          </div>
-        </div>
-      </div>
-    </div> --}}
-
-    {{-- <div class="row pt-2 pb-2 d-flex justify-content-center">
-      <div class="col-2">
-        <img src="{{asset('images/samsung.png' )}}" width="100%" >
-      </div>
-      <div class="col-2">
-        <img src="{{asset('images/huawei.png' )}}" width="100%" >
-      </div>
-      <div class="col-2">
-        <img src="{{asset('images/apple.png' )}}" width="100%" >
-      </div>
-      <div class="col-2">
-        <img src="{{asset('images/lg.png' )}}" width="100%" >
-      </div>
-      <div class="col-2">
-        <img src="{{asset('images/dell.png' )}}" width="100%" >
-      </div>
-      <div class="col-2">
-        <img src="{{asset('images/lenovo.png' )}}" width="100%" >
-      </div>
-    </div> --}}
-
-    {{-- <div class="card mb-3">
-        <div class="row">
-          <div class="col-6">
-            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src="https://img.us.news.samsung.com/us/wp-content/uploads/2021/01/14084256/Galaxy-S21-Series-Unpacked-2021-38.jpg" class="d-block w-100" width="690px" height="250px">
-                </div>
-                <div class="carousel-item">
-                  <img src="https://www.apple.com/v/iphone/home/bi/images/meta/iphone__ky2k6x5u6vue_og.png" class="d-block w-100" width="690px" height="250px">
-                </div>
-                <div class="carousel-item">
-                  <img src="https://i0.wp.com/www.yugatech.com/wp-content/uploads/2021/01/Galaxy-S21-series-yugatech.jpg?w=720&ssl=1" class="d-block w-100" width="690px" height="250px">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-6"></div>
-        </div>  
-    </div> --}}
-  {{-- </div>  --}}

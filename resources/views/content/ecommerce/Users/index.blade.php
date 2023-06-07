@@ -1,5 +1,5 @@
 @extends('layouts/detachedLayoutMaster')
-    @section('title', 'Shop')
+    @section('title', 'Users')
         @section('vendor-style')
         <!-- Vendor css files -->
         <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/spinner/jquery.bootstrap-touchspin.css')) }}">
@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" id="theme-styles">
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
         @endsection
         @section('page-style')
         <!-- Page css files -->
@@ -17,7 +18,6 @@
         <link rel="stylesheet" href="{{ asset(mix('css/base/pages/app-ecommerce-details.css')) }}">
         <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-number-input.css')) }}">
         <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/extensions/ext-component-toastr.css')) }}">
-        <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
         <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-wizard.css')) }}">
         @endsection
     
@@ -104,11 +104,11 @@
           <div class="modal-size-lg ">
             <!-- Button trigger modal -->
             <div class="row mb-2">
-              <div class="col-8"></div>
-              <div class="col-2 d-flex justify-content-end">
+              <div class="col-6"></div>
+              <div class="col-4 ">
                 <input id="search" class="form-control" type="text" placeholder="Search" />
               </div>
-              <div class="col-2 d-flex justify-content-start">
+              <div class="col-2 ">
                 <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#large">
                   Add User
                 </button>

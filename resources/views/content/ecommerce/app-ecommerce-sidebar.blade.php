@@ -91,8 +91,8 @@
             <li>
               <div class="form-check">
                 <input type="radio" id="{{$item->id}}" value="{{$item->id}}" name="brand" class="form-check-input"  />
-                <img src="{{asset($item->image)}}" class="" height="20" width="20" alt="">
-                <label class="form-check-label">{{$item->name}}</label>
+                <img src="{{asset($item->image)}}" class="photos" height="20" width="20" alt="">
+                {{-- <label class="form-check-label">{{$item->name}}</label> --}}
               </div>
             </li>
             @endforeach

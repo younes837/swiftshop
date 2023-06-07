@@ -12,8 +12,9 @@ class Produit extends Model
     protected $fillable = [
         'libelle',
         'description',
-    
+        'photo',
         'stock',
+        'price',
         'rating',
         'categorie_id',
         'favorie','brand_id','propriete_id'

@@ -1,5 +1,13 @@
 {
   "menu": [
+    
+    {
+      "name": "Dashboard",
+      "icon": "grid",
+      "slug": "Dashboard",
+      "url": "Dashboard"
+
+    },
     {
       "name": "Users",
       "icon": "users",
@@ -41,6 +49,14 @@
       "icon": "more-horizontal",
       "slug": "etat",
       "url": "etat"
+
+    }
+    ,
+    {
+      "name": "Contact",
+      "icon": "mail",
+      "slug": "contacts",
+      "url": "Contacts"
 
     }
   ]

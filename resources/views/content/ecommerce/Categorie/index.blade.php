@@ -1,5 +1,5 @@
 @extends('layouts/detachedLayoutMaster')
-    @section('title', 'Shop')
+    @section('title', 'Categorie')
         @section('vendor-style')
         <!-- Vendor css files -->
         <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/spinner/jquery.bootstrap-touchspin.css')) }}">
@@ -37,7 +37,7 @@
             </div>
         @endif
         <div class="card-header">
-          <h4 class="card-title">Users List</h4>
+          <h4 class="card-title">Categories List</h4>
         </div>
         <div class="card-body">
           <div class="modal-size-lg ">

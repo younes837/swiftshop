@@ -26,6 +26,20 @@
       "slug": "app-ecommerce-checkout",
       "url": "app/ecommerce/checkout"
      
+    },
+    {
+      "name": "Contact",
+      "icon": "mail",
+      "slug": "contact",
+      "url": "/Contact"
+     
+    },
+    {
+      "name": "About us",
+      "icon": "info",
+      "slug": "Aboutus",
+      "url": "/Aboutus"
+     
     }
    
    

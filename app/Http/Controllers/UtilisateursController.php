@@ -8,6 +8,8 @@ use App\Models\Ville;
 use App\Models\Commande;
 use Hash;
 use Alert;
+use Auth;
+use DB;
 use App\Models\Roles;
 class UtilisateursController extends Controller
 {
@@ -52,6 +54,7 @@ class UtilisateursController extends Controller
      */
     public function store(Request $request)
     {
+        
         $request->validate([
             'name' => 'required',
             'phone' => 'required',
@@ -130,6 +133,43 @@ class UtilisateursController extends Controller
     public function update(Request $request, $id)
     {
         $user_idited=User::find($id);
+       
+       if ($request->profil) {
+
+        $request->validate([
+            'name' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'email' => 'required|email',
+            'ville'=>'required',
+        ]);
+
+
+        $old_file=$user_idited->avatar;
+    
+        if ($request->avatar == '') {  
+                $user_idited->name =$request->name;
+                $user_idited->phone =$request->phone;
+                $user_idited->adress =$request->address;
+                $user_idited->avatar =$old_file;
+                $user_idited->email =$request->email;
+                $user_idited->ville_id =$request->ville;
+            }else{           
+                // dd($request);
+            $file = $request->file('avatar');
+            $name = $request->file('avatar')->getClientOriginalName();
+            $file->move(public_path('/images/'), $name);
+            $user_idited->name =$request->name;
+            $user_idited->phone =$request->phone;
+            $user_idited->adress =$request->address;
+            $user_idited->avatar =$name;
+            $user_idited->email =$request->email;
+            $user_idited->ville_id =$request->ville;  
+            }
+        
+        $user_idited->save();
+        return redirect()->back()->with('update',"User updated Succefully"); 
+        }else{
         $request->validate([
             'name' => 'required',
             'phone' => 'required',
@@ -138,6 +178,7 @@ class UtilisateursController extends Controller
             'role'=>'required',
             'ville'=>'required',
         ]);
+        
         $old_file=$user_idited->avatar;
         $old_password=$user_idited->password;
         if ($request->avatar == '') {
@@ -156,7 +197,7 @@ class UtilisateursController extends Controller
                 $user_idited->adress =$request->address;
                 $user_idited->avatar =$old_file;
                 $user_idited->email =$request->email;
-                $user_idited->password =$request->password;
+                $user_idited->password =Hash::make($request->password);
                 $user_idited->role_id =$user_idited->role;
                 $user_idited->ville_id =$user_idited->ville;  
             }
@@ -182,14 +223,15 @@ class UtilisateursController extends Controller
                 $user_idited->adress =$request->address;
                 $user_idited->avatar =$name;
                 $user_idited->email =$request->email;
-                $user_idited->password =$request->password;
+                $user_idited->password =Hash::make($request->password);
                 $user_idited->role_id =$user_idited->role;
                 $user_idited->ville_id =$user_idited->ville;  
             }
         }
         $user_idited->save();
-        return redirect()->route('Users.show', $id)->with('update',"User updated Succefully"); 
-        redirect();
+        return redirect()->back()->with('update',"User updated Succefully"); 
+       
+    }
     }
     /**
      * Remove the specified resource from storage.
@@ -228,5 +270,56 @@ class UtilisateursController extends Controller
         ]);
 
     }
+   }
+   public function profile(){
+    $pageConfigs = [
+   
+        'showMenu' => true,
+        'pageClass' => 'ecommerce-application',
+        'mainLayoutType' => 'horizontal',
+    ];
+    $commandes = Commande::select('commande.*')
+    ->join('produit_commande', 'produit_commande.commande_id', '=', 'commande.id')
+    ->join('produit', 'produit.id', '=', 'produit_commande.produit_id')
+    ->where('commande.user_id', Auth::user()->id)
+    ->select('produit.photo','produit.brand_id','produit.price','produit.libelle',"commande.total","commande.date","produit_commande.quantite","produit.id")
+    ->get();
+    $produits = DB::table('user_produit')
+    ->join('users', 'user_produit.user_id', 'users.id')
+    ->join('produit', 'user_produit.produit_id', 'produit.id')
+    ->select(
+        'produit.id',
+        'produit.libelle',
+        'produit.photo',
+        'produit.description',
+       
+        'produit.stock',
+        'produit.brand_id',
+        'produit.categorie_id',
+        'produit.rating',
+        'produit.price'
+        )
+        ->where('users.id',Auth::user()->id)->get();
+    $user=Auth::user();
+    return view('content/profile',['pageConfigs' => $pageConfigs,'user'=>$user,'commandes'=>$commandes,'produits'=>$produits]);
+   }
+   public function profile_security(){
+    $pageConfigs = [
+   
+        'showMenu' => true,
+        'pageClass' => 'ecommerce-application',
+        'mainLayoutType' => 'horizontal',
+    ];
+
+    $user=Auth::user();
+    return view('content/profile-security',['pageConfigs' => $pageConfigs,'user'=>$user]);
+   }
+   public function password(Request $request)
+   {
+    $user=Auth::user();
+    // return $request;
+    $user->password=Hash::make($request->password);
+    $user->save();
+    return redirect()->back();
    }
 }

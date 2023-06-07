@@ -8,7 +8,7 @@ $configData = Helper::applClasses();
     <ul class="nav navbar-nav flex-row">
       <li class="nav-item me-auto">
         <a class="navbar-brand" href="{{ url('/') }}">
-         {{-- <img src="{{asset('/images/logo/swift-shop.png')}}" width="80px" height="80px" alt=""> --}}
+         <img style="margin-bottom: 10px" src="{{asset('/images/logo/swift-shop.png')}}" width="30px" height="35px" alt="">
           <h2 class="brand-text">Swift Shop</h2>
         </a>
       </li>

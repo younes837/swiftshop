@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produit;
+use App\Models\ligneCommande;
+use App\Models\Commande;
 use App\Models\Brand;
 use App\Models\Categorie;
 use App\Models\UserProduit;
@@ -24,17 +26,35 @@ class StaterkitController extends Controller
             'pageClass' => 'ecommerce-application',
             'mainLayoutType' => 'horizontal',
         ];
-        $produits=Produit::all()->take(5);
-        return view('/content/home', [
-            // 'breadcrumbs' => $breadcrumbs,
-            "produits"=>$produits,
-            'pageConfigs' => $pageConfigs,
-        ]);
+        $produits=Produit::all()->take(4);
+        if (Auth::check()) {
+           
+            $user = Auth::user();
+            $wishlist = $user->produits;
+            $produits2=Produit::all()->take(6);
+            return view('/content/home', [
+                // 'breadcrumbs' => $breadcrumbs,
+                "produits"=>$produits,
+                "produits2"=>$produits2,
+                "wishlist"=>$wishlist,
+                'pageConfigs' => $pageConfigs,
+            ]);
+        }else {
+            $produits2=Produit::all()->take(6);
+            return view('/content/home', [
+                // 'breadcrumbs' => $breadcrumbs,
+                "produits"=>$produits,
+                "produits2"=>$produits2,
+             
+                'pageConfigs' => $pageConfigs,
+            ]);
+        }
     }
 
     public function search(Request $request)
     {
-        if ($request->ajax()) {
+        // if ($request->ajax()) {
+            
             if (Auth::check()) {
                 $user = Auth::user();
                 $wishlist = $user->produits;
@@ -197,9 +217,70 @@ class StaterkitController extends Controller
                 'content.ecommerce.content-shop',
                 compact('produits')
             )->render();
+        // }
+    }
+    public function filter_home(Request $request){
+        $pageConfigs = [
+            'contentLayout' => 'content-detached-left-sidebar',
+            'showMenu' => true,
+            'pageClass' => 'ecommerce-application',
+            'mainLayoutType' => 'horizontal',
+        ];
+
+        // $breadcrumbs = [
+        //     ['link' => '/', 'name' => 'Home'],
+        //     ['link' => 'javascript:void(0)', 'name' => 'eCommerce'],
+        //     ['name' => 'Shop'],
+        // ];
+            if ($request->categorie) {
+                # code...
+            
+        $produits = Produit::where('categorie_id',$request->categorie)->paginate(9);
+        $categories = Categorie::all();
+        $brand = Brand::all();
+        $p = Produit::all();
+        $length = count($p);
+        session()->put('length', $length);
+        $categorie=$request->categorie;
+        $brand_id="all";
+        }elseif ($request->brand) {
+            $produits = Produit::where('brand_id',$request->brand)->paginate(9);
+            $categories = Categorie::all();
+            $brand = Brand::all();
+            $p = Produit::all();
+            $length = count($p);
+            session()->put('length', $length);
+            $categorie="all";
+            $brand_id=$request->brand;
+        }
+        // session()->flush();
+        if (Auth::check()) {
+            # code...
+            $user = Auth::user();
+            $wishlist = $user->produits;
+            return view('/content/ecommerce/app-ecommerce-shop', [
+                'pageConfigs' => $pageConfigs,
+                'wishlist' => $wishlist,
+                'brand' => $brand,
+                'produits' => $produits,
+                'categories' => $categories,
+                'length' => $length,
+                'categorie_id' => $categorie,
+                'brand_id' => $brand_id,
+            ]);
+        } else {
+            return view('/content/ecommerce/app-ecommerce-shop', [
+                'pageConfigs' => $pageConfigs,
+
+                'brand' => $brand,
+                'produits' => $produits,
+                'categories' => $categories,
+                'length' => $length,
+                'categorie_id' => $categorie,
+                'brand_id' => $brand_id,
+            ]);
         }
     }
-
     public function ecommerce_shop()
     {
         $pageConfigs = [
@@ -219,6 +300,7 @@ class StaterkitController extends Controller
         $brand = Brand::all();
         $p = Produit::all();
         $length = count($p);
+        $brand_id="all";
         session()->put('length', $length);
         // session()->flush();
         if (Auth::check()) {
@@ -232,6 +314,8 @@ class StaterkitController extends Controller
                 'produits' => $produits,
                 'categories' => $categories,
                 'length' => $length,
+                'categorie_id' => "all",
+                "brand_id"=>"all",
             ]);
         } else {
             return view('/content/ecommerce/app-ecommerce-shop', [
@@ -241,6 +325,8 @@ class StaterkitController extends Controller
                 'produits' => $produits,
                 'categories' => $categories,
                 'length' => $length,
+                'categorie_id' => "all",
+                "brand_id"=>"all",
             ]);
         }
     }
@@ -287,7 +373,58 @@ class StaterkitController extends Controller
                     'content/ecommerce/produit-details',
                     compact('produit', 'wishlist')
                 )->render();
-            }elseif ($request->details == 'remove') {
+            }elseif($request->details == 'new'){
+                $produit = Produit::find($request->id);
+                if ($request->on == 'false') {
+                    UserProduit::create([
+                        'user_id' => $user->id,
+                        'produit_id' => $request->id,
+                    ]);
+                } elseif ($request->on == 'true') {
+                    UserProduit::where('user_id', $user->id)
+                        ->where('produit_id', $request->id)
+                        ->delete();
+                }
+                $wishlist = $user->produits;
+                $produits=Produit::all()->take(4);
+                $produits2=Produit::all()->take(6);
+                return view('content/home-new-products',compact('produits','produits2','wishlist'));
+            }elseif($request->details == 'top'){
+                $produit = Produit::find($request->id);
+                if ($request->on == 'false') {
+                    UserProduit::create([
+                        'user_id' => $user->id,
+                        'produit_id' => $request->id,
+                    ]);
+                } elseif ($request->on == 'true') {
+                    UserProduit::where('user_id', $user->id)
+                        ->where('produit_id', $request->id)
+                        ->delete();
+                }
+                $wishlist = $user->produits;
+                $produits=Produit::all()->take(4);
+                $produits2=Produit::all()->take(6);
+                return view('content/home-top-products',compact('produits','produits2','wishlist'));
+            }
+            elseif($request->details == 'best'){
+                $produit = Produit::find($request->id);
+                if ($request->on == 'false') {
+                    UserProduit::create([
+                        'user_id' => $user->id,
+                        'produit_id' => $request->id,
+                    ]);
+                } elseif ($request->on == 'true') {
+                    UserProduit::where('user_id', $user->id)
+                        ->where('produit_id', $request->id)
+                        ->delete();
+                }
+                $wishlist = $user->produits;
+                $produits=Produit::all()->take(4);
+                $produits2=Produit::all()->take(6);
+                return view('content/home-best-sellers',compact('produits','produits2','wishlist'));
+            }
+            
+            elseif ($request->details == 'remove') {
                 UserProduit::where('user_id', $user->id)
                 ->where('produit_id', $request->id)
                 ->delete();
@@ -543,7 +680,49 @@ class StaterkitController extends Controller
             return view('content/ecommerce/content-checkout');
         }
     }
- 
+    public function contact()
+    {
+        $pageConfigs = [
+   
+            'showMenu' => true,
+            'pageClass' => 'ecommerce-application',
+            'mainLayoutType' => 'horizontal',
+        ];
+        return view('/content/contact', [        
+            'pageConfigs' => $pageConfigs,
+        ]);
+    }
+    public function create_commande(Request $request)
+    {
+        $total = 0;
+        // return "hhhhh";
+        foreach(session('cart') as $id => $details){
+        $total += $details['price'] * $details['quantity'];
+        }
+        
+        $data=Commande::create([
+            'date'=>now()->format('Y-m-d'),
+            'total'=>$total,
+            'etat_id'=>1,
+            "user_id"=>Auth::user()->id,
+            "ville"=>$request->ville,
+            "adress"=>$request->address,
+        ]);
+        foreach(session('cart') as $id => $details){
+            ligneCommande::create([
+                'produit_id'=>$details['id'],
+                'commande_id'=>$data->id,
+                'quantite'=>$details['quantity'],
+
+            ]) ;       
+        }
+        session()->forget('cart');
+         return redirect()->back();
+        
+        
+        
+
+    }
     public function remove(Request $request)
     {
         if($request->id) {
@@ -555,5 +734,15 @@ class StaterkitController extends Controller
             session()->flash('success', 'Product successfully removed!');
             return view('content/ecommerce/content-checkout');
         }
+    }
+    public function Aboutus()
+    {
+        $pageConfigs = [
+   
+            'showMenu' => true,
+            'pageClass' => 'ecommerce-application',
+            'mainLayoutType' => 'horizontal',
+        ];
+        return view('/content/about-us',['pageConfigs'=>$pageConfigs]);
     }
 }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StaterkitController;
 use App\Http\Controllers\CardsController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\AuthenticationController;
@@ -13,6 +14,9 @@ use App\Http\Controllers\brandController;
 use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\etatController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -66,32 +70,42 @@ Route::group(['prefix' => 'app'], function () {
         'ecommerce_checkout',
     ])->name('app-ecommerce-checkout');
 });
+Route::get('Aboutus', [
+    StaterkitController::class,
+    'Aboutus',
+])->name('Aboutus');
 
-Route::group(['prefix' => 'table'], function () {
-    Route::get('', [TableController::class, 'table'])->name('table');
-    Route::get('datatable/basic', [
-        TableController::class,
-        'datatable_basic',
-        ])->name('datatable-basic');
-        Route::get('datatable/advance', [
-            TableController::class,
-            'datatable_advance',
-            ])->name('datatable-advance');
-        });
 Route::get('/app/ecommerce/shop/search', [
     StaterkitController::class,
     'search',
     ])->name('search');
-    Route::get('/app/ecommerce/shop/whishlist', [
+
+Route::resource('/checkout', 
+    CheckoutController::class,
+   );
+
+Route::resource('/Comment', 
+    ContactController::class,
+   );
+
+Route::get('/Contact', [
+    StaterkitController::class,
+    'contact',
+    ])->name('contact');
+Route::get('/app/ecommerce/shop/whishlist', [
         StaterkitController::class,
         'whishlist',
         ])->name('whishlist');
-        Route::get('/app/ecommerce/wishlist-details', [
+Route::get('/app/ecommerce/shop/home', [
+        StaterkitController::class,
+        'filter_home',
+        ])->name('filter_home');
+Route::get('/app/ecommerce/wishlist-details', [
             StaterkitController::class,
             'wishlist_details',
             ])->name('wishlist_details');
-            Route::get('login', [AuthenticationController::class, 'login'])->name('login');
-            Route::post('postlogin', [AuthenticationController::class, 'postlogin'])->name(
+Route::get('login', [AuthenticationController::class, 'login'])->name('login');
+Route::post('postlogin', [AuthenticationController::class, 'postlogin'])->name(
                 'postlogin'
             );
 Route::get('register', [AuthenticationController::class, 'register'])->name(
@@ -109,29 +123,43 @@ Route::resource('Users', UtilisateursController ::class,[ 'names' => [
     
     
 ]])->middleware('role_Admin');
-Route::resource('Commande', CommandeController ::class)->middleware('role_Admin');
+Route::resource('Commande', CommandeController ::class,[ 'names' => [
+    'index' => 'Commande',
+    
+    
+]])->middleware('role_Admin');
+Route::resource('Profile', ProfileController ::class)->middleware('auth');
+
+Route::get('/Contacts', [CommandeController::class, 'contacts'])->name(
+    'contacts'
+)->middleware('role_Admin');;
 Route::get('search_commande', [CommandeController::class, 'search_commande'])->name(
     'search_commande'
 );
+Route::get('/payment/{id}', [CommandeController::class, 'payment'])->name(
+    'payment'
+)->middleware('auth');
 Route::get('confirm_commande/{id}', [CommandeController::class, 'confirm_commande'])->name(
     'confirm_commande'
-);
+)->middleware('role_Admin');
 Route::get('invoice/{id}', [CommandeController::class, 'invoice'])->name(
     'invoice'
-);
+)->middleware('role_Admin');
 Route::get('download_invoice/{id}', [CommandeController::class, 'download_invoice'])->name(
     'download_invoice'
 );
 Route::get('reject_commande/{id}', [CommandeController::class, 'reject_commande'])->name(
     'reject_commande'
-);
+)->middleware('role_Admin');
 Route::get('search_user', [UtilisateursController::class, 'search_user'])->name(
     'search_user'
-);
+)->middleware('role_Admin');
 // Route::get('/Users/delete/{id}', 'UtilisateursController@destroy')
 //      ->name('Users.destroy');
 //Cart
-
+Route::get('/profile', [UtilisateursController::class, 'profile'])->name('profile')->middleware('auth');
+Route::get('/profile-security', [UtilisateursController::class, 'profile_security'])->name('profile_security')->middleware('auth');
+Route::put('/password', [UtilisateursController::class, 'password'])->name('password')->middleware('auth');
 
 Route::get('add-to-cart/{id}', [StaterkitController::class, 'addToCart'])->name('add_to_cart');
 Route::put('update-cart', [StaterkitController::class, 'update'])->name('update_cart');
@@ -141,7 +169,12 @@ Route::resource('Categorie', CategorieController ::class,[ 'names' => [
     'index' => 'Categorie',
     
     
-]]);
+]])->middleware('role_Admin');
+Route::resource('Dashboard',DashboardController ::class,[ 'names' => [
+    'index' => 'Dashboard',
+    
+    
+]])->middleware('role_Admin');
 Route::resource('product', productController::class,[ 'names' => [
     'index' => 'product',
     
@@ -161,4 +194,4 @@ Route::resource('etat', etatController::class,[ 'names' => [
     
 ]])->middleware('role_Admin');
 
-Route::get('/send',[MailController::class,'sendMail'])->name('sendMail');
+Route::get('/send',[MailController::class,'sendMail'])->name('sendMail')->middleware('role_Admin');

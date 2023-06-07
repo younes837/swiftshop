@@ -599,9 +599,7 @@ window.colors = {
               } else {
                 $activeItemClass = '';
               }
-              $startList += '<li class="auto-suggestion ' + $activeItemClass + '">' + '<a class="d-flex align-items-center justify-content-between w-100" href=' + data.listItems[i].url + '>' + '<div class="d-flex justify-content-start align-items-center">' + feather.icons[data.listItems[i].icon].toSvg({
-                "class": 'me-75 '
-              }) + '<span>' + data.listItems[i].name + '</span>' + '</div>' + $bookmarkIcon + '</a>' + '</li>';
+              $startList += '<li class="auto-suggestion ' + $activeItemClass + '">' + '<a class="d-flex align-items-center justify-content-between w-100" href=' + data.listItems[i].url + '>' + '<div class="d-flex justify-content-start align-items-center">' +'<img style="height:3rem;width:4rem" class="bg-light rounded" src="'+data.listItems[i].photo+'"/>' + '<h6 class="mw-1">' + data.listItems[i].name + '</h6>' + '</div>' + $bookmarkIcon + '</a>' + '</li>';
               a++;
             }
           }
@@ -629,11 +627,18 @@ window.colors = {
               } else {
                 $activeItemClass = '';
               }
-              $otherList += '<li class="auto-suggestion ' + $activeItemClass + '">' + '<a class="d-flex align-items-center justify-content-between w-100" href=' + data.listItems[i].url + '>' + '<div class="d-flex justify-content-start align-items-center">' + feather.icons[data.listItems[i].icon].toSvg({
-                "class": 'me-75 '
-              }) + '<span>' + data.listItems[i].name + '</span>' + '</div>' + $bookmarkIcon + '</a>' + '</li>';
+              $otherList += '<li class="auto-suggestion ' + $activeItemClass + '">' + '<a class="d-flex align-items-center justify-content-between w-100" href=' + data.listItems[i].url + '>' + '<div class="d-flex justify-content-start align-items-center">'+'<img style="height:3rem;width:4rem" class="bg-light rounded" src="'+data.listItems[i].photo+'"/>' + '<h6 class="mx-1">' + data.listItems[i].name + '</h6>' + '</div>' + $bookmarkIcon + '</a>' + '</li>';
               a++;
             }
+        //     <div class="avatar-sm flex-shrink-0">
+        //     <div class="avatar-title bg-light rounded">
+        //         <img src="{{asset($product->photo)}}" alt="" class="avatar-sm">
+        //     </div>
+        // </div>
+        // <div class="flex-grow-1">
+        //     <h6 class="fs-md"><a href="{{url('app/ecommerce/details/'.$product->id)}}" class="text-reset">{{$product->libelle}}</a></h6>
+        //     <p class="text-muted mb-0"><a href="#!" class="text-reset">{{App\Models\Brand::where('id',$product->brand_id)->first()->name}}</a></p>
+        // </div>
           }
           $defaultList = $('.main-search-list-defaultlist').html();
           if ($startList == '' && $otherList == '') {

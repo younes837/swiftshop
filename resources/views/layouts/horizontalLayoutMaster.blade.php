@@ -8,6 +8,7 @@ data-asset-path="{{ asset('/')}}">
 
   <!-- BEGIN: Header-->
   @include('panels.navbar')
+  {{-- @include('panels.navbar') --}}
 
   {{-- Include Sidebar --}}
   @if((isset($configData['showMenu']) && $configData['showMenu'] === true))

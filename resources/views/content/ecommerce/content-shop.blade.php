@@ -2,7 +2,7 @@
 
 @if(isset($produits))
     @foreach($produits as $produit)
-      <div class="card ecommerce-card">
+  <div class="card ecommerce-card">
      <div class="item-img text-center">
        <a href="{{url('app/ecommerce/details/'.$produit->id)}}">
          <img
@@ -22,9 +22,7 @@
              @for ($i = 0; $i < 5 - $produit->rating; $i++)
     
                <li class="ratings-list-item"><i data-feather="star" class="unfilled-star"></i></li>
-             @endfor
- 
-             
+             @endfor  
            </ul>
          </div>
          <div>
@@ -45,50 +43,8 @@
            <h4 class="item-price">${{$produit->price}}</h4>
          </div>
        </div>
-       {{-- @if (Auth::check())
-       <a href="#" class="btn btn-light btn-wishlist" >
-        @foreach ($wishlist as $item)
-        @if ($item->id==$produit->id)
-        <input type="hidden" id="id" value="{{$produit->id}}">
-        <i class="text-danger" data-feather="heart"></i>
-        <span>Wishlist</span>
-
-        @elseif($item->id!=$produit->id)
-        <input type="hidden" id="id" value="{{$produit->id}}">
-    
-    <i data-feather="heart"></i>
-    <span>Wishlist</span> 
-        @endif
-        
-        @endforeach
-        
- 
-       </a>
-  
-       @endif --}}
 
        @if (Auth::check())
-       {{-- <a href="#" class="btn btn-light btn-wishlist" >
-       @foreach ($wishlist as $item)
-       @if ($item->id==$produit->id)
-       <input type="hidden" id="id" value="{{$produit->id}}">
-       <i class="text-danger" data-feather="heart"></i>
-       <span>Wishlist</span>
-       
-
-           
-       @endif
-           
-       @endforeach
-       
-       <input type="hidden" id="id" value="{{$produit->id}}">
-    
-       <i data-feather="heart"></i>
-       <span>Wishlist</span> 
- 
-
-
-      </a> --}}
       <a href="#" class="btn btn-light btn-wishlist">
         @php
             $inWishlist = false;
@@ -158,7 +114,11 @@
             toastr['success']('', 'Added to wishlist ❤️', {
               closeButton: false,
               tapToDismiss: true,
-              rtl: true
+              rtl: true,
+              showMethod: 'slideDown',
+      hideMethod: 'slideUp',
+      timeOut: 2000,
+      
             })}
             var $inner = $this.find('#id');
            console.log($this.find('svg').hasClass('text-danger'));

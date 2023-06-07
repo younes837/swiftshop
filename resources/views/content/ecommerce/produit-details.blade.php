@@ -14,7 +14,7 @@
           </div>
           <div class="col-12 col-md-7">
             <h4>{{$produit->libelle}}</h4>
-            <span class="card-text item-company">By <a href="#" class="company-name">{{$brand->name}}</a></span>
+            <span class="card-text item-company">By <a href="#" class="company-name">{{App\Models\Brand::find($produit->brand_id)->name}}</a></span>
             <div class="ecommerce-details-price d-flex flex-wrap mt-1">
               <h4 class="item-price me-1">${{$produit->price}}</h4>
               <ul class="unstyled-list list-inline ps-1 border-start">
@@ -32,7 +32,12 @@
                 </ul>
               </ul>
             </div>
+            @if ($produit->stock!=0)
             <p class="card-text">Available - <span class="text-success">In stock</span></p>
+            @else
+            <p class="card-text">Unavailable - <span class="text-danger">Out of Stock</span></p>
+                
+            @endif
             <p class="card-text">
              {{$produit->description}}
             </p>

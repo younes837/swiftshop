@@ -1,10 +1,23 @@
 <div class="checkout-items">
+@if (count((array) session('cart'))==0)
+<section id="alerts-with-title">
+          <div class="demo-spacing-0">
+            <div class="alert alert-primary" role="alert">
+
+              <div class="alert-body"><i data-feather="info"></i>
+               There's no item aded in <a href="#" class="alert-link">Cart</a>
+              </div>
+            </div>
+          </div>
+   
+</section>
+@endif
 
 @php $total = 0 @endphp
 @if(session('cart'))
     @foreach(session('cart') as $id => $details)
         @php $total += $details['price'] * $details['quantity'] @endphp
-  <div class="card ecommerce-card">
+  <div class="card ecommerce-card" id='{{"block".$id}}'>
     <div class="item-img">
       <a href="{{url('app/ecommerce/details/'.$id)}}">
         <img src="{{asset($details['photo'])}}" alt="img-placeholder" />
@@ -38,7 +51,12 @@
           <div class="input-group" data-id="{{$id}}">
            
             <input type="text" class="form-control form-control-sm mx-3  cart_update " style="width: 40px" value="{{$details['quantity']}}" />
-          
+            @foreach (App\Models\Produit::all() as $item)
+                @if ($item->id==$id)
+                    
+                <input type="hidden" name="stock" id='stock' value="{{$item->stock}}">
+                @endif
+            @endforeach
           </div>
         </div>
       </div>
@@ -48,7 +66,7 @@
     <div class="item-options text-center">
       <div class="item-wrapper">
         <div class="item-cost">
-          <h4 class="item-price">${{$details['price']*$details['quantity']}}</h4>
+          <h4 class="item-price" id="price">${{$details['price']*$details['quantity']}}</h4>
           <p class="card-text shipping">
             <span class="badge rounded-pill badge-light-success">Free Shipping</span>
           </p>
@@ -87,18 +105,9 @@
               <div class="detail-title">Total MRP</div>
               <div id="total-checkout" class="detail-amt">${{$total}}</div>
             </li>
-            <li class="price-detail">
-              <div class="detail-title">Bag Discount</div>
-              <div class="detail-amt discount-amt text-success">-25$</div>
-            </li>
-            <li class="price-detail">
-              <div class="detail-title">Estimated Tax</div>
-              <div class="detail-amt">$1.3</div>
-            </li>
-            <li class="price-detail">
-              <div class="detail-title">EMI Eligibility</div>
-              <a href="#" class="detail-amt text-primary">Details</a>
-            </li>
+            
+          
+          
             <li class="price-detail">
               <div class="detail-title">Delivery Charges</div>
               <div class="detail-amt discount-amt text-success">Free</div>
@@ -108,29 +117,38 @@
           <ul class="list-unstyled">
             <li class="price-detail">
               <div class="detail-title detail-total">Total</div>
-              <div class="detail-amt fw-bolder">$574</div>
+              <div class="detail-amt fw-bolder">${{$total}}</div>
             </li>
           </ul>
+          @if (count((array) session('cart'))==0)
+          <button type="button" data-bs-toggle="modal" data-bs-target="#checkout" disabled  class="btn btn-primary w-100 btn-next place-order">Place Order</button>
+          @elseif(Auth::check())
           <button type="button" data-bs-toggle="modal" data-bs-target="#checkout"  class="btn btn-primary w-100 btn-next place-order">Place Order</button>
+
+          @else
+          <a href="/login" class="btn btn-primary w-100" tabindex="2">login / Register</a>
+          @endif
         </div>
       </div>
     </div>
+    @if (Auth::check())
+        
     <div class="customer-card">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">John Doe</h4>
+          <h4 class="card-title">{{Auth::user()->name}}</h4>
         </div>
         <div class="card-body actions">
-          <p class="card-text mb-0">9447 Glen Eagles Drive</p>
-          <p class="card-text">Lewis Center, OH 43035</p>
-          <p class="card-text">UTC-5: Eastern Standard Time (EST)</p>
-          <p class="card-text">202-555-0140</p>
-          <button type="button" class="btn btn-primary w-100 btn-next delivery-address mt-2">
-            Deliver To This Address
-          </button>
+          <p class="card-text mb-0">Morocco , {{App\Models\Ville::find(Auth::user()->ville_id)->name}}</p>
+          <p class="card-text">{{Auth::user()->adress}}</p>
+       
+          <p class="card-text">+212 {{Auth::user()->phone}}</p>
+       
         </div>
       </div>
     </div>
+    @endif
+
     <!-- Checkout Place Order Right ends -->
   </div>
   
@@ -140,8 +158,18 @@
       e.preventDefault();
  
       var ele = $(this);
+    var stock= $(this).siblings('#stock').val()
   // console.log(ele.val());
+  // console.log(stock);
+ 
+if(ele.val()>stock){
+  Swal.fire('error!','the quantity is higher than the stock!','error',{
+       
+       confirmButtonClass: 'btn btn-primary',
+       buttonsStyling: !1
+     });
 
+}else{
       $.ajax({
           url: '{{ route('update_cart') }}',
           method: "put",
@@ -152,17 +180,36 @@
           },
           success: function (response) {
             $('.product-checkout').html(response)
+            // console.log(response);
             var total=$('#total-checkout').html()
+         
             // console.log(total);
+            
             $('#cart-total').html(total);
+           
               feather.replace();
               
-              console.log(it);
+              // console.log(it);
               // console.log($('#item-quantity').html());
               // console.log(response);
+              // var block
+              // console.log();
+              var div=$("#"+ele.parents("div").attr("data-id"))
+              var quantite=div.find("#item-quantity")
+              var price=div.find("#cart-item-price")
+              // console.log(ele.parents("div").html());
+              div.find("#item-quantity").text()
+              div.find("#item-price").text()
+              quantite.text( ele.val());
+              // console.log(ele.parents("div").attr("data-id"));
+              var prix=$('#block'+ele.parents("div").attr("data-id")).find("#price").text()
+              console.log(prix);
+              console.log(price.html());
+              // price.text(prix)
+              price.text(prix)
             
           }
-      });
+      });}
   });
  
   $(".cart_remove").click(function (e) {
@@ -181,6 +228,16 @@
               success: function (response) {
                 $('.product-checkout').html(response)
                   feather.replace();
+                  var count=$('#cart-count').text()
+                  var count2=$('#second-count').text()
+                  console.log("count");
+                  $('#cart-count').html(+count-1);
+                  $('#second-count').html(+count2-1);
+                  var total=$('#total-checkout').html()           
+                  $('#cart-total').html(total);
+                  console.log(ele.find("#id").val());
+                  $("#"+ele.find("#id").val()).remove()
+                  
               }
           });
       // }
@@ -192,20 +249,128 @@
     
 
 <div class="modal fade" id="checkout" tabindex="-1" role="dialog" aria-labelledby="checkout" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered modal-edit-user" role="document">
+  {{-- <div class="modal-dialog modal-lg modal-dialog-centered modal-edit-user" role="document">
     <div class="modal-content">
       <div class="modal-header bg-transparent">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body pb-5 px-sm-5 pt-50">
-     
+      <div class="modal-body pb-5 px-sm-5 pt-50"> --}}
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header bg-transparent">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body px-sm-5 mx-50 pb-5">
+              <h1 class="text-center mb-1" id="addNewCardTitle">Add New Address</h1>
+              <p class="text-center">Confirm you shippement Address</p>
+      
+              <!-- form -->
+              <form class="form" method="POST" action="{{route('checkout.store')}}"  enctype="multipart/form-data">
+                @csrf
+                @method('POST')
+                <div class="col-md-12 col-12">
+                  <div class="form-group">
+                    <label for="first-name-column">Name</label>
+                    <input
+                      type="text"
+                      id="first-name-column"
+                      class="form-control"
+                      placeholder="Name"
+                      name="name"
+                      value="{{$user->name}}"
+                      disabled
+                    />
+                   
+                  </div>
+                </div>
+                <div class="col-md-12 col-12">
+                  <div class="form-group">
+                    <label for="last-name-column">email</label>
+                    <input
+                      type="text"
+                      id="last-name-column"
+                      class="form-control"
+                      placeholder="email"
+                      name="email"
+                      value="{{$user->email}}"
+                      disabled
+                    />
+                   
+                  </div>
+                </div>
+                {{-- <div class="col-md-12 col-12">
+                  <label class="form-label" for="selectDefault">Role</label>
+                  <select class="form-select " disabled name="role" id="selectDefault">
+                    <option value="{{$user->role_id}}">{{App\Models\Roles::where('id',$user->role_id)->first()->libelle}}</option>
+                    
+                  
+                  </select>
+                </div> --}}
+              
+           
+                <div class="col-md-12 col-12">
+                  <div class="form-group">
+                    <label for="email-id-column">Phone</label>
+                    <input
+                      type="number"
+                      id="email-id-column"
+                      class="form-control"
+                      name="phone"
+                      placeholder="phone"
+                      disabled
+                      value="{{$user->phone}}"
+                    />
+                   
+                  </div>
+                </div>
+                <div class="col-md-12 col-12">
+                  <div class="form-group">
+                    <label for="company-column">address</label>
+                    <input
+                      type="text"
+                      id="company-column"
+                      class="form-control"
+                      name="address"
+                      placeholder="address"
+                      value="{{$user->adress}}"
+                    />
+                   
+                  </div>
+                </div>
+             
+             <div class="col-md-12 col-12">
+              <label class="form-label" for="selectDefault">City</label>
+              <select class="form-select "  name="ville" id="selectDefault">
+                @foreach (App\Models\Ville::all() as $ville)
+                    
+                <option value="{{$ville->name}}" @if ($ville->id==$user->ville_id)
+                    selected
+                @endif>{{$ville->name}}</option>
+                @endforeach
+             
+                
+              </select>
+            </div>
+               
+      
+      
+                <div class="col-12 text-center">
+                  <button type="submit" class="btn btn-primary me-1 mt-1">Submit</button>
+                  <button type="reset" class="btn btn-outline-secondary mt-1" data-bs-dismiss="modal" aria-label="Close">
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
         {{-- start avatar --}}
        
         {{-- end avatar --}}
 
-        <form class="form" method="GET" action="{{url('Commande/create')}}"  enctype="multipart/form-data">
-          @csrf
-          @method('POST')
+        {{-- <form class="form" method="POST" action="{{route('checkout.store')}}"  enctype="multipart/form-data">
+           @csrf
+           @method('POST')
           <div class="row">
             <div class="col-md-6 col-12">
               <div class="form-group">
@@ -289,7 +454,7 @@
               @endif
             </div> --}}
          
-            <div class="col-md-6 col-12">
+            {{-- <div class="col-md-6 col-12">
               <label class="form-label" for="selectDefault">City</label>
               <select class="form-select "  name="ville" id="selectDefault">
                 @foreach (App\Models\Ville::all() as $ville)
@@ -307,7 +472,7 @@
             <button type="submit" id="button_edit" rippleEffect class="btn btn-primary mr-1">Submit</button>
             <button type="reset" rippleEffect class="btn btn-outline-secondary">Reset</button>
           </div>
-        </form>
+        </form>  --}}
       </div>
     </div>   
   </div></div>

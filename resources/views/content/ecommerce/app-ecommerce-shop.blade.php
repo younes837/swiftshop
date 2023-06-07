@@ -14,6 +14,15 @@
 @endsection
 @section('page-style')
 <!-- Page css files -->
+<style>
+  .photos{
+    width: 20%;
+    aspect-ratio:3/2;
+    object-fit: contain;
+    /* mix-blend-mode: color-burn;
+     */
+  }
+</style>
 <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/extensions/ext-component-sliders.css')) }}">
 <link rel="stylesheet" href="{{ asset(mix('css/base/pages/app-ecommerce.css')) }}">
 <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/extensions/ext-component-toastr.css')) }}">
@@ -85,15 +94,19 @@
         <ul class="list-unstyled categories-list">
           <li>
             <div class="form-check">
-              <input type="radio" id="all" value="all" name="categorie" class="form-check-input" checked />
+              <input type="radio" id="all" value="all" name="categorie" class="form-check-input"  @if ($categorie_id=="all")
+              checked
+          @endif   />
               <label class="form-check-label" for="all">All</label>
             </div>
           </li>
           @foreach($categories as $categorie)
           <li>
             <div class="form-check">
-              <input type="radio" id="{{$categorie->id}}" value="{{$categorie->id}}" name="categorie" class="form-check-input"  />
-              <label class="form-check-label" for="{{$categorie->id}}">{{$categorie->name}}</label>
+              <input @if ($categorie_id==$categorie->id)
+              checked
+          @endif type="radio" id="{{$categorie->id}}" value="{{$categorie->id}}" name="categorie" class="form-check-input"  />
+              <label  class="form-check-label" for="{{$categorie->id}}">{{$categorie->name}}</label>
             </div>
           </li>
           @endforeach
@@ -111,14 +124,18 @@
       <div id="ratings">
         <h6 class="filter-title">Brands</h6>
         <div class="list-unstyled categories-list">
-          <li><input type="radio" id="all" value="all" name="brand" class="form-check-input" checked />
+          <li><input type="radio" id="all" value="all" name="brand" class="form-check-input" @if ($brand_id=="all")
+              checked
+          @endif  />
             <label class="form-check-label" for="all">All</label>
           </li>  @foreach($brand as $item)
           <li>
             <div class="form-check">
-              <input type="radio" id="{{$item->id}}" value="{{$item->id}}" name="brand" class="form-check-input"  />
-              <img src="{{asset($item->image)}}" class="" height="20" width="20" alt="">
-              <label class="form-check-label">{{$item->name}}</label>
+              <input @if ($brand_id==$item->id)
+              checked
+          @endif   type="radio" id="{{$item->id}}" value="{{$item->id}}" name="brand" class="form-check-input"  />
+              <img src="{{asset($item->image)}}" class="photos" height="20" width="20" alt="">
+              {{-- <label class="form-check-label">{{$item->name}}</label> --}}
             </div>
           </li>
           @endforeach
@@ -161,10 +178,11 @@
           </button>
           
           <div class="dropdown-menu" id="sort">
-            <a class="dropdown-item" id="featured"  href="#">Featured</a>
+            <a class="dropdown-item" id="featured"href="#">Featured</a>
             <a class="dropdown-item" id="lowest"  href="#">Lowest</a>
             <a class="dropdown-item" id="highest" href="#">Highest</a>
           </div>
+      
         </div>
         <div class="btn-group" role="group">
           <input type="radio" class="btn-check" name="radio_options" id="radio_option1" autocomplete="off" checked />
@@ -289,7 +307,9 @@
 
 
   $(document).ready(function(){
-
+    var gridViewBtn = $('.grid-view-btn')
+    var ecommerceProducts = $('#ecommerce-products')
+    var listViewBtn = $('.list-view-btn')
     var overlay = $('.body-content-overlay')
     var sidebarShop = $('.sidebar-shop')
     var sidebarToggler = $('.shop-sidebar-toggler')
@@ -308,7 +328,22 @@
       $('body').removeClass('modal-open');
     });
   }
+  if (gridViewBtn.length) {
+    gridViewBtn.on('click', function () {
+      ecommerceProducts.removeClass('list-view').addClass('grid-view');
+      listViewBtn.removeClass('active');
+      gridViewBtn.addClass('active');
+    });
+  }
 
+  // List View
+  if (listViewBtn.length) {
+    listViewBtn.on('click', function () {
+      ecommerceProducts.removeClass('grid-view').addClass('list-view');
+      gridViewBtn.removeClass('active');
+      listViewBtn.addClass('active');
+    });
+  }
 
 $(document).on('click', '.pagination a', function(event){
  event.preventDefault(); 
@@ -318,8 +353,10 @@ $(document).on('click', '.pagination a', function(event){
  var price = $('input[name="price-range"]:checked').val();
  console.log(price);
  var sort=$("#hidden_sort_type").val()
- var categorie=$("#hidden_categorie").val()
- var brand=$("#hidden_brand").val()
+ var categorie = $('input[name="categorie"]:checked').val();
+ var brand = $('input[name="brand"]:checked').val();
+//  var categorie=$("#hidden_categorie").val()
+//  var brand=$("#hidden_brand").val()
  fetch_data(page,query,price,sort,categorie,brand);
 });
 $('input:radio[name="price-range"]').change(function(){
@@ -333,8 +370,10 @@ $('input:radio[name="price-range"]').change(function(){
  var price = $('input[name="price-range"]:checked').val();
  console.log(price);
  var sort=$("#hidden_sort_type").val()
- var categorie=$("#hidden_categorie").val()
- var brand=$("#hidden_brand").val()
+//  var categorie=$("#hidden_categorie").val()
+var categorie = $('input[name="categorie"]:checked').val();
+//  var brand=$("#hidden_brand").val()
+var brand = $('input[name="brand"]:checked').val();
  fetch_data(page,query,price,sort,categorie,brand);
 
  
@@ -349,45 +388,56 @@ $(document).on('keyup', '#search', function(){
   console.log(query);
   console.log(price);
   var sort=$("#hidden_sort_type").val()
-  var categorie=$("#hidden_categorie").val()
+  // var categorie=$("#hidden_categorie").val()
+  var categorie = $('input[name="categorie"]:checked').val();
   console.log(categorie);
-  var brand=$("#hidden_brand").val()
+  // var brand=$("#hidden_brand").val()
+  var brand = $('input[name="brand"]:checked').val();
  fetch_data(page,query,price,sort,categorie,brand);
       });
 
       
 $(document).on('click', '#lowest', function(){
+  $('.active-sorting').text('Lowest')
   var price = $('input[name="price-range"]:checked').val();
   var query=$('#search').val();
   var page=$('#hidden_page').val();
   var price = $('input[name="price-range"]:checked').val();
   var sort="asc"
   $("#hidden_sort_type").val(sort)
-  var categorie=$("#hidden_categorie").val()
-  var brand=$("#hidden_brand").val()
+  // var categorie=$("#hidden_categorie").val()
+  var categorie = $('input[name="categorie"]:checked').val();
+  // var brand=$("#hidden_brand").val()
+  var brand = $('input[name="brand"]:checked').val();
  fetch_data(page,query,price,sort,categorie,brand);
 
 });
 $(document).on('click', '#highest', function(){
+  $('.active-sorting').text('Highest')
   var price = $('input[name="price-range"]:checked').val();
   var query=$('#search').val();
   var page=$('#hidden_page').val();
   var price = $('input[name="price-range"]:checked').val();
   var sort="desc"
   $("#hidden_sort_type").val(sort)
-  var categorie=$("#hidden_categorie").val()
-  var brand=$("#hidden_brand").val()
+  // var categorie=$("#hidden_categorie").val()
+  var categorie = $('input[name="categorie"]:checked').val();
+  // var brand=$("#hidden_brand").val()
+  var brand = $('input[name="brand"]:checked').val();
  fetch_data(page,query,price,sort,categorie,brand);
 });
 $(document).on('click', '#featured', function(){
+  $('.active-sorting').text('Featured')
   var price = $('input[name="price-range"]:checked').val();
   var query=$('#search').val();
   var page=$('#hidden_page').val();
   var price = $('input[name="price-range"]:checked').val();
   var sort=""
   $("#hidden_sort_type").val(sort)
-  var categorie=$("#hidden_categorie").val()
-  var brand=$("#hidden_brand").val()
+  // var categorie=$("#hidden_categorie").val()
+  var categorie = $('input[name="categorie"]:checked').val();
+  // var brand=$("#hidden_brand").val()
+  var brand = $('input[name="brand"]:checked').val();
  fetch_data(page,query,price,sort,categorie,brand);
 
 });
@@ -402,7 +452,8 @@ $('input:radio[name="categorie"]').change(function(){
   var sort=$("#hidden_sort_type").val()
   $("#hidden_sort_type").val(sort)
   $("#hidden_categorie").val(categorie)
-  var brand=$("#hidden_brand").val()
+  // var brand=$("#hidden_brand").val()
+  var brand = $('input[name="brand"]:checked').val();
  fetch_data(page,query,price,sort,categorie,brand);
 
 
@@ -457,4 +508,6 @@ function fetch_data(page,query,price,sort,categorie,brand)
 @section('page-script')
 <!-- Page js files -->
 <script src="{{ asset(mix('js/scripts/pages/app-ecommerce.js')) }}"></script>
+<script src="{{asset('js/scripts/components/components-dropdowns.js')}}"></script>
+
 @endsection

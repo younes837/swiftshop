@@ -1,5 +1,5 @@
 @extends('layouts/detachedLayoutMaster')
-    @section('title', 'Shop')
+    @section('title', 'Brand')
         @section('vendor-style')
         <!-- Vendor css files -->
         <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/spinner/jquery.bootstrap-touchspin.css')) }}">
@@ -28,7 +28,35 @@
     @endsection
     @section('content')
         <!-- Hoverable rows start -->
+<div class="row ">
 
+
+  {{-- @foreach($brands as $brand)
+  <div class="card col-6 ">
+    <div class="card-body">
+      <div class="d-flex mb-2">
+        <a href="{{asset('page/blog/detail')}}" class="me-2">
+          <img
+          class="rounded"
+          src="{{asset($brand->image)}}"
+          width="100"
+          height="70"
+          alt="Recent Post Pic"
+          />
+        </a>
+        <div class="blog-info">
+          <h6 class="blog-recent-post-title">
+            <a href="{{asset('page/blog/detail')}}" class="text-body-heading">Why Should Forget Facebook?</a>
+          </h6>
+          <div class="text-muted mb-0">Jan 14 2020</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  @endforeach --}}
+</div>
+        
+       
 
         <div class="row" id="table-hover-row">
     <div class="col-12">
@@ -41,8 +69,8 @@
 
         <div class="modal-size-lg text-end mb-2">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-outline-primary mb-2" data-bs-toggle="modal" data-bs-target="#large">
-              ajouter une brand
+            <button type="button" class="btn btn-primary mb-2 mx-2" data-bs-toggle="modal" data-bs-target="#large">
+             Add Brand
             </button>
             <!-- Modal -->
             <div
@@ -110,17 +138,18 @@
           <table class="table table-hover">
           <thead>
             <tr>
+              <th scope="col">photo</th>
             <th scope="col">nom</th>
             <th scope="col">descreption</th>
-            <th scope="col">photo</th>
+            <th></th>
             </tr>
         </thead>
           <tbody>
                 @foreach($brands as $brand)
                     <tr>
+                      <td scope="row"><img src="{{asset($brand->image)}}" width="80" heghit="80"></td>
                     <td scope="row">{{$brand->name}}</td>
                     <td scope="row">{{$brand->description}}</td>
-                    <td scope="row"><img src="{{asset($brand->image)}}" width="80" heghit="80"></td>
 
                     <td><div class="dropdown">
                   <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0" data-bs-toggle="dropdown">

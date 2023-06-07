@@ -1,5 +1,5 @@
 @extends('layouts/detachedLayoutMaster')
-    @section('title', 'Shop')
+    @section('title', 'Etat')
         @section('vendor-style')
         <!-- Vendor css files -->
         <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/spinner/jquery.bootstrap-touchspin.css')) }}">
@@ -39,11 +39,12 @@
 
 
 
-        <div class="modal-size-lg text-end mb-2">
+        <div class="modal-size-lg mb-2">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-outline-primary mb-2" data-bs-toggle="modal" data-bs-target="#large">
-              ajouter une etat
-            </button>
+            <div class="d-flex justify-content-end">
+            <button type="button" class="btn btn-primary mx-1 mb-2" data-bs-toggle="modal" data-bs-target="#large">
+              Add etat
+            </button></div>
             <!-- Modal -->
             <div
               class="modal fade text-start"
@@ -99,14 +100,23 @@
           <table class="table table-hover">
           <thead>
             <tr>
-            <th scope="col">libelle</th>
+            <th scope="col">Name</th>
             <th scope="col">descreption</th>
+            <th></th>
             </tr>
         </thead>
           <tbody>
                 @foreach($etats as $etat)
                     <tr>
-                    <td scope="row">{{$etat->libelle}}</td>
+                    <td scope="row">
+                      @if ($etat->id==1)
+                      <i data-feather='more-horizontal'></i>
+                        @elseif ($etat->id==2)
+                        <i data-feather='check'></i>
+                        @else
+                        <i data-feather='x'></i>
+                      @endif
+                      {{$etat->libelle}}</td>
                     <td scope="row">{{$etat->description}}</td>
 
                     <td><div class="dropdown">

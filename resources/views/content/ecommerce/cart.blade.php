@@ -9,13 +9,13 @@
     <li class="dropdown-menu-header">
       <div class="dropdown-header d-flex">
         <h4 class="notification-title mb-0 me-auto">My Cart</h4>
-        <div class="badge rounded-pill badge-light-primary">{{ count((array) session('cart')) }} Items</div>
+        <div class="badge rounded-pill badge-light-primary"><span id="second-count">{{ count((array) session('cart')) }}</span> Items</div>
       </div>
     </li>
     <li class="scrollable-container media-list">
       @if(session('cart'))
       @foreach(session('cart') as $id => $details)
-      <div class="list-item align-items-center">
+      <div id="{{$id}}" class="list-item align-items-center">
         <img class="d-block rounded me-1" src="{{ asset($details['photo']) }}" alt="donuts"
           width="62">
         <div class="list-item-body flex-grow-1">         
@@ -29,7 +29,7 @@
               {{-- <input disabled type="number" value=""> --}}
             </div>
           </div>
-          <h5 class="cart-item-price">${{$details["price"]}}</h5>
+          <h5 id="cart-item-price">${{$details["price"]*$details["quantity"]}}</h5>
         </div>
       </div>
       @endforeach

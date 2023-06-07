@@ -1,5 +1,5 @@
 @component('mail::message')
-<body style="font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f5f5f5;">
+@if($commande->etat_id==2)<body style="font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f5f5f5;">
     <div style="max-width: 800px; margin: 0 auto; background-color: #fff; padding: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); border-radius: 10px;">
         <h1 style="text-align: center; color: #333; margin-bottom: 30px;">Invoice</h1>
       <table>
@@ -54,6 +54,10 @@
            </div>    
     </div>
     </body>
+@else<div style="text-align: center; padding: 20px;">
+  <h1 style="color: red;">Command Rejected</h1>
+  <p style="font-size: 18px;">Your command has been rejected.</p>
+</div>@endif
 @endcomponent
 
 

@@ -22,20 +22,20 @@ class AuthenticationController extends Controller
     public function postlogin(Request $request)
     {
         $request->validate([
-            'email' => 'required',
+            'email' => 'required|email',
             'password' => 'required',
         ]);
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             return redirect()
-                ->intended('app/ecommerce/shop')
+                ->intended('home')
                 ->with('message', 'Signed in!');
         }
 
         return redirect('/login')->with(
             'message',
-            'Login details are not valid!'
+            'Email or Password are not valid!'
         );
     }
     public function register()
@@ -53,6 +53,7 @@ class AuthenticationController extends Controller
             'avatar' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
+            'confirm_password' => 'required|min:6|same:password',
         ]);
 
         $file = $request->file('avatar');

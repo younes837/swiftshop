@@ -5,6 +5,8 @@ use App\Models\Commande;
 use App\Models\User;
 use App\Models\ligneCommande;
 use App\Models\Produit;
+use App\Models\Contact;
+use App\Models\Mails;
 use App\Mail\SignUp;
 use Mail;
 use Illuminate\Http\Request;
@@ -39,44 +41,33 @@ class CommandeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
-    {
-        $total = 0;
-        foreach(session('cart') as $id => $details){
-        $total += $details['price'] * $details['quantity'];
-        }
-        
-        $data=Commande::create([
-            'date'=>now()->format('Y-m-d'),
-            'total'=>$total,
-            'etat_id'=>1,
-            "user_id"=>Auth::user()->id,
-            "ville"=>$request->ville,
-            "adress"=>$request->address,
-        ]);
-        foreach(session('cart') as $id => $details){
-            ligneCommande::create([
-                'produit_id'=>$details['id'],
-                'commande_id'=>$data->id,
-                'quantite'=>$details['quantity'],
-
-            ]) ;       
-        }
-        session()->forget('cart');
-         return redirect()->back();
-        
-        
-        
-
-    }
+  
     public function confirm_commande($id){
         $commande=Commande::find($id);
         $commande->etat_id=2;
         $commande->save();
         $data=['commande'=>$commande];
+        $lignes=ligneCommande::where('commande_id',$commande->id)->get();
+
+        foreach ($lignes as $ligne) {
+            $product = Produit::find($ligne->produit_id);
+            if ($product) {
+                $stock = $product->stock;
+                $quantite = $ligne->quantite;
+                $product->stock = $stock - $quantite;
+                $product->save();
+            }
+        }
         $user=User::find($commande->user_id);
         Mail::to($user->email)->send(new SignUp($data));
-        
+        Mails::create([
+            'user_id'=>$user->id,
+            'commande_id'=>$id,
+            "title"=>"Order ready for payment",
+            "description"=>"Your order has been successfully confirmed.",
+            'seen'=>false,
+            "date"=>date("Y-m-d H:i:s")
+        ]);
         return redirect()->back()->with('confirm','message');
 
     } 
@@ -84,6 +75,17 @@ class CommandeController extends Controller
         $commande=Commande::find($id);
         $commande->etat_id=3;
         $commande->save();
+        $data=['commande'=>$commande];
+        $user=User::find($commande->user_id);
+        Mail::to($user->email)->send(new SignUp($data));
+        Mails::create([
+            'user_id'=>$commande->user_id,
+            'commande_id'=>$id,
+            "title"=>"Order rejected",
+            "description"=>"Your order has been Rejected.",
+            'seen'=>false,
+            "date"=>date("Y-m-d H:i:s")
+           ]);
         return redirect()->back()->with('reject','message');
     } 
 
@@ -100,6 +102,15 @@ class CommandeController extends Controller
 
         $pdf = Pdf::loadView('content/ecommerce/commande/facture',['commande'=> $commande]);
     return $pdf->download('invoice.pdf');
+    }
+    public function payment($id)
+    {
+        $pageConfigs = [
+            'pageClass' => 'ecommerce-application',
+            'mainLayoutType' => 'horizontal',
+        ];
+       
+        return view('content/ecommerce/payment',["pageConfigs"=>$pageConfigs]);
     }
     /**
      * Store a newly created resource in storage.
@@ -216,6 +227,17 @@ class CommandeController extends Controller
             }
         }
         }
+    }
+    public function contacts()
+    {
+        $pageConfigs = [
+            'showMenu' => true,
+            'pageClass' => 'ecommerce-application',
+           
+        ];
+    $comments=Contact::orderBy('created_at','desc')->paginate(6);
+
+        return view('content/ecommerce/admin-contact',['pageConfigs'=>$pageConfigs,"comments"=>$comments]);
     }
 }
 

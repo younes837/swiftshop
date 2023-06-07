@@ -7,6 +7,7 @@ use App\Models\Produit;
 use App\Models\Categorie;
 use App\Models\Propriete;
 use App\Models\Brand;
+use DB;
 use IlluminateSupportFacadesURL;
 
 
@@ -24,6 +25,15 @@ class productController extends Controller
             'pageClass' => 'ecommerce-application',
            
         ];
+        $labels = Categorie::orderBy('name','asc')->pluck('name')->all();
+
+        $data = Categorie::leftJoin('produit', 'categorie.id', '=', 'produit.categorie_id')
+            ->select('categorie.name', DB::raw('COUNT(produit.id) as count'))
+            ->groupBy('categorie.name')
+            ->orderBy('categorie.name','asc')
+            ->get()
+            ->pluck('count')
+            ->all();
         $products=Produit::paginate(10);
         $categories=Categorie::all();
         $proprietes=Propriete::all();
@@ -34,6 +44,8 @@ class productController extends Controller
             'categories'=>$categories,
             'proprietes'=>$proprietes,
             'brands'=>$brands,
+            'labels'=>$labels,
+            'data'=>$data,
         ]);
     }
 
@@ -82,8 +94,11 @@ class productController extends Controller
             'brand_id' => $request->brand,
             'propriete_id' => $request->propriete,
         ];
-        Produit::create($data);
-
+       $produit= Produit::create($data);
+        $products = json_decode(file_get_contents(public_path('/data/search.json')), true);
+        $products['listItems'][]=["id"=>$produit->id,"name"=>$produit->libelle,"url"=> "app/ecommerce/details/".$produit->id,"photo"=>$produit->photo];
+        
+        file_put_contents(public_path('/data/search.json'), json_encode($products));
         return redirect('product')->with('succes',"Product added Succefully");
     }
 
@@ -130,6 +145,80 @@ class productController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // public function update(Request $request, $id)
+    // {
+    //     $request->validate([
+    //         'libelle' => 'required',
+    //         'description' => 'required',
+    //         'stock' => 'required',
+    //         'rating' => 'required',
+    //         'price' => 'required',
+    //         'categorie' => 'required',
+    //         'propriete' => 'required',
+    //         'brand' => 'required',
+    //     ]);
+    //     $products = json_decode(file_get_contents(public_path('/data/search.json')), true);
+    //     foreach ($products['listItems'] as  $item) {
+    //         if (isset($item['id']) && $item['id'] == $id) {
+    //             // return $item['name'];
+    //             $item['name'] = 'Updated Name';
+    //             // return $products; 
+    //             // Replace 'Updated Name' with the desired new name
+    //             $newJsonString = json_encode($products);
+    //             file_put_contents(public_path('/data/search.json'), $newJsonString);
+    //             break;
+    //         }
+    //     }
+    //     if($request->photo === null){
+    //         $prod =Produit::find($id);
+    //         $oldpicture=$prod->photo;
+
+    //         $prod->libelle = $request->libelle;
+    //         $prod->photo = $oldpicture;
+    //         $prod->description = $request->description;
+    //         $prod->stock = $request->stock;
+    //         $prod->rating = $request->rating;
+    //         $prod->price = $request->price;
+    //         $prod->categorie_id = $request->categorie;
+    //         $prod->propriete_id = $request->propriete;
+    //         $prod->brand_id = $request->brand;
+    //         $prod->save();
+
+    //     }else{
+    //     $file = $request->file('photo');
+    //     $name = $request->file('photo')->getClientOriginalName();
+    //     $file->move(public_path('/images/pages/eCommerce/'), $name);
+
+    //     $prod =Produit::find($id);
+    //     $prod->libelle = $request->libelle;
+    //     $prod->photo = "/images/pages/eCommerce/".$name;
+    //     $prod->description = $request->description;
+    //     $prod->stock = $request->stock;
+    //     $prod->rating = $request->rating;
+    //     $prod->price = $request->price;
+    //     $prod->categorie_id = $request->categorie;
+    //     $prod->propriete_id = $request->propriete;
+    //     $prod->brand_id = $request->brand;
+    //     $prod->save();
+
+    //     }
+
+
+    //     // $data = [
+    //     //     'libelle' => $request->libelle,
+    //     //     'photo' => "/images/pages/eCommerce/".$name,
+    //     //     'description' => $request->description,
+    //     //     'stock' => $request->stock,
+    //     //     'rating' => $request->rating,
+    //     //     'price' => $request->price,
+    //     //     'categorie_id' => $request->categorie,
+    //     //     'brand_id' => $request->brand,
+    //     //     'propriete_id' => $request->propriete,
+    //     // ];
+    //     // Produit::update($data);
+
+    //     return redirect('product')->with('update',"Product updated Succefully");
+    // }
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -142,6 +231,10 @@ class productController extends Controller
             'propriete' => 'required',
             'brand' => 'required',
         ]);
+    
+        
+    
+        // Update the product in the database
         if($request->photo === null){
             $prod =Produit::find($id);
             $oldpicture=$prod->photo;
@@ -158,41 +251,41 @@ class productController extends Controller
             $prod->save();
 
         }else{
-        $file = $request->file('photo');
-        $name = $request->file('photo')->getClientOriginalName();
-        $file->move(public_path('/images/pages/eCommerce/'), $name);
+            $file = $request->file('photo');
+            $name = $request->file('photo')->getClientOriginalName();
+            $file->move(public_path('/images/pages/eCommerce/'), $name);
 
-        $prod =Produit::find($id);
-        $prod->libelle = $request->libelle;
-        $prod->photo = "/images/pages/eCommerce/".$name;
-        $prod->description = $request->description;
-        $prod->stock = $request->stock;
-        $prod->rating = $request->rating;
-        $prod->price = $request->price;
-        $prod->categorie_id = $request->categorie;
-        $prod->propriete_id = $request->propriete;
-        $prod->brand_id = $request->brand;
-        $prod->save();
+            $prod =Produit::find($id);
+            $prod->libelle = $request->libelle;
+            $prod->photo = "/images/pages/eCommerce/".$name;
+            $prod->description = $request->description;
+            $prod->stock = $request->stock;
+            $prod->rating = $request->rating;
+            $prod->price = $request->price;
+            $prod->categorie_id = $request->categorie;
+            $prod->propriete_id = $request->propriete;
+            $prod->brand_id = $request->brand;
+            $prod->save();
 
         }
-
-
-        // $data = [
-        //     'libelle' => $request->libelle,
-        //     'photo' => "/images/pages/eCommerce/".$name,
-        //     'description' => $request->description,
-        //     'stock' => $request->stock,
-        //     'rating' => $request->rating,
-        //     'price' => $request->price,
-        //     'categorie_id' => $request->categorie,
-        //     'brand_id' => $request->brand,
-        //     'propriete_id' => $request->propriete,
-        // ];
-        // Produit::update($data);
-
-        return redirect('product')->with('update',"Product updated Succefully");
+        //json
+        $jsonFile = public_path('/data/search.json');
+        $jsonData = file_get_contents($jsonFile);
+        $products = json_decode($jsonData, true);
+    
+        foreach ($products['listItems'] as &$item) {
+            if (isset($item['id']) && $item['id'] == $id) {
+                $item['name'] = $request->libelle;
+                $item['photo'] = "/images/pages/eCommerce/".$name;
+                break;
+            }
+        }
+    
+        // Save the updated JSON data back to the file
+        $newJsonString = json_encode($products);
+        file_put_contents($jsonFile, $newJsonString);
+        return redirect('product')->with('update', "Product updated successfully");
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -202,33 +295,82 @@ class productController extends Controller
     public function destroy($id)
     {
         Produit::destroy($id);
+        $jsonFile = public_path('/data/search.json');
+        $jsonData = file_get_contents($jsonFile);
+        $products = json_decode($jsonData, true);
+        foreach ($products['listItems'] as $index => $item) {
+            if (isset($item['id']) && $item['id'] == $id) {
+                unset($products['listItems'][$index]);
+                break;
+            }
+        }
+        $newJsonString = json_encode($products);
+        file_put_contents($jsonFile, $newJsonString);
         return redirect('product')->with('delete',"Product deleted Succefully");
 
 
     }
     public function filter_categorie(Request $request){
-        $pageConfigs = [
-            'showMenu' => true,
-            'pageClass' => 'ecommerce-application',
-            
-        ];
-        if ($request->filter_categorie=="all") {
-            $products=Produit::paginate(10);
-        }else{
 
-            $products=Produit::where('categorie_id',$request->filter_categorie)->paginate(10);
+        if($request->ajax()){
+          
+            $search=$request->search;
+            $categorie=$request->categorie;
+            if ($search!="") {
+                
+                if ($request->categorie=="all") {
+                    $products=Produit::join('categorie','categorie.id','produit.categorie_id')
+                    ->join('brand','brand.id','produit.brand_id')
+                    ->where(function ($q) use ($search){
+                        $q
+                        ->where('produit.libelle', 'like', '%' . $search . '%')
+                        ->OrWhere('brand.name', 'like', '%' . $search . '%')
+                        ->OrWhere('categorie.name', 'like', '%' . $search . '%')
+                        ->OrWhere('produit.price', 'like', '%' . $search . '%');
+                    })
+                    ->select('produit.id','produit.libelle','produit.price','produit.photo','produit.rating','produit.stock','produit.categorie_id','produit.brand_id')
+                    ->paginate(10);
+                }else{
+            
+                $products=Produit::join('categorie','categorie.id','produit.categorie_id')
+                ->join('brand','brand.id','produit.brand_id')
+                ->where(function ($q) use ($categorie){
+                    $q
+                    ->where('produit.categorie_id',  $categorie ); 
+                })
+                ->where(function ($q) use ($search){
+                    $q
+                    ->where('produit.libelle', 'like', '%' . $search . '%')
+                    ->OrWhere('brand.name', 'like', '%' . $search . '%')
+                    ->OrWhere('categorie.name', 'like', '%' . $search . '%')
+                    ->OrWhere('produit.price', 'like', '%' . $search . '%');
+                })
+                ->select('produit.id','produit.libelle','produit.price','produit.photo','produit.rating','produit.stock','produit.categorie_id','produit.brand_id')
+                ->paginate(10);
+            }
+        }else {
+            if ($request->categorie=="all") {
+                $products=Produit::join('categorie','categorie.id','produit.categorie_id')
+                ->join('brand','brand.id','produit.brand_id')
+                ->select('produit.id','produit.libelle','produit.price','produit.photo','produit.rating','produit.stock','produit.categorie_id','produit.brand_id')
+
+                ->paginate(10);
+            }else{
+        
+            $products=Produit::join('categorie','categorie.id','produit.categorie_id')
+            ->join('brand','brand.id','produit.brand_id')
+            ->where(function ($q) use ($categorie){
+                $q
+                ->where('produit.categorie_id',  $categorie ); 
+            })                
+            ->select('produit.id','produit.libelle','produit.price','produit.photo','produit.rating','produit.stock','produit.categorie_id','produit.brand_id')
+
+            ->paginate(10);
         }
-        $categories=Categorie::all();
-        $proprietes=Propriete::all();
-        $brands=Brand::all();
-        return view('content/ecommerce/produit/index',[
-            'pageConfigs' => $pageConfigs,
-            'products'=>$products,
-            'categories'=>$categories,
-            'proprietes'=>$proprietes,
-            'brands'=>$brands,
-            'id'=>$request->filter_categorie
-        ]);
+        }
+            return view('content/ecommerce/produit/index-content',compact('products'));
+        }
+
 
     }
 }

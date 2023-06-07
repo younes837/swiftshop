@@ -1,5 +1,5 @@
 @extends('layouts/detachedLayoutMaster')
-    @section('title', 'Shop')
+    @section('title', 'Produit')
         @section('vendor-style')
         <!-- Vendor css files -->
         <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/spinner/jquery.bootstrap-touchspin.css')) }}">
@@ -191,7 +191,7 @@
                             />
                           </div>
                         </div>
-                        <div class="col-md-6 col-12">
+                        <div class="col-md-12 col-12">
                           <div class="form-group">
                             <label for="city-column">descreption</label>
                             <input type="text" id="descreption-column" class="form-control" placeholder="descreption" name="description" value="{{$produit->libelle}}" />
@@ -228,7 +228,7 @@
                           <div class="form-group">
                             <label for="email-id-column">price</label>
                             <input
-                              type="price"
+                              type="number"
                               id="price-id-column"
                               class="form-control"
                               name="price"
@@ -241,7 +241,9 @@
                         <label class="form-label" for="selectDefault">categorie</label>
                         <select class="form-select " name="categorie" id="selectDefault">
                                     @foreach($categories as $categorie)
-                                    <option {{$produit->categorie == '' ? '' : selected }} value="{{$categorie->id}}">{{$categorie->name}}</option>
+                                    <option @if ($categorie->id==$produit->categorie_id)
+                                      selected
+                                    @endif value="{{$categorie->id}}">{{$categorie->name}}</option>
                                     @endforeach
                             </select>
                     </div>
@@ -249,7 +251,9 @@
                         <label class="form-label" for="selectDefault">propriete</label>
                         <select class="form-select " name="propriete" id="selectDefault">
                                     @foreach($proprietes as $propriete)
-                                    <option @if ($produit->propriete != '') selected @endif value="{{$propriete->id}}">{{$propriete->libelle}}</option>
+                                    <option @if ($propriete->id==$produit->propriete_id)
+                                      selected
+                                    @endif value="{{$propriete->id}}">{{$propriete->libelle}}</option>
                                     @endforeach
                             </select>
                     </div>
@@ -258,7 +262,9 @@
                         <select class="form-select " name="brand" id="selectDefault">
 
                                     @foreach($brands as $brand)
-                                    <option @if($produit->brand != '') selected @endif value="{{$brand->id}}">{{$brand->name}}</option>
+                                    <option @if ($brand->id==$produit->brand_id)
+                                      selected
+                                    @endif value="{{$brand->id}}">{{$brand->name}}</option>
                                     @endforeach
                             </select>
                     </div>

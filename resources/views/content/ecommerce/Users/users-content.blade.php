@@ -4,7 +4,7 @@
         <th>Avatar</th>
         {{-- <th>Username</th>
         <th>Email</th> --}}
-        <th>Adress</th>
+        <th>Address</th>
         {{-- <th>Phone-Number</th> --}}
         <th>Role</th>
         <th>City</th>
