@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "public/index.php",
+      "use": "@vercel/php"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "public/index.php"
+    }
+  ],
+  "env": {
+    "APP_KEY": "base64:fiuzvw6SxjtbGmTaoPQuqALX4thJh5RWjYrqVNy+jBw=",
+    "DB_HOST": "127.0.0.1",
+    "DB_DATABASE": "e-commerce",
+    "DB_USERNAME": "root",
+    "DB_PASSWORD": "root"
+  }
+}
